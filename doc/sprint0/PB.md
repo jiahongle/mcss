@@ -6,7 +6,7 @@
 
 2. As Pradeep (MCSS exec),  I want to be able to log in to the MCSS website and gain authentication, to gain admin permissions so that I may be able to update any pages necessary.
 
-3. As Pradeep (an MCSS exec). I want to be able to change my login password to the website so that I can keep my account sure.
+3. As Pradeep (an MCSS exec). I want to be able to change my login password to the website so that I can keep my account secure.
 
 ## Announcement:
 
