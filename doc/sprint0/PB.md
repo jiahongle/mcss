@@ -6,13 +6,13 @@
 
 2. As Pradeep (MCSS exec),  I want to be able to log in to the MCSS website and gain authentication, to gain admin permissions so that I may be able to update any pages necessary.
 
-3. As Pradeep (an MCSS exec). I want to be able to change my login password to the website.
+3. As Pradeep (an MCSS exec). I want to be able to change my login password to the website so that I can keep my account sure.
 
 ## Announcement:
 
 4. As Pradeep (MCSS exec), I want to be able to post an announcement to the website so that any user (either logged in as admin or not) can view all the announcements on the announcements feed.
 
-5. As Pradeep, I want to be able to delete an announcement made before.
+5. As Pradeep, I want to be able to delete an announcement made before in case I have made a mistake in the announcement page.
 
 6. As Steven (a student), I want to be able to view announcements so that I can see all the new exciting updates the MCSS is planning to work on.
 
@@ -20,26 +20,26 @@
 
 7. As Pradeep (an MCSS exec), I want to be able to post a new event page about an upcoming MCSS event so that it can be viewed by users (either logged in admin or not) in the upcoming events page. 
 
-8. As Pradeep, I want to be able to modify or delete the page of an upcoming event.
+8. As Pradeep (an MCSS exec), I want to be able to modify or delete the page of an upcoming event in the case I make a mistake in the text of the event.
 
-9. As Steven (a student), I want to be able to view any available events I find on the event’s section.
+9. As Steven (a student), I want to be able to view any available events I find on the event’s section so that I can be informed on upcoming events that I can possibly attend.
 
 
 ## Past event:
 
 10. As Pradeep (an MCSS exec), I can upload or delete photos of past events onto the past events page so that students can see the fun events that occurred.
 
-11. As Steven, I want to be able to view photos of past events on the past events page so that I can’t look back on past events.
+11. As Steven (a student), I want to be able to view photos of past events on the past events page so that I can look back on past events.
 
 ## Resources page:
 
-12. As Pradeep, I want to be able to modify the resources page which contains text, links, image, video.
+12. As Pradeep (an MCSS exec), I want to be able to modify the resources page which contains text, links, image, video.
 
 13. As Steven (Student), I am having trouble with CSC148 and I want to get support academically from the MCSS club. I want to use the MCSS website’s resources page to look up any useful resources or contact info of people that can help me.
 
 ## Contact page:
 
-14. As Pradeep, I want to be able to modify the MCSS executive team contact page so that any user (either logged in as admin or not) can view the executive team contact page.
+14. As Pradeep (an MCSS exec), I want to be able to modify the MCSS executive team contact page so that any user (either logged in as admin or not) can view the executive team contact page.
 
 15. As Steven (a student), I want to be able to view the MCSS executive team contact page so that I can email an executive and discuss about possible positions
 
@@ -63,6 +63,6 @@
 
 ## Dark mode:
 
-21. As Steven (a student), I want to be able to easily toggle the site UI  between light mode and dark mode.
+21. As Steven (a student), I want to be able to easily toggle the site UI  between light mode and dark mode so that I can choose a design that fits my mood.
 
 
