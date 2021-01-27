@@ -1,6 +1,6 @@
 __How did you organize the team? Which tools did you use, if any?__
 
-Our primary method of communication is Discord. Through Discord, we maintain constant communication throughout the week and hold our meetings. We will of course also use Jira to manage our user stories and product backlogs.
+Our primary method of communication is Discord. Through Discord, we maintain constant communication throughout the week and hold our meetings. We will of course also use Jira to manage our user stories and product backlogs. In terms of roles, all of our team member are expected to contribute to both the frontend and backend codebases. Working in this arrangement allows us to assign work to team members without worrying about whether a member will have the background to work on the user story. This is because having multiple membes of our team work fullstack allows each member to have a more complete understanding of the workings of the project.
 
 __How did you make decisions?__
 
