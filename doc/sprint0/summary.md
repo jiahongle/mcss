@@ -1,6 +1,6 @@
 ## Project Objectives:
 
-Our group will create the official MCSS website that will enable MCSS executives to make announcements and communicate event details and also allows students and professors to stay up to date with any MCSS related news. 
+Our group will create the official MCSS website that will enable MCSS executives to make and edit announcements, and communicate event details. As well allow students and professors to stay up to date with any MCSS related news. 
 
 The website must:
 
@@ -16,7 +16,7 @@ The website must:
 
 ## Key use cases: 
 * Students looking for resources for CS/Math/Stats as well as MCSS announcements and events
-* MCSS executive team members can publish MCSS event information
+* MCSS executive team members can publish and edit MCSS event information
 * MCSS executive team members can use Mailchimp integration to email announcements to users in the subscription list
 * MCSS executive team members can post photos of past events
 * MCSS executive team members can advertise other MCS clubs in UTM by adding links to other clubs in a partners page
