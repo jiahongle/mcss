@@ -41,13 +41,13 @@
 
 14. As Pradeep, I want to be able to modify the MCSS executive team contact page so that any user (either logged in as admin or not) can view the executive team contact page.
 
-15. As Lakeshaw (a partner), I want to be able to view the MCSS executive team contact page so that I can email an exec and discuss about possible partnerships
+15. As Steven (a student), I want to be able to view the MCSS executive team contact page so that I can email an executive and discuss about possible positions
 
 ##  Partners page:
 
 16. As Pradeep (MCSS executive), I have teamed up with new partners at a club at UTM. I want to be able to edit the partners pages to include the new partner.
 
-17. As Lakeshaw (a partner), I want to be able to view the partners page so that I can look at the link to my website.
+17. As Steven (a student), I want to be able to view the partners page so that I can see the partners who are associated with the MCSS.
 
 
 
