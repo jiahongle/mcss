@@ -30,3 +30,12 @@ The website must:
 * Pradeep  is an MCSS executive member who wants to upload the footage that was taken at last week's event onto the MCSS website so they have some evidence that an MCSS event had happened.
 
 * Steven is a student who wants to buy an MCSS hoodie or T-shirt, he will be redirected to the shopify MCSS website.
+
+## Key Principles:
+* Intuitive Interface: The design for the website should be minimal but effective to ensure that key users will be able to navigate and use it with ease.
+
+* Capture the users attention: The design for the website should have a wow factor that captures the attention of any user that visits it. This should allow 
+MCSS Executives to better promote their club to the wider student body.
+
+* Fast and bug free: The backend system should be polished and able to handle a multitude of users accessing the website at the same time. This is to avoid user
+frustration when accessing the website and making their experience as enjoyable as possible.
