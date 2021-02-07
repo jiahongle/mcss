@@ -1,0 +1,30 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "mcss website backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UTMCSC301/final-project-super-duper-waffle.git"
+  },
+  "author": "super duper waffle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UTMCSC301/final-project-super-duper-waffle/issues"
+  },
+  "homepage": "https://github.com/UTMCSC301/final-project-super-duper-waffle#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
