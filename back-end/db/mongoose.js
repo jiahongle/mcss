@@ -7,6 +7,11 @@ const mongoose = require('mongoose')
 // Get the URI of the local database, or the one specified on deployment.
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/MCSSDB'
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect(mongoURI, { 
+         useNewUrlParser: true,
+         useUnifiedTopology: true,
+         useCreateIndex: true,
+         useFindAndModify: false // for some deprecation issues
+      });
 
 module.exports = { mongoose }  // Export the active connection.
