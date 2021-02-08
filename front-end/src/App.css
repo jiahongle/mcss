@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #000;
 }
 
 .App-logo {
@@ -7,7 +8,9 @@
   pointer-events: none;
 }
 
-
+.logo-header {
+  min-height: 40vmin;
+}
 
 .App-header {
   background-color: #000;
@@ -18,17 +21,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  min-width: 50vmin;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body {
+  color:#FFF;
+  background-color: #000;
 }
