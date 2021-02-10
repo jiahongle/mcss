@@ -1,0 +1,9 @@
+
+.logo-bar-container {
+    display: flex;
+    min-width: 50vmin;
+    justify-content: space-between;
+    color: #9CDAF7;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
