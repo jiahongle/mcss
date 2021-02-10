@@ -1,3 +1,11 @@
+.Introduction {
+    display: block;
+    text-align: left;
+    font-size: calc(8px + 1vw);
+    margin: 0px 15vw;
+    color: white;
+  }
+
 .Introduction b {
     font-size: calc(4px + 2vw);
     color: #00FFFF;
