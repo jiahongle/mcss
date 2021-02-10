@@ -9,8 +9,8 @@ export default class LogoBar extends React.Component {
             <div className="logo-bar-container">
                 <FontAwesomeIcon icon={faFacebook} />
                 <FontAwesomeIcon icon={faDiscord} />
-                <FontAwesomeIcon icon={faTwitter} />
                 <FontAwesomeIcon icon={faInstagram} />
+                <FontAwesomeIcon icon={faTwitter} />
             </div>
         )
     }
