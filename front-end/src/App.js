@@ -1,6 +1,7 @@
 import mcss from './mcss.jpg';
 import './App.css';
 import Header from './Header.js';
+import Introduction from './Introduction.js'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
         <img src={mcss} className="App-logo" alt="logo" />
         <Header></Header>
+        <Introduction> </Introduction>
         <a
           className="App-link"
           href="https://reactjs.org"

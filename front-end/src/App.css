@@ -20,6 +20,29 @@
   color: white;
 }
 
+.Introduction {
+  display: block;
+  text-align: left;
+  font-size: calc(8px + 1vw);
+  margin: 0px 15vw;
+}
+
+.Introduction b {
+  font-size: calc(4px + 2vw);
+  color: #00FFFF;
+}
+
+.Introduction p {
+  margin-bottom: 5%;
+}
+
+.President-Picture {
+  min-width: 18%;
+  min-height: 18%;
+  max-width: 20%;
+  max-height: 20%;
+}
+
 .App-link {
   color: #61dafb;
 }
