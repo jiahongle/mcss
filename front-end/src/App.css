@@ -24,14 +24,6 @@
   min-width: 50vmin;
 }
 
-.Introduction {
-  display: block;
-  text-align: left;
-  font-size: calc(8px + 1vw);
-  margin: 0px 15vw;
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
