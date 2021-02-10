@@ -1,6 +1,6 @@
 import mcss from './mcssLogo.svg';
 import './App.css';
-import Introduction from './Introduction.js'
+import Introduction from './components/WhoWeAre/Introduction.js'
 import LogoBar from './components/logoBar/logoBar';
 import Announcements from './components/announcements/announcement.js'
 

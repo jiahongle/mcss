@@ -1,0 +1,10 @@
+.Introduction b {
+    font-size: calc(4px + 2vw);
+    color: #00FFFF;
+}
+
+.Introduction p {
+    margin-bottom: 5%;  
+}
+
+.President-Picture {}

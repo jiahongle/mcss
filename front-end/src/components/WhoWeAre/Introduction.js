@@ -1,6 +1,6 @@
 // Description: Container component for the "Who We Are" section of the home page
-
-import presidentpic from './placeholder-president-pic.png';
+import './Introduction.css'
+import presidentpic from '../../res/placeholder-president-pic.png';
 
 // Introductory text
 var IntroText = "Mathematical & Computational Sciences Society (MCSS)" + 
