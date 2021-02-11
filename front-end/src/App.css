@@ -24,11 +24,16 @@
   min-width: 50vmin;
 }
 
-.App-link {
-  color: #61dafb;
+.AppContent {
+  margin-left: 19vw;
+  margin-right: 19vw;
 }
 
-.body {
+/* .App-link {
+  color: #61dafb;
+} */
+
+/* .body {
   color:#FFF;
   background-color: #000;
-}
+} */

@@ -1,18 +1,48 @@
 .Introduction {
     display: block;
     text-align: left;
-    font-size: calc(8px + 1vw);
-    margin: 0px 15vw;
+    margin-bottom: 80px;
     color: white;
-  }
+}
 
 .Introduction b {
-    font-size: calc(4px + 2vw);
-    color: #00FFFF;
+    font-size: 30px;
+    color: #84BAD3;
 }
 
 .Introduction p {
-    margin-bottom: 5%;  
+    font-size: 18px;
+    margin-bottom: 60px;  
 }
 
-.President-Picture {}
+.President-Container {
+    overflow: auto;
+}
+
+.President-Picture {
+    display: inline-block;
+    height: 25vh;
+    margin-right: 40px;
+    margin-bottom: 4px;
+    float: left;
+    border: 3px solid #91D6F6;
+}
+
+.QuoteContainer {
+    font-size: 30px;
+}
+
+.Quote {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.Initials {
+    display: inline;
+    font-size: 18px;
+    color: #55B5D3;
+    margin-left: 20px;
+    position: relative;
+    bottom: 5px;
+}

@@ -13,9 +13,10 @@ function App() {
         </div>
         <LogoBar />
       </header>
-      <Introduction/> 
-      <Announcements />
-
+      <div className="AppContent">
+        <Introduction/> 
+        <Announcements/>
+      </div>
     </div>
 
   );

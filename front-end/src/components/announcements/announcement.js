@@ -9,7 +9,7 @@ export default class announcement extends React.Component {
         return (
             <div className="announcement-container">
                 <div className="title-container">
-                    <p className="title"> Announcements </p>
+                    <b>Announcements</b>
                     <FontAwesomeIcon className="title icon-speaker" icon={faBullhorn} />
                 </div>
                 <AnnouncementPost />
