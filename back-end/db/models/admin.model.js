@@ -1,10 +1,8 @@
-/* admin model */
+/* Admin model */
 'use strict';
-
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
 
-// Admin schema
+// Created Admin schema: check with group if this is how they want it
 const AdminSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -20,6 +18,6 @@ const AdminSchema = new mongoose.Schema({
 	}
 })
 
-// make a model using the admin schema
-const Admin = mongoose.model('admin', AdminSchema)
+// Make a model using the admin schema
+const Admin = mongoose.model('Admin', AdminSchema)
 module.exports = { Admin }
