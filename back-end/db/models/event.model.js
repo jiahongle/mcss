@@ -2,7 +2,7 @@
 'use strict';
 const mongoose = require('mongoose')
 
-const EventSchema = mongoose.model('event', {
+const EventSchema = new mongoose.Scheme ({
 	title: {
 		type: String,
 		required: true,
@@ -23,5 +23,5 @@ const EventSchema = mongoose.model('event', {
 	}
 })
 
-const event = mongoose.model('announcement', EventSchema)
-module.exports = { event }
+const Event = mongoose.model('Event', EventSchema)
+module.exports = { Event }

@@ -2,7 +2,8 @@
 'use strict';
 const mongoose = require('mongoose')
 
-const AnnouncementSchema = mongoose.model('announcement', {
+// Created Announcement schema: check with group if this is how they want it
+const AnnouncementSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true,
@@ -22,5 +23,6 @@ const AnnouncementSchema = mongoose.model('announcement', {
 	timestamps: true
 })
 
-const announcement = mongoose.model('announcement', AnnouncementSchema)
-module.exports = { announcement }
+// Make a model using the announcement schema
+const Announcement = mongoose.model('Announcement', AnnouncementSchema)
+module.exports = { Announcement }
