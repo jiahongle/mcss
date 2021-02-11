@@ -15,6 +15,17 @@
     border-radius: 18px;
 }
 
+.create-announcement-container {
+    background-color: #1D1D1D;
+    color: #61dafb;
+    padding: 20px 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 18px;
+}
+
+
 .title-container {
     display:flex;
     margin-bottom: 4vmin;

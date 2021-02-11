@@ -3,6 +3,7 @@ import './App.css';
 import Introduction from './components/WhoWeAre/Introduction.js'
 import LogoBar from './components/logoBar/logoBar';
 import Announcements from './components/announcements/announcement.js'
+import CreateAnnouncement from './components/announcements/createAnnouncement.js';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <LogoBar />
       </header>
       <div className="AppContent">
-        <Introduction/> 
-        <Announcements/>
+        <Introduction />
+        <Announcements />
+        <CreateAnnouncement />
       </div>
     </div>
 
