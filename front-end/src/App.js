@@ -11,17 +11,6 @@ import EditAnnouncement from './components/announcements/editAnnouncement.js'
 
 export default class App extends React.Component {
 
-
-  // fetch('http://localhost:5000/announcements/get')
-  //     .then((response) => {
-  //       response.json()
-
-  //     })
-  //     .then(announcementsList => {
-  //       // this.setState({ announcements: announcementsList });
-  //       console.log(announcementsList)
-  //     });
-
   render() {
     return (
       <div className="App">
