@@ -22,12 +22,12 @@ export default class announcement extends React.Component {
             ).then(data => {
                 this.setState({ announcements: data.data })
             })
-        console.log("fetching...")
+
     }
 
 
     render() {
-        console.log(this.state)
+
         return (
             <div className="announcement-container">
                 <div className="title-container">
