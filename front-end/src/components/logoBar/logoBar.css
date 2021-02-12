@@ -1,0 +1,7 @@
+
+.logo-bar-container {
+    display: flex;
+    min-width: 35vmin;
+    justify-content: space-between;
+    color: #8873B4;
+}
