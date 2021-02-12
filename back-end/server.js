@@ -11,8 +11,8 @@ const app = express();
 const { mongoose } = require("./db/mongoose");
 
 // import the mongoose models
-const { Announcement } = require("./db/models/announcement");
-const { Admin } = require("./db/models/admin");
+const { Announcement } = require("./db/models/announcement.model");
+const { Admin } = require("./db/models/admin.model");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
