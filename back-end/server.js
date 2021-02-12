@@ -37,6 +37,9 @@ app.use(express.urlencoded({ extended: true }));
 //     })
 // );
 
+// Router Imports
+app.use('/announcements', require('./routes/announcement.routes'));
+
 // Start the express server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
