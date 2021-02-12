@@ -17,6 +17,11 @@ const { Admin } = require("./db/models/admin.model");
 // to validate object IDs
 const { ObjectID } = require("mongodb");
 
+//enable cors
+const cors = require('cors')
+
+app.use(cors())
+
 app.use(express.json());
 
 // express-session for managing user sessions
