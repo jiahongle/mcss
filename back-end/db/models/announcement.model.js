@@ -1,6 +1,6 @@
 /* Announcement mongoose model */
 'use strict';
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 // Created Announcement schema: check with group if this is how they want it
 const AnnouncementSchema = new mongoose.Schema({
@@ -24,5 +24,5 @@ const AnnouncementSchema = new mongoose.Schema({
 })
 
 // Make a model using the announcement schema
-const Announcement = mongoose.model('Announcement', AnnouncementSchema)
-module.exports = { Announcement }
+const Announcement = mongoose.model('Announcement', AnnouncementSchema);
+module.exports = Announcement;
