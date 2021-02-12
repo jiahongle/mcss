@@ -17,13 +17,14 @@ export const postAnnouncement = async (postAnnounceComp, app) => {
     try {
         const response = await fetch(request);
 
-        if (response.status == 200) {
-            continue;
-            // depends on front end implementation
-        }
+        // if (response.status == 200) {
+        //     // continue;
+        //     // depends on front end implementation
+
+        // }
 
     } catch (error) {
         console.log(error)
-    } 
+    }
 
 };
