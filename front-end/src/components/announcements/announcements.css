@@ -16,6 +16,11 @@
     border-radius: 18px;
 }
 
+.announcement-p {
+    padding-right:3px;
+    margin-right:4px;
+}
+
 .create-announcement-container {
     background-color: #1D1D1D;
     color: #61dafb;
@@ -26,6 +31,11 @@
     border-radius: 18px;
 }
 
+.announcement-form {
+    display:flex;
+    flex-direction:row;
+
+}
 
 .title-container {
     display:flex;
