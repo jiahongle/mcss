@@ -22,48 +22,50 @@ export default class Nav extends React.Component {
           <div className="mcss-logo-container">
             <img src={mcssLogo} className="mcss-logo"/>
           </div>
-          <ul>
-            <li className="nav-text">
-              // link to /
-              <Link to=""> 
-                <span> Home </span>
-              </Link>
-            </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> The Team </span>
-              </Link>
-            </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> Announcements </span>
-              </Link>
-            </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> Events </span>
-              </Link>          </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> Resources </span>
-              </Link>
-            </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> Partner Clubs </span>
-              </Link>
-            </li>
-            <li className="nav-text">
-              <Link to="">
-                <span> Shopify </span>
-              </Link>
-            </li>
-          </ul>
-          <div class="social-media">
-            <FontAwesomeIcon icon={faFacebook} />
-            <FontAwesomeIcon icon={faDiscord} />
-            <FontAwesomeIcon icon={faInstagram} />
-            <FontAwesomeIcon icon={faTwitter} />
+          <div className="content-wrap">
+            <ul>
+              <li className="nav-text">
+                <Link to=""> 
+                  <span> Home </span>
+                </Link>
+              </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> The Team </span>
+                </Link>
+              </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> Announcements </span>
+                </Link>
+              </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> Events </span>
+                </Link>          </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> Resources </span>
+                </Link>
+              </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> Partner Clubs </span>
+                </Link>
+              </li>
+              <li className="nav-text">
+                <Link to="">
+                  <span> Shopify </span>
+                </Link>
+              </li>
+            </ul>
+            
+            <div class="social-media">
+              <FontAwesomeIcon icon={faFacebook} />
+              <FontAwesomeIcon icon={faDiscord} />
+              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faTwitter} />
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 .menu-container {
     width: 250px;
-    height: 100vh;
+    height: 100vmin;
     position: fixed;
     right: 0;
 }
@@ -27,7 +27,7 @@
 
 .nav-text {
     display: flex;
-    height: 50px;
+    height: 6vmin;
     justify-content: flex-end;
     align-items: center;
     margin-right: 40px;
@@ -55,8 +55,6 @@
 }
 
 .social-media {
-    position: absolute;
-    bottom: 20px;
     font-size: 1.5rem;
     padding-left: 15%;
     padding-right: 15%;
@@ -65,4 +63,9 @@
     color: #8873B4;
 }
 
-  
+.content-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 75%;
+}
