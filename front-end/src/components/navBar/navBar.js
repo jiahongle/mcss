@@ -30,26 +30,26 @@ export default class Nav extends React.Component {
                 </Link>
               </li>
               <li className="nav-text">
-                <Link to="">
+                <Link to="/team">
                   <span> The Team </span>
                 </Link>
               </li>
               <li className="nav-text">
-                <Link to="">
+                <Link to="/announcements">
                   <span> Announcements </span>
                 </Link>
               </li>
               <li className="nav-text">
-                <Link to="">
+                <Link to="/events">
                   <span> Events </span>
                 </Link>          </li>
               <li className="nav-text">
-                <Link to="">
+                <Link to="/resources">
                   <span> Resources </span>
                 </Link>
               </li>
               <li className="nav-text">
-                <Link to="">
+                <Link to="/partnerClubs">
                   <span> Partner Clubs </span>
                 </Link>
               </li>
