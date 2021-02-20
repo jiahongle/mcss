@@ -13,7 +13,7 @@
 }
 
 .App-header {
-  background-color: #000;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,11 +29,21 @@
   margin-right: 19vw;
 }
 
-/* .App-link {
-  color: #61dafb;
-} */
+.menu-button {
+  font-size: 2rem;
+  color: white;
+  background: none;
+}
 
-/* .body {
-  color:#FFF;
-  background-color: #000;
-} */
+.menu-button-area {
+  z-index: 2;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px;
+  width: 250px;
+  position: fixed;
+  right: 0;
+  background: none;
+}
