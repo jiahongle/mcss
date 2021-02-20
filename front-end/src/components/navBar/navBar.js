@@ -25,7 +25,7 @@ export default class Nav extends React.Component {
           <div className="content-wrap">
             <ul>
               <li className="nav-text">
-                <Link to=""> 
+                <Link to="/"> 
                   <span> Home </span>
                 </Link>
               </li>

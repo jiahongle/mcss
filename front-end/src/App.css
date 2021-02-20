@@ -3,32 +3,6 @@
   background-color: #000;
 }
 
-.App-logo {
-  height: 35vmin;
-  pointer-events: none;
-}
-
-.logo-header {
-  min-height: 40vmin;
-}
-
-.App-header {
-  background-color: black;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(20px + 2vmin);
-  color: white;
-  min-width: 50vmin;
-}
-
-.AppContent {
-  margin-left: 19vw;
-  margin-right: 19vw;
-}
-
 .menu-button {
   font-size: 2rem;
   color: white;
