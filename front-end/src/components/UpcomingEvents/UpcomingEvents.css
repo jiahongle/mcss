@@ -45,8 +45,6 @@
 }
 
 .Event-Text { 
-    display: grid;
-    grid-template-rows: auto auto auto auto;
     overflow: hidden;
     padding-left: 20px;
     padding-top: 10px;

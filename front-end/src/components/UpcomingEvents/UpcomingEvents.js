@@ -8,7 +8,7 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex quam, consectetur " +
                   "eu mattis facilisis, sollicitudin nec enim. Sed id ipsum porta, viverra urna sed, " +
                   "sollicitudin tortor. Morbi id risus eget nulla pulvinar tristique a in eros.";
-description += description;
+description += description + description + description + description + description;
 
 var title = "The Show: A Night of the Nerds The Show: A Night of the Nerds The Show: A Night of the Nerds";
 var date = "Feb 2nd, 2020";
