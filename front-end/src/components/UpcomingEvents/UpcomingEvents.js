@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 // Testing component
-var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex quam, consectetur " +
+var description1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex quam, consectetur " +
                   "eu mattis facilisis, sollicitudin nec enim. Sed id ipsum porta, viverra urna sed, " +
                   "sollicitudin tortor. Morbi id risus eget nulla pulvinar tristique a in eros.";
-description += description + description + description + description + description;
+var description2 = description1 + description1 + description1 + description1 + description1;
 
 var title = "The Show: A Night of the Nerds The Show: A Night of the Nerds The Show: A Night of the Nerds";
 var date = "Feb 2nd, 2020";
@@ -21,11 +21,11 @@ function UpcomingEvents() {
                 <FontAwesomeIcon className="Calendar-Icon" icon={faCalendarAlt}/>
             </div>
             <Event className ="Homepage-Event" 
-                   description = {description} 
+                   description = {description1} 
                    title = {title}
                    date = {date}/>
             <Event className ="Homepage-Event" 
-                   description = {description} 
+                   description = {description2} 
                    title = {title}
                    date = {date}/>
         </div>

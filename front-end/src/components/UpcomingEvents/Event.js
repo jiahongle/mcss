@@ -7,9 +7,11 @@ function Event(props) {
     return (
         <div className="Main-Event-Container">
             <div className="Event-Text">
-                <b className="Event-Title"> {props.title} </b>
-                <p className="Event-Text-Date"> {props.date} </p>
-                <p className="Event-Text-Desc"> {props.description} </p>
+                <div>
+                    <b className="Event-Title"> {props.title} </b>
+                    <p className="Event-Text-Date"> {props.date} </p>
+                    <p className="Event-Text-Desc"> {props.description} </p>
+                </div>
                 <div className="Event-Buttons">
                     <button type="button" className="LearnMore-Button"> Learn More </button>
                     <button type="button" className="Register-Button"> Register </button>
