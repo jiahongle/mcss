@@ -3,6 +3,8 @@
 import React from 'react'
 import eventpic from '../../res/the-show.png';
 
+
+/* Event function requires a title, date and description to be created */
 function Event(props) {
     return (
         <div className="Main-Event-Container">

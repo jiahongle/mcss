@@ -31,6 +31,7 @@
     height: 350px;
 }
 
+
 .Event-Picture { 
     padding-top: 20px;
     padding-bottom: 20px;
@@ -46,6 +47,8 @@
     max-width: 100%;
 }
 
+
+/* Container for all text: Title, date, description*/
 .Event-Text { 
     width: 64%;
     display: flex;
@@ -66,6 +69,7 @@
     overflow: hidden;
 }
 
+/* Description box stylings */
 .Event-Text-Desc {
     margin: 0 !important;
     font-size: 20px;
@@ -77,6 +81,7 @@
     overflow: hidden; 
 }
 
+/* Date stylings */
 .Event-Text-Date {
     margin: 0px 0px 20px;
     font-size: 20px;
@@ -85,6 +90,7 @@
 }
 
 
+/* Stylings for buttons and their containers */
 .Event-Buttons {
     padding: 0 10% 0;
     height: 37px;
