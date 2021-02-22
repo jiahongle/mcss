@@ -5,6 +5,7 @@
     margin-bottom: 20px;
     border-radius: 20px;
     height: 70px;
+    transition: 200ms;
 }
 
 /* Parent Container for a single expanded upcoming event  */
@@ -14,6 +15,7 @@
     margin-bottom: 20px;
     border-radius: 20px;
     height: 350px;
+    transition: 200ms;
 }
 
 /* Toggling Collapse/Expanded Button stylings */
