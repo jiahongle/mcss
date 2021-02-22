@@ -4,16 +4,27 @@ import React from 'react'
 import eventpic from '../../res/the-show.png';
 import './Event.css'
 
-/* Defines a container that can hold all text within an upcoming event  */
-function EventText(props) {
+/* Defines a container that holds all text within an upcoming event that is expanded */
+function ExpandedText(props) {
     return (
         <div>
-            <b className="Event-Title"> {props.title} </b>
-            <p className="Event-Date"> {props.date} </p>
-            <p className="Event-Desc"> {props.description} </p>
+            <b className="Expanded-Title"> {props.title} </b>
+            <p className="Expanded-Date"> {props.date} </p>
+            <p className="Expanded-Desc"> {props.description} </p>
         </div>
     )
 }
+
+/* Defines a container that holds title and date only when an upcoming event is collapsed */
+function CollapsedText(props) {
+    return (
+        <div className="Collapsed-Text">
+            <b className="Collapsed-Title"> {props.title} </b>
+            <p className="Collapsed-Date"> {props.date} </p>
+        </div>
+    )
+}
+
 
 /* Defines a container with two buttons: Learn More, Register */
 function EventButtons() {
@@ -25,11 +36,11 @@ function EventButtons() {
     )
 }
 
-/* Defines a container holding all the required text when an event is expanded */
-function ExpandedText(props) {
+/* Defines a container holding all the required text and buttons when an event is expanded */
+function ExpandedInfo(props) {
     return (
-        <div className="Event-Info">
-            <EventText title={props.title}
+        <div className="Expanded-Info">
+            <ExpandedText title={props.title}
                         date={props.date}
                         description={props.description}/>
             <EventButtons/>
@@ -37,10 +48,11 @@ function ExpandedText(props) {
     );
 }
 
-/* A container holding displayed when an event is collapsed, shows only the title and date */
-function CollapsedText(props) {
+/* A container displayed when an event is collapsed, shows only the title and date */
+function CollapsedInfo(props) {
     return (
-        EventText(props)
+        <CollapsedText title={props.title}
+                        date={props.date}/>
     );
 }
 
@@ -67,33 +79,33 @@ class Event extends React.Component {
 
     render() {
         // Button that toggles the state of the event component
-        let btn = <button className="Collapse-Button" 
+        let btn = <button className="Toggle-Button" 
                           onClick={this.toggleCollapse}/>
 
         if (!this.state.isCollapsed) { // If expanded
-            let expandedText = <ExpandedText title={this.props.title}
+            let expandedInfo = <ExpandedInfo title={this.props.title}
                                               date={this.props.date}
                                               description={this.props.description}/>;
 
             return(
                 <div className="Expanded">
-                    {expandedText}
-                    <div className="Event-Picture">
-                        <img src={eventpic}/>
-                        {btn}
+                    {expandedInfo}
+                    <div className="Expanded-Picture-Button">
+                        <div className="Expanded-Button">{btn}</div>
+                        <div className="Inner-Picture"><img src={eventpic}/></div>
                     </div>
                 </div>
             );
 
         } else { // If Collapsed
-            let collapsedText = <CollapsedText title={this.props.title}
+            let collapsedInfo = <CollapsedInfo title={this.props.title}
                                                 date={this.props.date}/>;
 
             return (
                 <div className="Collapsed">
-                    <div className="Event-Info">
-                        {collapsedText}
-                        <button onClick={this.toggleCollapse}/>
+                    {collapsedInfo}
+                    <div className="Collapsed-Button-Div">
+                        {btn}
                     </div>
                 </div>
             );

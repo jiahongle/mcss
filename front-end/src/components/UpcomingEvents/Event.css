@@ -1,13 +1,13 @@
-/* Container for a single expanded upcoming event  */
+/* Parent Container for a single expanded upcoming event  */
 .Collapsed {
     background-color: #1D1D1D;
     display: flex;
     margin-bottom: 20px;
     border-radius: 20px;
-    height: 100px;
+    height: 70px;
 }
 
-/* Container for a single expanded upcoming event  */
+/* Parent Container for a single expanded upcoming event  */
 .Expanded {
     background-color: #1D1D1D;
     display: flex;
@@ -16,25 +16,23 @@
     height: 350px;
 }
 
-
-.Event-Picture { 
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36%;
-}
-
-.Event-Picture img {
-    max-height:100%;
-    max-width: 100%;
+/* Toggling Collapse Button stylings */
+.Toggle-Button {
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    outline: 0;
+    width: 5px;
+    height: 5px;
+    float: right;
 }
 
 
+
+/************************ EXPANDED EVENT STYLINGS ************************/
 /* Container for all text: Title, date, description*/
-.Event-Info { 
+.Expanded-Info { 
     width: 64%;
     display: flex;
     flex-direction: column;
@@ -42,11 +40,11 @@
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 /* Title stylings */
-.Event-Info b {
+.Expanded-Title {
     font-size: 24px;
     color: #8873B4;
     display: -webkit-box;   
@@ -56,7 +54,7 @@
 }
 
 /* Description box stylings */
-.Event-Desc {
+.Expanded-Desc {
     margin: 0 !important;
     font-size: 20px;
     color: #FFFFFF;
@@ -68,8 +66,8 @@
 }
 
 /* Date stylings */
-.Event-Date {
-    margin: 0px 0px 20px;
+.Expanded-Date {
+    margin: 10px 0px 20px;
     font-size: 20px;
     color: #55B5D3;
     text-align: left;
@@ -82,6 +80,7 @@
     height: 37px;
 }
 
+/* Default stylings for the two buttons Learn More and Expanded */
 button {
     border: none;
     color: white;
@@ -102,15 +101,70 @@ button {
     background-color: #8873B4;
 }
 
-
-/* Collapse Button stylings */
-.Collapse-Button {
-    border: none;
-    color: white;
-    padding: 5px 5px;
-    text-align: center;
-    border-radius: 25px;
-    outline: 0;
-    width: 5px;
-    height: 5px;
+.Expanded-Picture-Button { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 36%;
 }
+
+/* Image container */
+.Inner-Picture {
+    height: 95%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-right: 10px;
+}
+
+
+/* Stylings for the image itself */
+.Inner-Picture img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+/* Button container */
+.Expanded-Button {
+    height: 5%;
+    padding-top: 12px;
+    padding-right: 12px;
+}
+/************************ END OF EXPANDED EVENT STYLINGS  ************************/
+
+
+
+
+/************************    COLLAPSED EVENT STYLINGS     ************************/ 
+.Collapsed-Text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.Collapsed-Button-Div {
+    width: 10%;
+    padding-top: 12px;
+    padding-right: 12px;
+}
+
+.Collapsed-Title {
+    font-size: 24px;
+    color: #8873B4;
+    display: -webkit-box;   
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;     
+    overflow: hidden;
+    text-align: left;
+}
+
+.Collapsed-Date{
+    margin: 0 !important;
+    font-size: 20px;
+    color: #55B5D3;
+    text-align: left;
+}
+/************************ END OF COLLAPSED EVENT STYLINGS ************************/
