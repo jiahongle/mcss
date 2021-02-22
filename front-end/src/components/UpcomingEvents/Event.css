@@ -16,7 +16,7 @@
     height: 350px;
 }
 
-/* Toggling Collapse Button stylings */
+/* Toggling Collapse/Expanded Button stylings */
 .Toggle-Button {
     border: none;
     color: white;
@@ -115,6 +115,8 @@ button {
     align-items: center;
     display: flex;
     padding-right: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
 }
 
 
