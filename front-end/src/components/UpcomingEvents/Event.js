@@ -30,8 +30,8 @@ function CollapsedText(props) {
 function EventButtons() {
     return (
         <div className="Event-Buttons">
-            <button type="button" className="LearnMore-Button"> Learn More </button>
-            <button type="button" className="Register-Button"> Register </button>
+            <button className="button LearnMore-Button"> Learn More </button>
+            <button className="button Register-Button"> Register </button>
         </div>
     )
 }
@@ -78,11 +78,9 @@ class Event extends React.Component {
     }
 
     render() {
-        // Button that toggles the state of the event component
-        let btn = <button className="Toggle-Button" 
-                          onClick={this.toggleCollapse}/>
-
         if (!this.state.isCollapsed) { // If expanded
+            let btn = <button className="Toggle-Button Button-Expanded" 
+                              onClick={this.toggleCollapse}/>
             let expandedInfo = <ExpandedInfo title={this.props.title}
                                               date={this.props.date}
                                               description={this.props.description}/>;
@@ -98,6 +96,8 @@ class Event extends React.Component {
             );
 
         } else { // If Collapsed
+            let btn = <button className="Toggle-Button Button-Collapsed" 
+                              onClick={this.toggleCollapse}/>
             let collapsedInfo = <CollapsedInfo title={this.props.title}
                                                 date={this.props.date}/>;
 
