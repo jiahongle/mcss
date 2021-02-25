@@ -26,17 +26,17 @@ app.use(express.urlencoded({ extended: true }));
 
 /*** Session handling **************************************/
 // Create a session cookie
-// app.use(
-//     session({
-//         secret: "oursecret",
-//         resave: false,
-//         saveUninitialized: false,
-//         cookie: {
-//             expires: 60000,
-//             httpOnly: true
-//         }
-//     })
-// );
+app.use(
+    session({
+        secret: "oursecret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60000,
+            httpOnly: true
+        }
+    })
+);
 
 // Router Imports
 app.use('/announcements', require('./routes/announcement.routes'));
