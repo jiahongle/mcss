@@ -10,10 +10,6 @@ const app = express();
 // mongoose and mongo connection
 const { mongoose } = require("./db/mongoose");
 
-// import the mongoose models
-const { Announcement } = require("./db/models/announcement.model");
-const { Admin } = require("./db/models/admin.model");
-
 // to validate object IDs
 const { ObjectID } = require("mongodb");
 
@@ -44,6 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Router Imports
 app.use('/announcements', require('./routes/announcement.routes'));
+app.use('/admins', require('./routes/admin.routes'));
 
 // Start the express server
 const port = process.env.PORT || 5000;
