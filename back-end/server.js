@@ -25,7 +25,7 @@ const session = require("express-session");
 app.use(express.urlencoded({ extended: true }));
 
 /*** Session handling **************************************/
-// Create a session cookie
+// Creates a session cookie
 app.use(
     session({
         secret: "oursecret",
