@@ -1,5 +1,8 @@
 import React from 'react';
 import './login.css';
+import CreateEvent from '../components/events/createEvent.js'
+import DeleteEvent from '../components/events/deleteEvent.js'
+import EditEvent from '../components/events/editEvent.js'
 
 export default class Login extends React.Component {
     state = {
@@ -33,31 +36,41 @@ export default class Login extends React.Component {
                         <b>Login</b>
 
                     </div>
-                    <div className="announcement-post">
+                    {!this.state.success && <div className="announcement-post">
+
                         <div>
-                            <label className="announcement-form">
-                                <p className="announcement-p">Username: </p>
-                                <input
-                                    type="text"
-                                    value={state.title}
-                                    onChange={e => this.setState({ title: e.target.value })}
-                                    className="announcement-input" />
-                            </label>
+                            <div>
+                                <label className="announcement-form">
+                                    <p className="announcement-p">Username: </p>
+                                    <input
+                                        type="text"
+                                        value={state.title}
+                                        onChange={e => this.setState({ title: e.target.value })}
+                                        className="announcement-input" />
+                                </label>
+                            </div>
+                            <div>
+                                <label className="announcement-form"> <p className="announcement-p">Password</p>
+                                    <input
+                                        type="password"
+                                        value={state.body}
+                                        onChange={e => this.setState({ body: e.target.value })}
+                                        className="announcement-input" />
+                                </label>
+                                <input type="submit" value="Submit" onClick={() => this.onSubmit()} />
+                            </div>
                         </div>
-                        <div>
-                            <label className="announcement-form"> <p className="announcement-p">Password</p>
-                                <input
-                                    type="password"
-                                    value={state.body}
-                                    onChange={e => this.setState({ body: e.target.value })}
-                                    className="announcement-input" />
-                            </label>
-                            <input type="submit" value="Submit" onClick={() => this.onSubmit()} />
-                        </div>
-                        {
-                            this.state.success && <div className="post-text"> Success! </div>
-                        }
-                    </div >
+
+
+                    </div >}
+                    {
+                        this.state.success && <div> <div className="post-text"> Success! </div>
+                            <CreateEvent />
+                            <DeleteEvent />
+                            <EditEvent />
+                        </div >
+
+                    }
                 </div >
             </div>
         )

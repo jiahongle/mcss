@@ -30,13 +30,14 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
     // Use the static method on the Patient model to find a patient
     // by their email and password
+    console.log(req.session);
     Admin.findByUserNamePassword(username, password)
         .then(admin => {
             // Add the admin's id to the session cookie.
             // We can check later if this exists to ensure we are logged in.
             req.session.admin = admin._id;
             req.session.username = admin.username;
-            res.cookie('cookieName', 123, { maxAge: 900000, httpOnly: true });
+            res.cookie('cookieName', 123, { maxAge: 900000, httpOnly: true, secure: true });
             res.send({ currentUser: admin.username });
         })
         .catch(error => {

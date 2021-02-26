@@ -20,7 +20,7 @@ const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware');
 
 app.use(cors())
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -29,7 +29,6 @@ const session = require("express-session");
 
 
 app.use(express.urlencoded({ extended: true }));
-
 /*** Session handling **************************************/
 // Creates a session cookie
 app.use(
@@ -39,7 +38,8 @@ app.use(
         saveUninitialized: false,
         cookie: {
             expires: 60000,
-            httpOnly: true
+            httpOnly: true,
+            secure: false
         }
     })
 );
