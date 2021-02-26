@@ -3,8 +3,29 @@ import './banner.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from "@fortawesome/free-solid-svg-icons"
 import '../announcements/announcements.css';
+import EventPost from "./eventPost.js";
+
 
 export default class banner extends React.Component {
+
+    state = {
+        events: []
+    }
+
+    componentDidMount() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+        };
+        fetch('http://localhost:5000/events/get', requestOptions)
+            .then((response) =>
+                response.json()
+            ).then(data => {
+                this.setState({ events: data.data })
+            })
+
+    }
 
     render() {
 
@@ -14,11 +35,10 @@ export default class banner extends React.Component {
                     <b>View Upcoming Events</b>
                     <FontAwesomeIcon className="title icon-speaker" icon={faCalendar} />
                 </div>
-                <div className="event-post">
-                    <p className="post-text"> Random info </p>
-                    <p className="post-date"> Date </p>
 
-                </div>
+                {this.state.events.map((event) => (
+                    <EventPost details={event} key={event._id} />
+                ))}
 
 
             </div>
