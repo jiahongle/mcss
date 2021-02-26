@@ -30,8 +30,9 @@ export default class createAnnouncement extends React.Component {
                 </div>
                 <div className="announcement-post">
                     <div>
-                        <label>Title
-                        <input
+                        <label className="announcement-form">
+                            <p className="announcement-p">Title: </p>
+                            <input
                                 type="text"
                                 value={state.title}
                                 onChange={e => this.setState({ title: e.target.value })}
@@ -39,8 +40,8 @@ export default class createAnnouncement extends React.Component {
                         </label>
                     </div>
                     <div>
-                        <label > Body
-                        <input
+                        <label className="announcement-form"> <p className="announcement-p">Body</p>
+                            <input
                                 type="text"
                                 value={state.body}
                                 onChange={e => this.setState({ body: e.target.value })}
