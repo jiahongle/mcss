@@ -14,7 +14,9 @@ export default class banner extends React.Component {
                     <b>View Upcoming Events</b>
                     <FontAwesomeIcon className="title icon-speaker" icon={faCalendar} />
                 </div>
-                <div className="event-page">
+                <div className="event-post">
+                    <p className="post-text"> Random info </p>
+                    <p className="post-date"> Date </p>
 
                 </div>
 
