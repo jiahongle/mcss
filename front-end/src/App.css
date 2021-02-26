@@ -3,37 +3,21 @@
   background-color: #000;
 }
 
-.App-logo {
-  height: 35vmin;
-  pointer-events: none;
-}
-
-.logo-header {
-  min-height: 40vmin;
-}
-
-.App-header {
-  background-color: #000;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(20px + 2vmin);
+.menu-button {
+  font-size: 2rem;
   color: white;
-  min-width: 50vmin;
+  background: none;
 }
 
-.AppContent {
-  margin-left: 19vw;
-  margin-right: 19vw;
+.menu-button-area {
+  z-index: 2;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px;
+  width: 250px;
+  position: fixed;
+  right: 0;
+  background: none;
 }
-
-/* .App-link {
-  color: #61dafb;
-} */
-
-/* .body {
-  color:#FFF;
-  background-color: #000;
-} */
