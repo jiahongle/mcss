@@ -8,7 +8,7 @@ import CreateAnnouncement from './announcements/createAnnouncement.js';
 import DeleteAnnouncement from './announcements/deleteAnnouncement.js';
 import EditAnnouncement from './announcements/editAnnouncement.js';
 import UpcomingEvents from './upcomingEvents/upcomingEvents.js';
-
+import Footer from './footer/footer.js';
 
 export default class Home extends React.Component {
 
@@ -29,7 +29,7 @@ export default class Home extends React.Component {
                     <EditAnnouncement />
                     <UpcomingEvents />
                 </div>
-
+                <Footer />
             </div>
 
         );
