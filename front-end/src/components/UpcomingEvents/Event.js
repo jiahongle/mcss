@@ -41,9 +41,9 @@ function ExpandedInfo(props) {
     return (
         <div className="Expanded-Info">
             <ExpandedText title={props.title}
-                        date={props.date}
-                        description={props.description}/>
-            <EventButtons/>
+                date={props.date}
+                description={props.description} />
+            <EventButtons />
         </div>
     );
 }
@@ -52,7 +52,7 @@ function ExpandedInfo(props) {
 function CollapsedInfo(props) {
     return (
         <CollapsedText title={props.title}
-                        date={props.date}/>
+            date={props.date} />
     );
 }
 
@@ -63,43 +63,43 @@ class Event extends React.Component {
         super(props);
 
         // Component is initially expanded
-        this.state = {isCollapsed:false};
+        this.state = { isCollapsed: false };
 
         this.toggleCollapse = this.toggleCollapse.bind(this);
     }
 
     /* Toggles the state of the event between Collapsed and Expanded */
-    toggleCollapse () {
+    toggleCollapse() {
         this.setState(
             state => ({
-                isCollapsed: !state.isCollapsed 
+                isCollapsed: !state.isCollapsed
             })
         )
     }
 
     render() {
         if (!this.state.isCollapsed) { // If expanded
-            let btn = <button className="Toggle-Button Button-Expanded" 
-                              onClick={this.toggleCollapse}/>
+            let btn = <button className="Toggle-Button Button-Expanded clickable"
+                onClick={this.toggleCollapse} />
             let expandedInfo = <ExpandedInfo title={this.props.title}
-                                              date={this.props.date}
-                                              description={this.props.description}/>;
+                date={this.props.date}
+                description={this.props.description} />;
 
-            return(
+            return (
                 <div className="Expanded">
                     {expandedInfo}
-                    <div className="Expanded-Picture-Button">
+                    <div className="Expanded-Picture-Button ">
                         <div className="Expanded-Button">{btn}</div>
-                        <div className="Inner-Picture"><img src={eventpic}/></div>
+                        <div className="Inner-Picture"><img src={eventpic} /></div>
                     </div>
                 </div>
             );
 
         } else { // If Collapsed
-            let btn = <button className="Toggle-Button Button-Collapsed" 
-                              onClick={this.toggleCollapse}/>
+            let btn = <button className="Toggle-Button Button-Collapsed clickable"
+                onClick={this.toggleCollapse} />
             let collapsedInfo = <CollapsedInfo title={this.props.title}
-                                                date={this.props.date}/>;
+                date={this.props.date} />;
 
             return (
                 <div className="Collapsed">
