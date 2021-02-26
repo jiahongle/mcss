@@ -41,6 +41,7 @@ app.use(
 // Router Imports
 app.use('/announcements', require('./routes/announcement.routes'));
 app.use('/admins', require('./routes/admin.routes'));
+app.use('/events', require('./routes/event.routes'));
 
 // Start the express server
 const port = process.env.PORT || 5000;

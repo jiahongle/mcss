@@ -1,27 +1,31 @@
-/* Announcement mongoose model */
+/* Event mongoose model */
 'use strict';
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const EventSchema = new mongoose.Scheme ({
+const Schema = mongoose.Schema;
+
+const EventSchema = new Schema({
 	title: {
 		type: String,
 		required: true,
 		minlegth: 1,
 		trim: true
 	},
-  	postedAt: {
-		type: Date,
-		required: true
-    },
-  	creator: {
-		type: mongoose.Schema.Types.ObjectId,
+	creator: {
+		type: String,
 		required: true
 	},
 	// TODO: Complete when wireframe is done
 	img: {
 		// TODO: decide how to 
+	},
+	description: {
+		type: String,
+		required: false
 	}
+}, {
+	timestamps: true
 })
 
 const Event = mongoose.model('Event', EventSchema)
-module.exports = { Event }
+module.exports = Event;
