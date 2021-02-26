@@ -85,7 +85,7 @@
 }
 
 /* Default stylings for the two buttons Learn More and Expanded */
-.button {
+.Button {
     border: none;
     color: white;
     padding: 7px 30px;

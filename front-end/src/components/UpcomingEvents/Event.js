@@ -30,8 +30,8 @@ function CollapsedText(props) {
 function EventButtons() {
     return (
         <div className="Event-Buttons">
-            <button className="button LearnMore-Button"> Learn More </button>
-            <button className="button Register-Button"> Register </button>
+            <button className="Button LearnMore-Button"> Learn More </button>
+            <button className="Button Register-Button"> Register </button>
         </div>
     )
 }
