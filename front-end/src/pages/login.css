@@ -1,4 +1,7 @@
-
+.login-page {
+    background-color: black;
+    height:100vmin;
+}
 .announcement-container {
     background-color: #000;
     margin: 0px;
@@ -11,7 +14,7 @@
     padding: 20px 25px 20px;
     margin-bottom:20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     border-radius: 18px;
 }
@@ -35,6 +38,10 @@
     display:flex;
     flex-direction:row;
 
+}
+
+.announcement-input{
+    
 }
 
 .title-container {
