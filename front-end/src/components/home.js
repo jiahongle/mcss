@@ -7,6 +7,7 @@ import Announcements from './announcements/announcement.js'
 import CreateAnnouncement from './announcements/createAnnouncement.js';
 import DeleteAnnouncement from './announcements/deleteAnnouncement.js';
 import EditAnnouncement from './announcements/editAnnouncement.js';
+import UpcomingEvents from './upcomingEvents/upcomingEvents.js';
 
 
 export default class Home extends React.Component {
@@ -26,7 +27,9 @@ export default class Home extends React.Component {
                     <CreateAnnouncement />
                     <DeleteAnnouncement />
                     <EditAnnouncement />
+                    <UpcomingEvents />
                 </div>
+
             </div>
 
         );
