@@ -1,0 +1,44 @@
+.pastEventsPictureCollage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+
+  padding-left: 5px;
+  margin: 10;
+  border-left: 2px solid;
+}
+.purpleBorder {
+  border-color: #8770b1;
+}
+
+.pastEventTitle {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.purpText {
+  color: #8770b1;
+}
+
+.blueText {
+  color: #9cdaf7;
+}
+
+.blueBorder {
+  border-color: #9cdaf7;
+}
+
+.pastEventsPictureCollage > * {
+  height: 150px;
+}
+
+.aaaa {
+  width: 150px;
+  margin: 8px;
+  background-color: grey;
+}
