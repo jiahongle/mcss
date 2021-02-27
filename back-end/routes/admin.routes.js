@@ -1,7 +1,23 @@
 // Model and express imports
 const router = require('express').Router();
 const Admin = require('../db/models/admin.model');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const passportJWT = require('passport-jwt');
+const JWTStrategy = passportJWT.Strategy;
 
+passport.use(new JWTStrategy({
+    jwtFromRequest: req => req.cookies.jwt,
+    secretOrKey: "thedays",
+},
+    (jwtPayload, done) => {
+        if (Date.now() > jwtPayload.expires) {
+            return done('jwt expired');
+        }
+
+        return done(null, jwtPayload);
+    }
+));
 
 // Set up a POST route to create a admin user
 router.post("/register", (req, res) => {
@@ -35,10 +51,19 @@ router.post("/login", (req, res) => {
         .then(admin => {
             // Add the admin's id to the session cookie.
             // We can check later if this exists to ensure we are logged in.
-            req.session.admin = admin._id;
-            req.session.username = admin.username;
-            res.cookie('cookieName', 123, { maxAge: 900000, httpOnly: true, secure: true });
-            res.send({ currentUser: admin.username });
+            const payload = {
+                username: admin.username,
+                expires: Date.now() + parseInt(process.env.JWT_EXPIRATION_MS),
+            };
+
+
+            /** generate a signed json web token and return it in the response */
+            const token = jwt.sign(JSON.stringify(payload), "thedays");
+
+            /** assign our jwt to the cookie */
+            res.cookie('jwt', token, { httpOnly: true, secure: false });
+            res.status(200).send({ username: admin.username });
+
         })
         .catch(error => {
             error === 'Username Not Found' ? res.status(400).send() : res.status(406).send()
@@ -49,5 +74,13 @@ router.post("/logout", (req, res) => {
     req.session.reset();
     res.send(200);
 })
+
+router.get('/protected',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { user } = req;
+        console.log("hello")
+        res.status(200).send({ user });
+    });
 
 module.exports = router;

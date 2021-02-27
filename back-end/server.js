@@ -1,31 +1,37 @@
 /* server.js for react-express-authentication */
 "use strict";
-const log = console.log;
 
 const express = require("express");
-
-// starting the express server
-const app = express();
-
-// mongoose and mongo connection
+const session = require("express-session");
 const { mongoose } = require("./db/mongoose");
-
-// to validate object IDs
 const { ObjectID } = require("mongodb");
-
-//enable cors
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
-
 const withAuth = require('./middleware');
 
-app.use(cors())
-// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+const app = express();
+
+const log = console.log;
+
+app.use(
+    cors({
+        credentials: true,
+        origin: 'http://localhost:3000', // your_frontend_domain, it's an example
+    })
+);
+app.use((req, res, next) => {
+    console.log(req.path);
+
+    // this will log a cookie when several 
+    // requests are sent through the browser 
+    // but 'undefined' through `fetch`
+    console.log('cookie in header: ', req.headers.cookie);
+
+    next();
+});
 app.use(cookieParser());
 app.use(express.json());
 
-// express-session for managing user sessions
-const session = require("express-session");
 
 
 app.use(express.urlencoded({ extended: true }));
