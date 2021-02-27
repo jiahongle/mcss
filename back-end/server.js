@@ -1,29 +1,40 @@
 /* server.js for react-express-authentication */
 "use strict";
-const log = console.log;
 
 const express = require("express");
+const session = require("express-session");
+const { mongoose } = require("./db/mongoose");
+const { ObjectID } = require("mongodb");
+const cors = require('cors')
+const cookieParser = require('cookie-parser');
+const withAuth = require('./middleware');
 
-// starting the express server
 const app = express();
 
-// mongoose and mongo connection
-const { mongoose } = require("./db/mongoose");
+const log = console.log;
 
-// to validate object IDs
-const { ObjectID } = require("mongodb");
+app.use(
+    cors({
+        credentials: true,
+        origin: 'http://localhost:3000', // your_frontend_domain, it's an example
+    })
+);
+app.use((req, res, next) => {
+    console.log(req.path);
 
-//enable cors
-const cors = require('cors')
+    // this will log a cookie when several 
+    // requests are sent through the browser 
+    // but 'undefined' through `fetch`
+    console.log('cookie in header: ', req.headers.cookie);
 
-app.use(cors())
-
+    next();
+});
+app.use(cookieParser());
 app.use(express.json());
 
-// express-session for managing user sessions
-const session = require("express-session");
-app.use(express.urlencoded({ extended: true }));
 
+
+app.use(express.urlencoded({ extended: true }));
 /*** Session handling **************************************/
 // Creates a session cookie
 app.use(
@@ -33,7 +44,8 @@ app.use(
         saveUninitialized: false,
         cookie: {
             expires: 60000,
-            httpOnly: true
+            httpOnly: true,
+            secure: false
         }
     })
 );
@@ -42,6 +54,10 @@ app.use(
 app.use('/announcements', require('./routes/announcement.routes'));
 app.use('/admins', require('./routes/admin.routes'));
 app.use('/events', require('./routes/event.routes'));
+app.get('/checkToken', withAuth, function (req, res) {
+    res.sendStatus(200);
+});
+
 
 // Start the express server
 const port = process.env.PORT || 5000;

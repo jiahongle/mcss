@@ -1,6 +1,5 @@
 import React from 'react';
 import './announcements.css';
-// import '../../actions/announcement.js'
 
 export default class createAnnouncement extends React.Component {
     state = {
@@ -29,16 +28,15 @@ export default class createAnnouncement extends React.Component {
 
                 </div>
                 <div className="announcement-post">
-                    <div>
-                        <label className="announcement-form">
-                            <p className="announcement-p">Title: </p>
-                            <input
-                                type="text"
-                                value={state.title}
-                                onChange={e => this.setState({ title: e.target.value })}
-                                className="announcement-input" />
-                        </label>
-                    </div>
+
+                    <label className="announcement-form">
+                        <p className="announcement-p">Title: </p>
+                        <input
+                            type="text"
+                            value={state.title}
+                            onChange={e => this.setState({ title: e.target.value })}
+                            className="announcement-input" />
+                    </label>
                     <div>
                         <label className="announcement-form"> <p className="announcement-p">Body</p>
                             <input

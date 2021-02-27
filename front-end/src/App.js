@@ -8,6 +8,8 @@ import Team from './pages/theTeam'
 import Announcements from './pages/announcements';
 import Resources from './pages/resources';
 import PartnerClubs from './pages/partnerClubs';
+import Login from './pages/login';
+
 
 export default class App extends React.Component {
   menu = React.createRef()
@@ -28,6 +30,7 @@ export default class App extends React.Component {
             <Route path='/announcements' component={Announcements} />
             <Route path='/resources' component={Resources} />
             <Route path='/partnerClubs' component={PartnerClubs} />
+            <Route path='/login' component={Login} />
           </Switch>
         </Router>
       </div>

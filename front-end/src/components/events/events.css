@@ -1,0 +1,28 @@
+
+.admin-event-post{
+    background-color: #1D1D1D;
+    color: #61dafb;
+    padding: 20px 25px 20px;
+    margin-bottom:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 18px;
+    width:700px;
+}
+
+.admin-event-edit-post {
+    background-color: #1D1D1D;
+    color: #61dafb;
+    padding: 20px 25px 20px;
+    margin-bottom:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 18px;
+    width:800px;
+}
+
+.event-input{
+
+}
