@@ -21,7 +21,7 @@ export default class eventPost extends React.Component {
         return (
             <div className={this.state.showAll ? "event-post large" : "event-post"}>
                 <div className="event-top">
-                    <div className="post-text"> {this.props.details.title} </div>
+                    <div className="event-text"> {this.props.details.title} </div>
                     {!this.state.showAll &&
                         <FontAwesomeIcon className="title icon-speaker clickable" icon={faChevronUp} onClick={this.handleClick} />
 
@@ -36,6 +36,12 @@ export default class eventPost extends React.Component {
                     this.state.showAll &&
                     <div className="event-description">
                         {this.props.details.description}
+                    </div>
+                }
+                {
+                    this.state.showAll &&
+                    <div className="event-description">
+                        {this.props.details.creator}
                     </div>
                 }
                 { this.state.showAll &&
