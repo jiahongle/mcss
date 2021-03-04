@@ -17,11 +17,28 @@ export default class Login extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: this.state.title, password: this.state.body }),
             mode: 'cors',
+            credentials: 'include'
         };
         fetch('http://localhost:5000/admins/login', requestOptions).then(response => {
             if (response.status === 200) {
 
                 this.setState({ success: true, title: '', body: '' })
+            }
+        });
+    }
+    componentDidMount() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            credentials: 'include'
+        };
+        fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
+            if (response.status === 200) {
+
+                console.log("this is true")
+            } else {
+                console.log("no cookie found")
             }
         });
     }
