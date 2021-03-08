@@ -11,7 +11,28 @@ import UpcomingEvents from '../components/UpcomingEvents/UpcomingEvents.js';
 import Footer from '../components/footer/footer.js';
 
 export default class Home extends React.Component {
+  state = {
+    success: false
+  }
 
+
+  componentDidMount() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      credentials: 'include'
+    };
+    fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
+
+      if (response.status === 200) {
+
+        this.setState({ success: true })
+      } else {
+        console.log("no cookie found")
+      }
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -24,10 +45,14 @@ export default class Home extends React.Component {
         <div className="AppContent">
           <Introduction />
           <Announcements />
-          <CreateAnnouncement />
-          <DeleteAnnouncement />
-          <EditAnnouncement />
-          <UpcomingEvents />
+          {this.state.success &&
+            <div>
+              <CreateAnnouncement />
+              <DeleteAnnouncement />
+              <EditAnnouncement />
+              <UpcomingEvents />
+            </div>
+          }
         </div>
         <Footer />
       </div>

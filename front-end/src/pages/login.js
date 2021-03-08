@@ -36,7 +36,7 @@ export default class Login extends React.Component {
         fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
             if (response.status === 200) {
 
-                console.log("this is true")
+                this.setState({ success: true })
             } else {
                 console.log("no cookie found")
             }
