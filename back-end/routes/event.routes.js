@@ -1,6 +1,8 @@
 // Model and express imports
 const router = require('express').Router();
 const Event = require('../db/models/event.model');
+const fs = require("fs");
+const request = require("request");
 
 /***
  *  This file handles all the routes for the events.
@@ -21,17 +23,64 @@ router.get("/get", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, description, image, creator } = req.body;
+        const { title, description, imgs, creator, signup } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
         }
 
+        var img_links = []
+        console.log(imgs);
+        // imgs.map(img => {
+        //     fs.readFile(img, function(err, data) {
+        //         if (err) throw err;
+
+        //         var options = {
+        //             'method': 'POST',
+        //             'url': 'https://api.imgur.com/3/image',
+        //             'headers': {
+        //                 'Authorization': 'Client-ID 23cded91461ac64'
+        //             },
+        //             formData: {
+        //                 'image': data
+        //             }
+        //         };
+        //         request(options, function (error, response) {
+        //             if (error) throw new Error(error);
+        //             const jsonBody = JSON.parse(response.body);
+        //             const link = jsonBody.link;
+        //             img_links.push(link);
+        //         });                  
+        //     });
+        // })
+        imgs.forEach(function(img) {
+
+            var options = {
+                'method': 'POST',
+                'url': 'https://api.imgur.com/3/image',
+                'headers': {
+                    'Authorization': 'Client-ID 23cded91461ac64'
+                },
+                formData: {
+                    'image': img
+                }
+            };
+
+            request(options, function (error, response) {
+                if (error) throw new Error(error);
+                const jsonBody = JSON.parse(response.body);
+                const link = jsonBody.link;
+                img_links.push(link);
+            });
+               
+        });
+
         const event = new Event({
             title: title,
             description: description,
-            img: image,
-            creator: creator
+            img: img_links,
+            creator: creator,
+            signup : signup
         });
 
         const savedEvent = await event.save();

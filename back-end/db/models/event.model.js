@@ -15,9 +15,13 @@ const EventSchema = new Schema({
 		type: String,
 		required: true
 	},
-	// TODO: Complete when wireframe is done
-	img: {
-		// TODO: decide how to 
+	imgs: [{
+		type: String,
+		required: false
+	}],
+	signup: {
+		type: String,
+		required: false
 	},
 	description: {
 		type: String,
