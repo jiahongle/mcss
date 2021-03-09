@@ -1,8 +1,10 @@
 // Model and express imports
 const router = require('express').Router();
 const Event = require('../db/models/event.model');
-const fs = require("fs");
 const request = require("request");
+const util = require('util')
+const requestPromise = util.promisify(request);
+// const ObjectId = require("mongodb").ObjectID;
 
 /***
  *  This file handles all the routes for the events.
@@ -24,36 +26,13 @@ router.get("/get", async (req, res) => {
 router.post("/post", async (req, res) => {
     try {
         const { title, description, imgs, creator, signup } = req.body;
-
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
         }
 
-        var img_links = []
-        console.log(imgs);
-        // imgs.map(img => {
-        //     fs.readFile(img, function(err, data) {
-        //         if (err) throw err;
+        var img_array = []
 
-        //         var options = {
-        //             'method': 'POST',
-        //             'url': 'https://api.imgur.com/3/image',
-        //             'headers': {
-        //                 'Authorization': 'Client-ID 23cded91461ac64'
-        //             },
-        //             formData: {
-        //                 'image': data
-        //             }
-        //         };
-        //         request(options, function (error, response) {
-        //             if (error) throw new Error(error);
-        //             const jsonBody = JSON.parse(response.body);
-        //             const link = jsonBody.link;
-        //             img_links.push(link);
-        //         });                  
-        //     });
-        // })
-        imgs.forEach(function(img) {
+        for (const img of imgs) {
 
             var options = {
                 'method': 'POST',
@@ -66,19 +45,27 @@ router.post("/post", async (req, res) => {
                 }
             };
 
-            request(options, function (error, response) {
-                if (error) throw new Error(error);
-                const jsonBody = JSON.parse(response.body);
-                const link = jsonBody.link;
-                img_links.push(link);
-            });
+            const response = await requestPromise(options);
+
+            const jsonBody = JSON.parse(response.body);
+
+            const deletehash = jsonBody.data.deletehash;
+            const link = jsonBody.data.link;
+
+            const image = {
+                deletehash,
+                link
+            }
+
+            console.log(image);
+            img_array.push(image);
                
-        });
+        };
 
         const event = new Event({
             title: title,
             description: description,
-            img: img_links,
+            imgs: img_array,
             creator: creator,
             signup : signup
         });
@@ -98,6 +85,11 @@ router.delete("/delete/:id", async (req, res) => {
         const id = req.params.id;
 
         const savedEvent = await Event.findById(id);
+
+        // const savedImage = await Event.aggregate([{$unwind: "$imgs"}, {$match:{"imgs._id" : ObjectId(id)}}] );
+        
+        
+        // console.log(savedImage);
 
         if (!savedEvent) {
             res.status(404).json({ error: "Resource not found" });

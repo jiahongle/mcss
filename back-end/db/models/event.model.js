@@ -16,8 +16,14 @@ const EventSchema = new Schema({
 		required: true
 	},
 	imgs: [{
-		type: String,
-		required: false
+		deletehash: {
+			type: String,
+			required: true
+		},
+		link: {
+			type: String,
+			required: true
+		}
 	}],
 	signup: {
 		type: String,
