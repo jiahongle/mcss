@@ -1,6 +1,10 @@
 // Model and express imports
 const router = require('express').Router();
 const Event = require('../db/models/event.model');
+const request = require("request");
+const util = require('util')
+const requestPromise = util.promisify(request);
+// const ObjectId = require("mongodb").ObjectID;
 
 /***
  *  This file handles all the routes for the events.
@@ -21,17 +25,49 @@ router.get("/get", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, description, image, creator } = req.body;
-
+        const { title, description, imgs, creator, signup } = req.body;
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
         }
 
+        var img_array = []
+
+        for (const img of imgs) {
+
+            var options = {
+                'method': 'POST',
+                'url': 'https://api.imgur.com/3/image',
+                'headers': {
+                    'Authorization': 'Client-ID 23cded91461ac64'
+                },
+                formData: {
+                    'image': img
+                }
+            };
+
+            const response = await requestPromise(options);
+
+            const jsonBody = JSON.parse(response.body);
+
+            const deletehash = jsonBody.data.deletehash;
+            const link = jsonBody.data.link;
+
+            const image = {
+                deletehash,
+                link
+            }
+
+            console.log(image);
+            img_array.push(image);
+               
+        };
+
         const event = new Event({
             title: title,
             description: description,
-            img: image,
-            creator: creator
+            imgs: img_array,
+            creator: creator,
+            signup : signup
         });
 
         const savedEvent = await event.save();
@@ -49,6 +85,11 @@ router.delete("/delete/:id", async (req, res) => {
         const id = req.params.id;
 
         const savedEvent = await Event.findById(id);
+
+        // const savedImage = await Event.aggregate([{$unwind: "$imgs"}, {$match:{"imgs._id" : ObjectId(id)}}] );
+        
+        
+        // console.log(savedImage);
 
         if (!savedEvent) {
             res.status(404).json({ error: "Resource not found" });
