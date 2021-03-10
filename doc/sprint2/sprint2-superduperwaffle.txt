@@ -11,7 +11,7 @@ Planning Meetings (SR(N-1).md, sprintN.md) (Max 4 marks)
 
 1/2
 
-TA FEEDBACK: Please write in complete sentences and also proofread what your write. The analysis here was not deep enough.
+TA FEEDBACK: Please write in complete sentences and also proofread what you write. The analysis here was not deep enough.
  
 -Sprint Planning meeting (sprint2.md)
  [2 marks=Meeting and sprint goal is documented, all spikes clearly identified, team capacity recorded, participants are recorded, everyone has participated, 
