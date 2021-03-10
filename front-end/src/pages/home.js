@@ -14,7 +14,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <header className="App-header">
           <div className="logo-header">
             <img src={mcss} className="App-logo" alt="logo" />
@@ -31,7 +31,6 @@ export default class Home extends React.Component {
         </div>
         <Footer />
       </div>
-
     );
   }
 }

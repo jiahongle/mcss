@@ -5,6 +5,7 @@ import { GoThreeBars } from 'react-icons/go';
 import Navbar from './components/navBar/navBar.js'
 import Home from './pages/home'
 import Team from './pages/theTeam'
+import Events from './pages/eventPage'
 import Announcements from './pages/announcements';
 import Resources from './pages/resources';
 import PartnerClubs from './pages/partnerClubs';
@@ -28,6 +29,7 @@ export default class App extends React.Component {
             <Route path='/' exact component={Home} />
             <Route path='/team' component={Team} />
             <Route path='/announcements' component={Announcements} />
+            <Route path='/events' component={Events} />
             <Route path='/resources' component={Resources} />
             <Route path='/partnerClubs' component={PartnerClubs} />
             <Route path='/login' component={Login} />
