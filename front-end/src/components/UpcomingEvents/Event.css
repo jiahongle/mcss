@@ -142,7 +142,6 @@
 
 .Button-Expanded {
     transform: rotate(135deg);
-    transition: 150ms;
 }
 /************************ END OF EXPANDED EVENT STYLINGS  ************************/
 
@@ -184,6 +183,5 @@
 
 .Button-Collapsed {
     transform: rotate(315deg);
-    transition: 150ms;
 }
 /************************ END OF COLLAPSED EVENT STYLINGS ************************/

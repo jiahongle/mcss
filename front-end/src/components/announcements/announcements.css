@@ -11,7 +11,7 @@
     padding: 20px 25px 20px;
     margin-bottom:20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     border-radius: 18px;
 }
@@ -40,10 +40,11 @@
 .title-container {
     display:flex;
     margin-bottom: 4vmin;
+    margin-left: 15px;
 }
 
 .title-container b {
-    font-size: 30px;
+    font-size: 28px;
     color: #84BAD3;
 }
 
@@ -67,4 +68,42 @@
     margin: 0px;
     font-size: 16px;
     font-family: "roboto";
+}
+
+.Create-Button {
+    color: #FFFFFF;
+    margin-left: 25px;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    font-size: 23px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.Create-Button:hover {
+    text-decoration: underline;
+}
+
+.Delete-Button {
+    padding-top: 2px;
+    width: 15px;
+    height: 25px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: "helvetica";
+    color: #f00;
+    float:right;
+}
+
+.Edit-Button {
+    margin-right: 10px;
+    width: 40px;
+    height: 25px;
+    position: relative;
+    float: right;
+    color:#000;
+    background-color: #AFAFAF;
+    border-radius: 8px;
 }

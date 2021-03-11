@@ -1,13 +1,33 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './announcements.css';
 // import '../../actions/announcement.js'
 
 export default class deleteAnnouncement extends React.Component {
-    state = {
-        id: '',
+    constructor(props) {
+        super(props);
+        this.state = {
+            dialogOpen: false,
+            id: this.props.id,
+            validated: false
+        }
+    }
+    
+
+    openDialog = () => {
+        this.setState({dialogOpen: true});
     }
 
-    onSubmit = e => {
+    closeDialog = () => {
+        this.setState({dialogOpen: false});
+    }
+
+    onDelete = e => {
+        e.preventDefault();
+        console.log("deleted announcement id: " + this.state.id);
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -15,29 +35,47 @@ export default class deleteAnnouncement extends React.Component {
             mode: 'cors',
         };
         fetch('http://localhost:5000/announcements/delete/' + this.state.id, requestOptions).then(response => response.json());
+
+        const form = e.currentTarget;
+        if (form.checkValidity()) {
+            this.setState({ dialogOpen: false });
+        }
+        this.setState({validated: true});
+    }
+
+    onCancel = () => {
+        this.closeDialog()
     }
 
     render() {
-        const { state } = this;
-
-
         return (
-            <div className="announcement-container">
-                <div className="title-container">
-                    <b>Delete an announcement</b>
-
-                </div>
-                <div className="announcement-post">
-                    <label>Id:
-                        <input
-                            type="text"
-                            value={state.id}
-                            onChange={e => this.setState({ id: e.target.value })}
-                            className="announcement-input" />
-                    </label>
-                    <input type="submit" value="Submit" onClick={() => this.onSubmit()} />
-                </div >
-            </div >
+            <Modal
+                size="lg"
+                show={this.state.dialogOpen}
+                onHide={this.closeDialog}
+                backdrop="static"
+                keyboard={false}
+                centered
+                scrollable={true}
+            >
+                <Modal.Header>
+                <Modal.Title>Are you sure you want to delete this announcement?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form id="Form" className="bounds"
+                        noValidate onSubmit={this.onDelete} 
+                        validated={this.state.validated}>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={this.onCancel}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary" type="submit" form="Form">
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         )
     }
 }

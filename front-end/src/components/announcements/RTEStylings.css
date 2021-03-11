@@ -1,0 +1,17 @@
+.bounds {
+    /* margin: 1rem 4rem;
+    overflow: auto; */
+}
+
+.bounds .ql-container {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #fefcfc;
+}
+
+.ql-toolbar {
+    background-color: #f3f3f3;
+    color: #000000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
