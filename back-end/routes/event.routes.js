@@ -10,17 +10,30 @@ const requestPromise = util.promisify(request);
  *  This file handles all the routes for the events.
  */
 
-// get events
-router.get("/get", async (req, res) => {
+// get all events
+router.get("/", async (req, res) => {
     try {
         const events = await Event.find();
-        return res.status(200).json({ success: true, data: events })
+        return res.status(200).json({ success: true, data: events });
     }
     catch (err) {
         return res.status(500).json({ error: err.message });
     }
 })
 
+// get specific event
+router.get("/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const savedEvent = await Event.findById(id);
+        
+        return res.status(200).json({ success: true, data: savedEvent });
+    }
+    catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+})
 
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
