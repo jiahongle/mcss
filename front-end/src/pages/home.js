@@ -8,6 +8,8 @@ import CreateAnnouncement from '../components/announcements/createAnnouncement.j
 import DeleteAnnouncement from '../components/announcements/deleteAnnouncement.js'
 import EditAnnouncement from '../components/announcements/editAnnouncement.js'
 import UpcomingEvents from '../components/UpcomingEvents/UpcomingEvents.js';
+import UploadPastEvent from '../components/pastEvent/uploadPastEvent';
+import PastEventSection from '../components/pastEvent/pastEventsSection/pastEventsSection';
 import Footer from '../components/footer/footer.js';
 
 export default class Home extends React.Component {
@@ -45,12 +47,19 @@ export default class Home extends React.Component {
         <div className="AppContent">
           <Introduction />
           <Announcements />
+          <UpcomingEvents />
           {this.state.success &&
             <div>
               <CreateAnnouncement />
               <DeleteAnnouncement />
               <EditAnnouncement />
-              <UpcomingEvents />
+
+            </div>
+          }
+          <PastEventSection />
+          {this.state.success &&
+            <div>
+              <UploadPastEvent />
             </div>
           }
         </div>

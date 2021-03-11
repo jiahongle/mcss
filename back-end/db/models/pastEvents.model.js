@@ -4,25 +4,28 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const EventSchema = new Schema({
-    eventTitle: {
-        Type: String,
+const PastEventSchema = new Schema({
+    title: {
+        type: String,
         required: true
     },
     images: [{
         deletehash: {
-            Type: String,
+            type: String,
             required: true
         },
         link: {
-            Type: String,
+            type: String,
             required: true
         }
-    }]
+    }],
+    year: {
+        type: Number
+    }
 }, {
     timestamps: true
 })
 
 
-const Event = mongoose.model('Event', EventSchema)
-module.exports = Event;
+const PastEvent = mongoose.model('PastEvent', PastEventSchema)
+module.exports = PastEvent;

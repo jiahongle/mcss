@@ -54,6 +54,7 @@ app.use(
 app.use('/announcements', require('./routes/announcement.routes'));
 app.use('/admins', require('./routes/admin.routes'));
 app.use('/events', require('./routes/event.routes'));
+app.use('/pastevents', require('./routes/pastEvent.routes'));
 app.get('/checkToken', withAuth, function (req, res) {
     res.sendStatus(200);
 });
