@@ -226,7 +226,7 @@ export default class ComposeEventDialog extends React.Component {
                         </Form.Group>
                         <Form.Group>
                             <div className="sub-event-banner">
-                                <Form.Label>Sub-events</Form.Label>
+                                <Form.Label>Sub-events (in chronological order)</Form.Label>
                                 <BiListPlus className="plus-button" onClick={this.addSubEvent}/>
                             </div>
                         </Form.Group>
@@ -240,7 +240,7 @@ export default class ComposeEventDialog extends React.Component {
                                     </div>
                                     <Form.Control
                                         name="title"
-                                        type="text" placeholder="A title is required"
+                                        type="text" placeholder={`Sub-event ${i + 1} title`}
                                         value={this.state.subEvents[i].title}
                                         onChange={(event) => this.handleSubChange(event, i)}
                                         required/>
@@ -255,7 +255,7 @@ export default class ComposeEventDialog extends React.Component {
                                         type="text"
                                         value={subEvent.time}
                                         onChange={(event) => this.handleSubChange(event, i)}
-                                        placeholder={this.getTodaysDate()}
+                                        placeholder="mmm dd, yyyy @ tt:ttAM"
                                         required/>
                                     <Form.Control.Feedback type="invalid">
                                         A time is required
