@@ -1,6 +1,7 @@
 // Model and express imports
 const router = require('express').Router();
 const Event = require('../db/models/event.model');
+const clientId = require('../db/ClientId');
 const request = require("request");
 const util = require('util')
 const requestPromise = util.promisify(request);
@@ -38,7 +39,7 @@ router.get("/:id", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, description, imgs, signup } = req.body;
+        const { title, description, imgs, signup, subevents } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
@@ -52,7 +53,7 @@ router.post("/post", async (req, res) => {
                 'method': 'POST',
                 'url': 'https://api.imgur.com/3/image',
                 'headers': {
-                    'Authorization': 'Client-ID 23cded91461ac64'
+                    'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
                     'image': img
@@ -71,7 +72,6 @@ router.post("/post", async (req, res) => {
                 link
             }
 
-            console.log(image);
             img_array.push(image);
                
         };
@@ -81,6 +81,7 @@ router.post("/post", async (req, res) => {
             description: description,
             imgs: img_array,
             signup : signup,
+            subevents: subevents
             
         });
 
@@ -100,14 +101,29 @@ router.delete("/delete/:id", async (req, res) => {
 
         const savedEvent = await Event.findById(id);
 
-        // const savedImage = await Event.aggregate([{$unwind: "$imgs"}, {$match:{"imgs._id" : ObjectId(id)}}] );
-        
-        
-        // console.log(savedImage);
-
         if (!savedEvent) {
             return res.status(404).json({ error: "Resource not found" });
         }
+
+        // Remove images belonging to this event
+        for (const img in savedEvent.imgs) {
+
+            const deleteHash = img.deletehash;
+
+            var options = {
+                'method': 'DELETE',
+                'url': `https://api.imgur.com/3/image/${deleteHash}`,
+                'headers': {
+                    'Authorization': `Client-ID ${clientId}`
+                },
+                formData: {
+                
+                }
+            };
+
+            await requestPromise(options);
+        }
+
         
         savedEvent.remove();
         res.status(200).json({ msg: "Success" });
@@ -118,7 +134,7 @@ router.delete("/delete/:id", async (req, res) => {
     }
 })
 
-// The PATCH route: Check with front end team for any other additions/changes
+/* Update the specified event including its subevents, images and text fields */
 router.patch("/update/:id", async (req, res) => {
     try {
         const id = req.params.id;
@@ -129,45 +145,13 @@ router.patch("/update/:id", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const { title, description, signup} = req.body;
+        const { title, description, imgs, signup, subevents } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
         }
 
-        retrievedEvent.title = title;
-        retrievedEvent.description = description;
-        retrievedEvent.signup = signup;
-
-        const savedEvent = await retrievedEvent.save();
-        res.send(savedEvent);
-        
-    }
-    catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-})
-
-
-// Image routes
-
-router.post("/upload/:id", async (req, res) => {
-    try {
-        const {imgs} = req.body;
-
-        if (!imgs) {
-            return res.status(400).json({ msg: "No images provided." });
-        }
-
-        const id = req.params.id;
-
-        const retrievedEvent = await Event.findById(id);
-
-        if (!retrievedEvent) {
-            return res.status(404).json({ error: "Resource not found" });
-        }
-
-        var img_array = []
+        var img_array = [];
 
         for (const img of imgs) {
 
@@ -175,7 +159,7 @@ router.post("/upload/:id", async (req, res) => {
                 'method': 'POST',
                 'url': 'https://api.imgur.com/3/image',
                 'headers': {
-                    'Authorization': 'Client-ID 23cded91461ac64'
+                    'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
                     'image': img
@@ -198,61 +182,26 @@ router.post("/upload/:id", async (req, res) => {
                
         };
 
+        retrievedEvent.title = title;
+        retrievedEvent.description = description;
         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
+        retrievedEvent.signup = signup;
+        retrievedEvent.subevents = subevents;
 
         const savedEvent = await retrievedEvent.save();
         res.send(savedEvent);
-
-    }
-    catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-})
-
-
-// Sub Event Routes
-
-router.post("/addsubevent/:id", async (req, res) => {
-    try {
-        const {title, description, signup} = req.body;
-
-        if (!title) {
-            return res.status(400).json({ msg: "No title provided." });
-        }
-
-        const id = req.params.id;
-
-        const retrievedEvent = await Event.findById(id);
-
-        if (!retrievedEvent) {
-            return res.status(404).json({ error: "Resource not found" });
-        }
-
-        const subevent = {
-            title,
-            description,
-            signup
-        }
         
-        retrievedEvent.subevents.push(subevent)
-
-        const savedEvent = await retrievedEvent.save();
-        res.send(savedEvent);
-
     }
     catch (err) {
         res.status(500).json({ error: err.message });
     }
 })
 
-router.patch("/updatesubevent/:id/:idx", async (req, res) => {
+
+// Image routes
+
+router.delete("/deleteimage/:id/:idx", async (req, res) => {
     try {
-        const {title, description, signup} = req.body;
-
-        if (!title) {
-            return res.status(400).json({ msg: "No title provided." });
-        }
-
         const id = req.params.id;
         const index = req.params.idx;
 
@@ -262,13 +211,22 @@ router.patch("/updatesubevent/:id/:idx", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const subevent = {
-            title,
-            description,
-            signup
-        }
-        
-        retrievedEvent.subevents[index] = subevent;
+        const deleteHash = retrievedEvent.imgs[index].deletehash;
+
+        var options = {
+            'method': 'DELETE',
+            'url': `https://api.imgur.com/3/image/${deleteHash}`,
+            'headers': {
+                'Authorization': `Client-ID ${clientId}`
+            },
+            formData: {
+            
+            }
+        };
+
+        await requestPromise(options);
+
+        retrievedEvent.imgs.splice(index, 1);
 
         const savedEvent = await retrievedEvent.save();
         res.send(savedEvent);
@@ -278,5 +236,132 @@ router.patch("/updatesubevent/:id/:idx", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 })
+
+// router.post("/upload/:id", async (req, res) => {
+//     try {
+//         const {imgs} = req.body;
+
+//         if (!imgs) {
+//             return res.status(400).json({ msg: "No images provided." });
+//         }
+
+//         const id = req.params.id;
+
+//         const retrievedEvent = await Event.findById(id);
+
+//         if (!retrievedEvent) {
+//             return res.status(404).json({ error: "Resource not found" });
+//         }
+
+//         var img_array = []
+
+//         for (const img of imgs) {
+
+//             var options = {
+//                 'method': 'POST',
+//                 'url': 'https://api.imgur.com/3/image',
+//                 'headers': {
+//                     'Authorization': 'Client-ID 23cded91461ac64'
+//                 },
+//                 formData: {
+//                     'image': img
+//                 }
+//             };
+
+//             const response = await requestPromise(options);
+
+//             const jsonBody = JSON.parse(response.body);
+
+//             const deletehash = jsonBody.data.deletehash;
+//             const link = jsonBody.data.link;
+
+//             const image = {
+//                 deletehash,
+//                 link
+//             }
+
+//             img_array.push(image);
+               
+//         };
+
+//         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
+
+//         const savedEvent = await retrievedEvent.save();
+//         res.send(savedEvent);
+
+//     }
+//     catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// })
+
+
+// Sub Event Routes
+// router.post("/addsubevent/:id", async (req, res) => {
+//     try {
+//         const {title, description, signup} = req.body;
+
+//         if (!title) {
+//             return res.status(400).json({ msg: "No title provided." });
+//         }
+
+//         const id = req.params.id;
+
+//         const retrievedEvent = await Event.findById(id);
+
+//         if (!retrievedEvent) {
+//             return res.status(404).json({ error: "Resource not found" });
+//         }
+
+//         const subevent = {
+//             title,
+//             description,
+//             signup
+//         }
+        
+//         retrievedEvent.subevents.push(subevent)
+
+//         const savedEvent = await retrievedEvent.save();
+//         res.send(savedEvent);
+
+//     }
+//     catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// })
+
+// router.patch("/updatesubevent/:id/:idx", async (req, res) => {
+//     try {
+//         const {title, description, signup} = req.body;
+
+//         if (!title) {
+//             return res.status(400).json({ msg: "No title provided." });
+//         }
+
+//         const id = req.params.id;
+//         const index = req.params.idx;
+
+//         const retrievedEvent = await Event.findById(id);
+
+//         if (!retrievedEvent) {
+//             return res.status(404).json({ error: "Resource not found" });
+//         }
+
+//         const subevent = {
+//             title,
+//             description,
+//             signup
+//         }
+        
+//         retrievedEvent.subevents[index] = subevent;
+
+//         const savedEvent = await retrievedEvent.save();
+//         res.send(savedEvent);
+
+//     }
+//     catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// })
 
 module.exports = router;
