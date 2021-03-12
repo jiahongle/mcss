@@ -38,12 +38,12 @@ export default class announcementPost extends React.Component {
                 <DeleteAnnouncement ref={this.deleteRef} id={this.state.id} />
 
                 {   this.state.loggedIn && <div className="adminButtons">
-                        <div className="Delete-Button" type="submit" value="X" onClick={() => this.onDelete()}> <strong>X</strong> </div>
                         <div className="Edit-Button" type="submit" value="Edit" onClick={() => this.onEdit()}> Edit </div>
+                        <div className="Delete-Button" type="submit" value="X" onClick={() => this.onDelete()}> <strong>X</strong> </div>
                     </div>
                 }
                 <p className="post-text"> {this.state.title} </p>
-                <p className="post-date"> {this.state.body} </p>
+                <p className="post-date"> <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div></p>
             </div>
         )
     }

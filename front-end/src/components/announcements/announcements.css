@@ -86,24 +86,31 @@
 }
 
 .Delete-Button {
-    padding-top: 2px;
     width: 15px;
     height: 25px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
     font-family: "helvetica";
     color: #f00;
     float:right;
+    font-size: 20px;
 }
 
 .Edit-Button {
     margin-right: 10px;
     width: 40px;
     height: 25px;
-    position: relative;
-    float: right;
+    align-items: center;
+    float:left;
     color:#000;
     background-color: #AFAFAF;
     border-radius: 8px;
+    font-size: 15px;
+}
+
+.Cancel {
+    margin-right: 20px;
+    float: left;
+}
+
+.Delete {
+    float:right;
 }

@@ -65,7 +65,7 @@ export default class editAnnouncement extends React.Component {
     }
 
     onEdit = e => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log("Edited id: " + this.state.id);
         console.log("New title: " + this.state.title);
         console.log("New body: " + this.state.body);

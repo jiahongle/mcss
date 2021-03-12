@@ -55,7 +55,7 @@ export default class createAnnouncement extends React.Component {
     }
 
     onSubmit = e => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log("submitted.");
         console.log(this.state.title);
         console.log(this.state.body);

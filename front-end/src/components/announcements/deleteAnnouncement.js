@@ -26,7 +26,7 @@ export default class deleteAnnouncement extends React.Component {
     }
 
     onDelete = e => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log("deleted announcement id: " + this.state.id);
         const requestOptions = {
             method: 'DELETE',
@@ -66,15 +66,15 @@ export default class deleteAnnouncement extends React.Component {
                         noValidate onSubmit={this.onDelete} 
                         validated={this.state.validated}>
                     </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={this.onCancel}>
+                    <Button variant="secondary" onClick={this.onCancel}
+                            className="Cancel">
                         Cancel
                     </Button>
-                    <Button variant="primary" type="submit" form="Form">
+                    <Button variant="primary" type="submit" form="Form"
+                            className="Delete">
                         Delete
                     </Button>
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
         )
     }
