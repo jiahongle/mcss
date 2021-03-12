@@ -19,15 +19,15 @@ export default class ExecCard extends React.Component {
 
         var linkedinElem = <div></div>;
         if (linkedin) {
-            linkedinElem = <a href={linkedin}> <FontAwesomeIcon icon={faLinkedin} className="exec-link-icon"/></a>;
+            linkedinElem = <a href={linkedin} target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faLinkedin} className="exec-link-icon"/></a>;
         }
         var emailElem = <div></div>;
         if (email) {
-            emailElem = <a href={"mailto:"+email}> <FontAwesomeIcon icon={faEnvelopeSquare} className="exec-link-icon"/></a>;
+            emailElem = <a href={"mailto:"+email} target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faEnvelopeSquare} className="exec-link-icon"/></a>;
         }
         var websiteElem = <div></div>;
         if (website) {
-            websiteElem = <a href={website}> <FontAwesomeIcon icon={faGlobe} className="exec-link-icon"/></a>;
+            websiteElem = <a href={website} target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faGlobe} className="exec-link-icon"/></a>;
         }
 
         return(
