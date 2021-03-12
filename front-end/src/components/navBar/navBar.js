@@ -23,7 +23,7 @@ export default class Nav extends React.Component {
             <img src={mcssLogo} className="mcss-logo" />
           </div>
           <div className="content-wrap">
-            <ul>
+            <ul className="extra">
               <li className="nav-text">
                 <Link to="/">
                   <span> Home </span>
@@ -54,8 +54,7 @@ export default class Nav extends React.Component {
                 </Link>
               </li>
             </ul>
-
-            <div class="social-media">
+            <div className="social-media">
               <FontAwesomeIcon icon={faFacebook} />
               <FontAwesomeIcon icon={faDiscord} />
               <FontAwesomeIcon icon={faInstagram} />
