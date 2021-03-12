@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 export default class UploadPastEvent extends React.Component {
     state = {
         title: '',
@@ -7,26 +7,45 @@ export default class UploadPastEvent extends React.Component {
         selectedFiles: null,
     }
 
+    // onSubmit = e => {
+    //     const data = new FormData()
+    //     for (var x = 0; x < this.state.selectedFiles.length; x++) {
+    //         data.append('file', this.state.selectedFiles[x])
+    //     }
+    //     data.append('year', this.state.year);
+    //     data.append('title', this.state.title);
+
+    //     console.log(data)
+    //     axios.post("http://localhost:5000/pastevents/postFile", data, { // receive two parameter endpoint url ,form data 
+    //     })
+    //         .then(res => { // then print response status
+    //             console.log("Post file success")
+    //         })
+    // }
+
     onSubmit = e => {
+        const data = new FormData()
+        for (var x = 0; x < this.state.selectedFiles.length; x++) {
+            data.append('file', this.state.selectedFiles[x])
+        }
+        data.append('year', this.state.year);
+        data.append('title', this.state.title);
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                title: this.state.title,
-                year: this.state.year,
-                imgs: this.state.selectedFiles
-            }),
+            body: data,
             mode: 'cors',
         };
-        console.log(this.state.selectedFiles)
-        fetch('http://localhost:5000/pastevents/post', requestOptions).then(response => response.json());
+        fetch('http://localhost:5000/pastevents/postFile', requestOptions).then(response => this.setState({
+
+        }));
     }
 
     onChangeHandler = event => {
         this.setState({
-            selectedFiles: event.target.files[0]
+            selectedFiles: event.target.files
         })
+
 
     }
 

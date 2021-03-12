@@ -59,7 +59,7 @@ router.post("/post", async (req, res) => {
 
             console.log(image);
             img_array.push(image);
-               
+
         };
 
         const event = new Event({
@@ -67,7 +67,7 @@ router.post("/post", async (req, res) => {
             description: description,
             imgs: img_array,
             creator: creator,
-            signup : signup
+            signup: signup
         });
 
         const savedEvent = await event.save();
@@ -87,8 +87,8 @@ router.delete("/delete/:id", async (req, res) => {
         const savedEvent = await Event.findById(id);
 
         // const savedImage = await Event.aggregate([{$unwind: "$imgs"}, {$match:{"imgs._id" : ObjectId(id)}}] );
-        
-        
+
+
         // console.log(savedImage);
 
         if (!savedEvent) {

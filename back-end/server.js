@@ -8,6 +8,7 @@ const { ObjectID } = require("mongodb");
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware');
+const fileupload = require('express-fileupload')
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 });
 app.use(cookieParser());
 app.use(express.json());
+app.use(fileupload())
 
 
 
