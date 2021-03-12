@@ -11,6 +11,11 @@ export default class Login extends React.Component {
         success: false,
     }
 
+    onLogout = e => {
+        document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.removeItem('jwt')
+        sessionStorage.removeItem('jwt')
+    }
     onSubmit = e => {
         const requestOptions = {
             method: 'POST',
@@ -85,6 +90,8 @@ export default class Login extends React.Component {
                             <CreateEvent />
                             <DeleteEvent />
                             <EditEvent />
+                            <input type="submit" value="Logout" onClick={() => this.onLogout()} />
+
                         </div >
 
                     }
