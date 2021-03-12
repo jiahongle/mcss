@@ -67,9 +67,9 @@ export default class ComposeEventDialog extends React.Component {
                 title: this.state.mainEventTitle,
                 time: this.state.mainEventTime,
                 description: this.state.mainEventDescription,
-                images: this.state.mainEventImages,
-                signupLink: this.state.mainEventSignupLink,
-                subEvents: this.state.subEvents
+                imgs: this.state.mainEventImages,
+                signup: this.state.mainEventSignupLink,
+                subevents: this.state.subEvents
             }
             const requestOptions = {
                 method: 'POST',
