@@ -1,0 +1,29 @@
+import React from 'react';
+import "./pictureCollage.css";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+export default class PictureCollage extends React.Component {
+    render() {
+        var titleCol = (this.props.colorBorder === "blueBorder") ? "blueText" : "purpText";
+        console.log(this.props.images)
+        return (
+            <div>
+
+                <div className={"pastEventTitle " + titleCol}>{this.props.title}</div>
+
+                <div className={"pastEventsPictureCollage " + this.props.colorBorder}>
+                    {this.props.images.map((image) => (
+                        <img src={image.link} alt="Logo" class="aaaa" key={image.deletehash} />
+                    ))
+
+
+                    }
+
+
+                </div>
+            </div>
+        );
+    }
+}

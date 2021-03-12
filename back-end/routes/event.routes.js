@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
         const id = req.params.id;
 
         const savedEvent = await Event.findById(id);
-        
+
         return res.status(200).json({ success: true, data: savedEvent });
     }
     catch (err) {
@@ -73,16 +73,16 @@ router.post("/post", async (req, res) => {
             }
 
             img_array.push(image);
-               
+
         };
 
         const event = new Event({
             title: title,
             description: description,
             imgs: img_array,
-            signup : signup,
+            signup: signup,
             subevents: subevents
-            
+
         });
 
         const savedEvent = await event.save();
@@ -117,14 +117,14 @@ router.delete("/delete/:id", async (req, res) => {
                     'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
-                
+
                 }
             };
 
             await requestPromise(options);
         }
 
-        
+
         savedEvent.remove();
         res.status(200).json({ msg: "Success" });
 
@@ -179,7 +179,7 @@ router.patch("/update/:id", async (req, res) => {
             }
 
             img_array.push(image);
-               
+
         };
 
         retrievedEvent.title = title;
@@ -190,7 +190,7 @@ router.patch("/update/:id", async (req, res) => {
 
         const savedEvent = await retrievedEvent.save();
         res.send(savedEvent);
-        
+
     }
     catch (err) {
         res.status(500).json({ error: err.message });
@@ -220,7 +220,7 @@ router.delete("/deleteimage/:id/:idx", async (req, res) => {
                 'Authorization': `Client-ID ${clientId}`
             },
             formData: {
-            
+
             }
         };
 
@@ -281,7 +281,7 @@ router.delete("/deleteimage/:id/:idx", async (req, res) => {
 //             }
 
 //             img_array.push(image);
-               
+
 //         };
 
 //         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
@@ -318,7 +318,7 @@ router.delete("/deleteimage/:id/:idx", async (req, res) => {
 //             description,
 //             signup
 //         }
-        
+
 //         retrievedEvent.subevents.push(subevent)
 
 //         const savedEvent = await retrievedEvent.save();
@@ -352,7 +352,7 @@ router.delete("/deleteimage/:id/:idx", async (req, res) => {
 //             description,
 //             signup
 //         }
-        
+
 //         retrievedEvent.subevents[index] = subevent;
 
 //         const savedEvent = await retrievedEvent.save();
