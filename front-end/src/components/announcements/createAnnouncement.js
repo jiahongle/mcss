@@ -10,7 +10,6 @@ export default class createAnnouncement extends React.Component {
     onSubmit = e => {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: this.state.title, body: this.state.body }),
             mode: 'cors',
         };

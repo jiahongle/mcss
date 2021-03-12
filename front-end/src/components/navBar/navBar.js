@@ -11,21 +11,21 @@ export default class Nav extends React.Component {
   }
 
   toggleMenuActive = () => {
-    this.setState({menuActive: !this.state.menuActive});
+    this.setState({ menuActive: !this.state.menuActive });
   }
 
   render() {
     return (
       <div className="menu-container">
-        <div className={this.state.menuActive? 'menu active' : 'menu'}>
-          <div className="blank"/>
+        <div className={this.state.menuActive ? 'menu active' : 'menu'}>
+          <div className="blank" />
           <div className="mcss-logo-container">
-            <img src={mcssLogo} className="mcss-logo"/>
+            <img src={mcssLogo} className="mcss-logo" />
           </div>
           <div className="content-wrap">
             <ul className="extra">
               <li className="nav-text">
-                <Link to="/"> 
+                <Link to="/">
                   <span> Home </span>
                 </Link>
               </li>
@@ -44,11 +44,6 @@ export default class Nav extends React.Component {
                   <span> Events </span>
                 </Link>          </li>
               <li className="nav-text">
-                <Link to="/resources">
-                  <span> Resources </span>
-                </Link>
-              </li>
-              <li className="nav-text">
                 <Link to="/partnerClubs">
                   <span> Partner Clubs </span>
                 </Link>
@@ -59,7 +54,6 @@ export default class Nav extends React.Component {
                 </Link>
               </li>
             </ul>
-            
             <div className="social-media">
               <FontAwesomeIcon icon={faFacebook} />
               <FontAwesomeIcon icon={faDiscord} />

@@ -53,7 +53,7 @@ router.post("/login", (req, res) => {
             // We can check later if this exists to ensure we are logged in.
             const payload = {
                 username: admin.username,
-                expires: Date.now() + 480000,
+                expires: Date.now() + 48000000,
             };
 
 

@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { GoThreeBars } from 'react-icons/go';
 import Navbar from './components/navBar/navBar.js'
 import Home from './pages/home'
-import Team from './pages/theTeam'
 import Events from './pages/eventPage'
+import Team from './pages/theTeam/theTeam.js'
 import Announcements from './pages/announcements';
-import Resources from './pages/resources';
-import PartnerClubs from './pages/partnerClubs';
+import PartnerClubs from './pages/partnerClubs/partnerClubs.js';
 import Login from './pages/login';
 
 

@@ -8,6 +8,7 @@ const { ObjectID } = require("mongodb");
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware');
+const fileupload = require('express-fileupload')
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 });
 app.use(cookieParser());
 app.use(express.json());
+app.use(fileupload())
 
 
 
@@ -54,6 +56,7 @@ app.use(
 app.use('/announcements', require('./routes/announcement.routes'));
 app.use('/admins', require('./routes/admin.routes'));
 app.use('/events', require('./routes/event.routes'));
+app.use('/pastevents', require('./routes/pastEvent.routes'));
 app.get('/checkToken', withAuth, function (req, res) {
     res.sendStatus(200);
 });

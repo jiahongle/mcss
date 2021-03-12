@@ -11,18 +11,39 @@ const EventSchema = new Schema({
 		minlegth: 1,
 		trim: true
 	},
-	creator: {
+	imgs: [{
+		deletehash: {
+			type: String,
+			required: true
+		},
+		link: {
+			type: String,
+			required: true
+		}
+	}],
+	signup: {
 		type: String,
-		required: true
-	},
-	// TODO: Complete when wireframe is done
-	img: {
-		// TODO: decide how to 
+		required: false
 	},
 	description: {
 		type: String,
 		required: false
-	}
+	},
+	subevents: [{
+		title: {
+			type: String,
+			required: true
+		},
+		description: {
+			type: String,
+			required: true
+		},
+		signup: {
+			type: String,
+			required: false
+		}
+	}]
+
 }, {
 	timestamps: true
 })
