@@ -44,11 +44,6 @@ export default class Nav extends React.Component {
                   <span> Events </span>
                 </Link>          </li>
               <li className="nav-text">
-                <Link to="/resources">
-                  <span> Resources </span>
-                </Link>
-              </li>
-              <li className="nav-text">
                 <Link to="/partnerClubs">
                   <span> Partner Clubs </span>
                 </Link>
