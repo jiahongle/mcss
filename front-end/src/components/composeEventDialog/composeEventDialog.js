@@ -12,28 +12,15 @@ import "react-quill/dist/quill.snow.css";
 export default class ComposeEventDialog extends React.Component {
     constructor(props) {
         super(props);
-        if (this.props.isNew) {
-            this.state = {
-                dialogOpen: false,
-                validated: false,
-                mainEventTitle: '',
-                mainEventTime: '',
-                mainEventDescription: '',
-                mainEventImages: [],
-                mainEventSignupLink: '',
-                subEvents: []
-            };
-        } else {
-            this.state = {
-                dialogOpen: false,
-                validated: false,
-                mainEventTitle: this.props.mainEventTitle,
-                mainEventTime: this.props.mainEventTime,
-                mainEventDescription: this.props.mainEventDescription,
-                mainEventImages: [],
-                mainEventSignupLink: this.props.mainEventSignupLink,
-                subEvents: this.props.subEvents
-            };
+        this.state = {
+            dialogOpen: false,
+            validated: false,
+            mainEventTitle: '',
+            mainEventTime: '',
+            mainEventDescription: '',
+            mainEventImages: [],
+            mainEventSignupLink: '',
+            subEvents: []
         }
     }
     
@@ -75,15 +62,31 @@ export default class ComposeEventDialog extends React.Component {
     postEvent = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log(this.state.mainEventDescription)
-        console.log(this.state.mainEventImages)
-        console.log(this.state.subEvents)
-        const form = event.currentTarget;
-        if (form.checkValidity()) {
-            
+        if (event.currentTarget.checkValidity()) {
+            let requestBody = {
+                title: this.state.mainEventTitle,
+                time: this.state.mainEventTime,
+                description: this.state.mainEventDescription,
+                images: this.state.mainEventImages,
+                signupLink: this.state.mainEventSignupLink,
+                subEvents: this.state.subEvents
+            }
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody),
+                mode: 'cors',
+                credentials: 'include'
+            };
+            fetch('http://localhost:5000/events/post', requestOptions).then(response => {
+                if (response.status === 200) {
+                    this.closeDialog()
+                } else {
+                    console.log(`Response status: ${response.status}`)
+                }
+            });
         }
         this.setState({validated: true});
-        //Send date to server and closeDialog()
     }
 
     cancelPost = () => {
@@ -162,7 +165,7 @@ export default class ComposeEventDialog extends React.Component {
                 scrollable={true}
             >
                 <Modal.Header closeButton>
-                <Modal.Title>New Event</Modal.Title>
+                <Modal.Title>{this.props.isNew? "New Event": "Edit Event"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form className="bounds" id="Form" 
@@ -288,7 +291,7 @@ export default class ComposeEventDialog extends React.Component {
                     <Button variant="secondary" onClick={this.cancelPost}>
                         Cancel
                     </Button>
-                    <Button variant="primary" type="submit" form="Form">Post</Button>
+                    <Button variant="primary" type="submit" form="Form">{this.props.isNew? "Post": "Save"}</Button>
                 </Modal.Footer>
             </Modal>
         );
