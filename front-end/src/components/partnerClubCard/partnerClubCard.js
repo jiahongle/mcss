@@ -16,19 +16,19 @@ export default class PartnerClubCard extends React.Component {
 
 
     if (insta) {
-        linksArr.push(<a key="1" href={insta}> <FontAwesomeIcon icon={faInstagramSquare} className="club-link-icon"/></a>);
+        linksArr.push(<a key="1" target="_blank" rel="noopener noreferrer" href={insta}> <FontAwesomeIcon icon={faInstagramSquare} className="club-link-icon"/></a>);
     }
     if (facebook) {
-        linksArr.push(<a key="2" href={facebook}> <FontAwesomeIcon icon={faFacebook} className="club-link-icon"/></a>);
+        linksArr.push(<a key="2" target="_blank" rel="noopener noreferrer" href={facebook}> <FontAwesomeIcon icon={faFacebook} className="club-link-icon"/></a>);
     }    
     if (discord) {
-        linksArr.push(<a key="3" href={discord}> <FontAwesomeIcon icon={faDiscord} className="club-link-icon"/></a>);
+        linksArr.push(<a key="3" target="_blank" rel="noopener noreferrer" href={discord}> <FontAwesomeIcon icon={faDiscord} className="club-link-icon"/></a>);
     } 
     if (linkedin) {
-        linksArr.push(<a key="4" href={linkedin}> <FontAwesomeIcon icon={faLinkedin} className="club-link-icon"/></a>);
+        linksArr.push(<a key="4" target="_blank" rel="noopener noreferrer" href={linkedin}> <FontAwesomeIcon icon={faLinkedin} className="club-link-icon"/></a>);
     } 
     if (website) {
-        linksArr.push(<a key="5" href={website}> <FontAwesomeIcon icon={faGlobe} className="club-link-icon"/></a>);
+        linksArr.push(<a key="5" target="_blank" rel="noopener noreferrer" href={website}> <FontAwesomeIcon icon={faGlobe} className="club-link-icon"/></a>);
     } 
 
     return(
