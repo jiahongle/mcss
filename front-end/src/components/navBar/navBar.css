@@ -3,6 +3,7 @@
     height: 100vmin;
     position: fixed;
     right: 0;
+    pointer-events: none;
 }
 
 .blank{
@@ -23,6 +24,7 @@
 .menu.active {
     right: 0;
     transition: 150ms;
+    pointer-events: auto;
 }
 
 .nav-text {
