@@ -29,7 +29,6 @@ export default class App extends React.Component {
             <Route path='/team' component={Team} />
             <Route path='/announcements' component={Announcements} />
             <Route path='/events' component={Events} />
-            <Route path='/resources' component={Resources} />
             <Route path='/partnerClubs' component={PartnerClubs} />
             <Route path='/login' component={Login} />
           </Switch>

@@ -9,6 +9,10 @@
   background: none;
 }
 
+.menu-button :hover{
+  color: white;
+}
+
 .menu-button-area {
   z-index: 2;
   height: 80px;
