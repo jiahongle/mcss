@@ -2,8 +2,8 @@ import React from 'react'
 import mcss from '../mcssLogo.svg';
 import './eventPage.css';
 import Footer from '../components/footer/footer.js';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
+import UploadPastEvent from '../components/pastEvent/uploadPastEvent';
+import PastEventSection from '../components/pastEvent/pastEventsSection/pastEventsSection';
 import ComposeEventDialog from '../components/composeEventDialog/composeEventDialog'
 
 
@@ -80,6 +80,12 @@ export default class EventPage extends React.Component {
               </div>
             }
         </div>
+        <PastEventSection />
+          {this.state.success &&
+            <div>
+              <UploadPastEvent />
+            </div>
+          }
         <Footer />
       </div>
     );
