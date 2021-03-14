@@ -48,7 +48,7 @@ router.post('/signup', async function (req, res) {
 router.post('/send', async function (req, res) {
 
     try {
-        const { subject, title, person_name, from_address, message } = req.body;
+        const { subject, person_name, from_address, message } = req.body;
 
         console.log(from_address);
 
@@ -66,7 +66,7 @@ router.post('/send', async function (req, res) {
                 },
                 "settings": {
                     "subject_line": subject,
-                    "title": title,
+                    "title": subject,
                     "from_name": person_name,
                     "reply_to": from_address
 
