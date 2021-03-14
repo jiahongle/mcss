@@ -108,6 +108,7 @@ export default class editAnnouncement extends React.Component {
     render() {
         return (
             <Modal
+                size="lg"
                 show={this.state.dialogOpen}
                 onHide={this.closeDialog}
                 backdrop="static"
