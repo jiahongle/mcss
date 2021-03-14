@@ -65,22 +65,24 @@ export default class editAnnouncement extends React.Component {
     }
 
     onEdit = e => {
-        // e.preventDefault();
-        console.log("Edited id: " + this.state.id);
-        console.log("New title: " + this.state.title);
-        console.log("New body: " + this.state.body);
-        const requestOptions = {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: this.state.title, body: this.state.body, id: this.state.id }),
-            mode: 'cors',
-        };
-        fetch('http://localhost:5000/announcements/update/' + this.state.id, requestOptions).then(response => response.json());
-        const form = e.currentTarget;
-        if (form.checkValidity()) {
-            this.setState({ dialogOpen: false });
-        }
+        e.preventDefault();
+        // console.log("Edited id: " + this.state.id);
+        // console.log("New title: " + this.state.title);
+        // console.log("New body: " + this.state.body);
         this.setState({validated: true});
+        if (e.currentTarget.checkValidity()) {
+            const requestOptions = {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: this.state.title, body: this.state.body, id: this.state.id }),
+                mode: 'cors',
+            };
+            fetch('http://localhost:5000/announcements/update/' + this.state.id, requestOptions)
+            .then(() => {
+                this.setState({ dialogOpen: false, validated: false});
+                this.props.rerenderCallback();
+            });
+        }
     }
 
     onCancel = () => {
@@ -94,7 +96,6 @@ export default class editAnnouncement extends React.Component {
     render() {
         return (
             <Modal
-                size="lg"
                 show={this.state.dialogOpen}
                 onHide={this.closeDialog}
                 backdrop="static"

@@ -3,6 +3,7 @@ import React from 'react';
 import './announcements.css';
 import DeleteAnnouncement from './deleteAnnouncement.js'
 import EditAnnouncement from './editAnnouncement.js'
+import { TiDelete } from 'react-icons/ti';
 
 export default class announcementPost extends React.Component {
     deleteRef = React.createRef();
@@ -15,36 +16,73 @@ export default class announcementPost extends React.Component {
             loggedIn: props.loggedIn,
             id: props.details._id,
             title: props.details.title,
-            body: props.details.body
+            date: props.details.createdAt,
+            body: props.details.body,
+            isCollapsed: props.isCollapsed
         }
     }
 
-    onDelete() {
-        this.deleteRef.current.openDialog();
-
-        this.props.rerenderCallback();
+    
+    componentDidUpdate(previousProps) {
+        console.log("updated")
+        if (previousProps !== this.props) {
+            this.setState({
+                loggedIn: this.props.loggedIn,
+                id: this.props.details._id,
+                title: this.props.details.title,
+                body: this.props.details.body,
+                date: this.props.details.createdAt,
+                isCollapsed: this.props.isCollapsed
+            })
+        }
     }
 
-    onEdit() {
-        this.editRef.current.openDialog();
+    onDelete = () => {
+        this.deleteRef.current.openDialog();
+    }
 
-        this.props.rerenderCallback();
+    onEdit = () => {
+        this.editRef.current.openDialog();
+    }
+
+    to12HourTime = (hour, minute) => {
+        let h = hour % 12 == 0? 12: hour % 12
+        let ampm = hour < 12? 'AM' : 'PM'
+        return `${h}:${minute}${ampm}`
+    }
+
+    addComma = (date) => {
+        return `${date.slice(0, -5)}, ${date.slice(-5)}`
     }
 
     render() {
+        const d = new Date(this.state.date)
+        const dateStr = this.addComma((d.toDateString()).slice(3)) + " at " + this.to12HourTime(d.getHours(), d.getMinutes())
         return (
-            <div className="announcement-post" >
-                <EditAnnouncement ref={this.editRef} body={this.state.body} title={this.state.title} id={this.state.id}/>
-                <DeleteAnnouncement ref={this.deleteRef} id={this.state.id} />
-
-                {   this.state.loggedIn && <div className="adminButtons">
-                        <div className="Edit-Button" type="submit" value="Edit" onClick={() => this.onEdit()}> Edit </div>
-                        <div className="Delete-Button" type="submit" value="X" onClick={() => this.onDelete()}> <strong>X</strong> </div>
+            <>
+                {this.state.loggedIn && <div className="admin-buttons">
+                        <div className="Edit-Button" onClick={this.onEdit}> Edit </div>
+                        <TiDelete type="submit" class="delete-button" onClick={this.onDelete}/>
                     </div>
                 }
-                <p className="post-text"> {this.state.title} </p>
-                <p className="post-date"> <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div></p>
-            </div>
+                    <div className="announcement-post" >
+                        <EditAnnouncement ref={this.editRef} body={this.state.body} title={this.state.title} id={this.state.id} rerenderCallback={this.props.rerenderCallback} />
+                        <DeleteAnnouncement ref={this.deleteRef} id={this.state.id} rerenderCallback={this.props.rerenderCallback} />
+
+                    {this.state.isCollapsed?
+                        <>
+                            <p className="collapsed-title post-title"> {this.state.title} </p>
+                            <p className="post-date">{dateStr}</p>
+                        </>
+                        :
+                        <>
+                            <p className="post-title"> {this.state.title} </p>
+                            <p className="post-date"> {dateStr} </p>
+                            <p className="post-body"> <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div></p>
+                        </>   
+                    }    
+                    </div>
+            </>
         )
     }
 }

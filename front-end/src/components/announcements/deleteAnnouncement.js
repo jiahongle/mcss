@@ -12,7 +12,6 @@ export default class deleteAnnouncement extends React.Component {
         this.state = {
             dialogOpen: false,
             id: this.props.id,
-            validated: false
         }
     }
     
@@ -25,8 +24,7 @@ export default class deleteAnnouncement extends React.Component {
         this.setState({dialogOpen: false});
     }
 
-    onDelete = e => {
-        // e.preventDefault();
+    onDelete = () => {
         console.log("deleted announcement id: " + this.state.id);
         const requestOptions = {
             method: 'DELETE',
@@ -34,13 +32,10 @@ export default class deleteAnnouncement extends React.Component {
             body: JSON.stringify({ id: this.state.id }),
             mode: 'cors',
         };
-        fetch('http://localhost:5000/announcements/delete/' + this.state.id, requestOptions).then(response => response.json());
-
-        const form = e.currentTarget;
-        if (form.checkValidity()) {
-            this.setState({ dialogOpen: false });
-        }
-        this.setState({validated: true});
+        fetch('http://localhost:5000/announcements/delete/' + this.state.id, requestOptions)
+        .then(() => {
+            this.props.rerenderCallback();
+        })
     }
 
     onCancel = () => {
@@ -50,7 +45,6 @@ export default class deleteAnnouncement extends React.Component {
     render() {
         return (
             <Modal
-                size="lg"
                 show={this.state.dialogOpen}
                 onHide={this.closeDialog}
                 backdrop="static"
@@ -62,18 +56,15 @@ export default class deleteAnnouncement extends React.Component {
                 <Modal.Title>Are you sure you want to delete this announcement?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form id="Form" className="bounds"
-                        noValidate onSubmit={this.onDelete} 
-                        validated={this.state.validated}>
-                    </Form>
-                    <Button variant="secondary" onClick={this.onCancel}
-                            className="Cancel">
-                        Cancel
-                    </Button>
-                    <Button variant="primary" type="submit" form="Form"
-                            className="Delete">
-                        Delete
-                    </Button>
+                <Button variant="secondary" onClick={this.onCancel}
+                        className="Cancel">
+                    Cancel
+                </Button>
+                <Button variant="primary" 
+                        className="Delete"
+                        onClick={this.onDelete}>
+                    Delete
+                </Button>
                 </Modal.Body>
             </Modal>
         )

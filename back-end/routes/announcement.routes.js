@@ -21,7 +21,7 @@ router.get("/get", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, body } = req.body;
+        const { title, body, dateStr } = req.body;
 
         if (!title || !body) {
             return res.status(400).json({ msg: "Title and body cannot be blank." });
@@ -29,7 +29,7 @@ router.post("/post", async (req, res) => {
 
         const announcement = new Announcement({
             title: title,
-            body: body
+            body: body,
         });
 
         const savedAnnouncement = await announcement.save();

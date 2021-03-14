@@ -8,11 +8,14 @@ import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 
 export default class createAnnouncement extends React.Component {
-    state = {
-        validated: false,
-        dialogOpen: false,
-        title: '',
-        body: '',
+    constructor(props) {
+        super(props);
+        this.state = {
+            validated: false,
+            dialogOpen: false,
+            title: '',
+            body: '',
+        }
     }
 
     RTEmodules = {
@@ -55,22 +58,21 @@ export default class createAnnouncement extends React.Component {
     }
 
     onSubmit = e => {
-        // e.preventDefault();
-        console.log("submitted.");
-        console.log(this.state.title);
-        console.log(this.state.body);
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: this.state.title, body: this.state.body }),
-            mode: 'cors',
-        };
-        fetch('http://localhost:5000/announcements/post', requestOptions).then(response => response.json());
-        const form = e.currentTarget;
-        if (form.checkValidity()) {
-            this.setState({ dialogOpen: false });
-        }
+        e.preventDefault();
         this.setState({validated: true});
+        if (e.currentTarget.checkValidity()) {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: this.state.title, body: this.state.body }),
+                mode: 'cors',
+            };
+            fetch('http://localhost:5000/announcements/post', requestOptions).
+            then(() => {
+                this.setState({ dialogOpen: false, body: '', title:'', validated: false});
+                this.props.rerenderCallback();
+            });
+        }
     }
 
     onCancel = () => {
