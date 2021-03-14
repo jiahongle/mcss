@@ -1,0 +1,59 @@
+#team-page-body {
+  margin: auto;
+  max-width: 1000px;
+  padding: 40px;
+}
+
+.team-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.team-section-container {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.github-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.team-title {
+  color: #8770b1;
+  margin-top: 10px;
+  text-align: left;
+  font-size: 4em;
+}
+
+.associates-list * {
+  color: rgb(184, 184, 184);
+}
+
+.associates-list li {
+  text-align: left;
+  margin: 15px 0;
+  font-size: 1.6em;
+}
+
+@media only screen and (max-width: 650px) {
+  #team-page-body {
+    padding: 20px;
+  }
+  .team-title {
+    font-size: 2.7em;
+  }
+
+  .associates-list li {
+    margin: 15px 0;
+    font-size: 1.3em;
+  }
+}

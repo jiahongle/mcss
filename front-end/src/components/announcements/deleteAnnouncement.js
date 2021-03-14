@@ -15,6 +15,13 @@ export default class deleteAnnouncement extends React.Component {
         }
     }
     
+    componentDidUpdate(previousProps) {
+        if (previousProps !== this.props) {
+            this.setState({
+                id: this.props.id,
+            })
+        }
+    }
 
     openDialog = () => {
         this.setState({dialogOpen: true});
@@ -25,7 +32,6 @@ export default class deleteAnnouncement extends React.Component {
     }
 
     onDelete = () => {
-        console.log("deleted announcement id: " + this.state.id);
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -34,6 +40,7 @@ export default class deleteAnnouncement extends React.Component {
         };
         fetch('http://localhost:5000/announcements/delete/' + this.state.id, requestOptions)
         .then(() => {
+            this.setState({ dialogOpen: false});
             this.props.rerenderCallback();
         })
     }

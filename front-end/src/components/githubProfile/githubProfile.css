@@ -1,0 +1,29 @@
+.github-profile-card {
+  padding: 25px;
+  margin: 0 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.github-profile-card:hover {
+  background-color: rgb(50, 50, 50);
+}
+
+.github-profile-card:hover .github-username {
+  color: #9cdaf7;
+  text-decoration: underline;
+}
+
+.github-pfp {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+}
+
+.github-username {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 15px;
+  color: rgb(198, 198, 198);
+}

@@ -1,0 +1,50 @@
+.image-uploader > .fileContainer {
+    box-shadow: none;
+    border: 2px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}
+
+.sub-event-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.plus-button {
+    font-size: 30px;
+}
+
+.plus-button:hover {
+    font-weight: bold;
+    color:rgb(136,115,180)
+}
+
+.delete-button {
+    font-size: 20px;
+}
+
+.delete-button:hover {
+    font-weight: bold;
+    color:rgb(136,115,180)
+}
+
+.sub-event-container {
+    padding: 20px 0px 20px 20px;
+    border-top: 2px solid rgb(184, 184, 184);;
+}
+
+.bounds .ql-container {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #fefcfc;
+}
+
+.ql-toolbar {
+    background-color: #f3f3f3;
+    color: #000000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+

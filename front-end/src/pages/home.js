@@ -8,24 +8,44 @@ import UpcomingEvents from '../components/UpcomingEvents/UpcomingEvents.js';
 import Footer from '../components/footer/footer.js';
 
 export default class Home extends React.Component {
+  state = {
+    success: false
+  }
 
+
+  componentDidMount() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      credentials: 'include'
+    };
+    fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
+
+      if (response.status === 200) {
+
+        this.setState({ success: true })
+      } else {
+        console.log("no cookie found")
+      }
+    });
+  }
   render() {
     return (
-      <div className="App">
+      <div>
         <header className="App-header">
           <div className="logo-header">
             <img src={mcss} className="App-logo" alt="logo" />
           </div>
           <LogoBar />
         </header>
-        <div className="AppContent">
+        <div className="Home-AppContent">
           <Introduction />
           <Announcements />
           <UpcomingEvents />
         </div>
         <Footer />
       </div>
-
     );
   }
 }

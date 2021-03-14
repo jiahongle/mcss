@@ -30,7 +30,7 @@ export default class announcement extends React.Component {
             .then((response) =>
                 response.json()
             ).then(data => {
-                this.setState({ announcements: data.data.reverse() })
+                this.setState({ announcements: data.data.reverse()})
             });
         
         requestOptions = {

@@ -24,6 +24,18 @@ export default class editAnnouncement extends React.Component {
         }
     }
 
+    componentDidUpdate(previousProps) {
+        if (previousProps !== this.props) {
+            this.setState({
+                original_title: this.props.title,
+                original_body: this.props.body,
+                title: this.props.title,
+                body: this.props.body,
+                id: this.props.id,
+            })
+        }
+    }
+
     RTEmodules = {
         toolbar: [
             [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],

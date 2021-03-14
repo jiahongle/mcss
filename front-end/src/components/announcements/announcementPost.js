@@ -1,9 +1,11 @@
-import { faThemeisle } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import './announcements.css';
 import DeleteAnnouncement from './deleteAnnouncement.js'
 import EditAnnouncement from './editAnnouncement.js'
 import { TiDelete } from 'react-icons/ti';
+import ReactQuill from 'react-quill'; 
+import "react-quill/dist/quill.bubble.css";
+
 
 export default class announcementPost extends React.Component {
     deleteRef = React.createRef();
@@ -62,7 +64,7 @@ export default class announcementPost extends React.Component {
             <>
                 {this.state.loggedIn && <div className="admin-buttons">
                         <div className="Edit-Button" onClick={this.onEdit}> Edit </div>
-                        <TiDelete type="submit" class="delete-button" onClick={this.onDelete}/>
+                        <TiDelete type="submit" className="delete-announcement-button" onClick={this.onDelete}/>
                     </div>
                 }
                     <div className="announcement-post" >
@@ -78,7 +80,12 @@ export default class announcementPost extends React.Component {
                         <>
                             <p className="post-title"> {this.state.title} </p>
                             <p className="post-date"> {dateStr} </p>
-                            <p className="post-body"> <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div></p>
+                            <ReactQuill
+                                className="post-body"
+                                value={this.state.body}
+                                readOnly={true}
+                                theme={"bubble"}
+                            />
                         </>   
                     }    
                     </div>

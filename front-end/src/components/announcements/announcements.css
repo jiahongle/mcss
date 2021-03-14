@@ -88,6 +88,12 @@
     font-size: 15px;
 }
 
+
+.post-body .ql-editor{
+    padding: 0px;
+}
+
+
 .post-body p{
     margin-bottom: 5px;
 }
@@ -108,7 +114,7 @@
     text-decoration: underline;
 }
 
-.delete-button {
+.delete-announcement-button {
     font-size: 30px;
     color: rgb(255, 67, 67);
 }

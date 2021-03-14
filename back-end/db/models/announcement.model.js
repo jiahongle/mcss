@@ -15,7 +15,7 @@ const AnnouncementSchema = new Schema({
 	},
 	body: {
 		type: String,
-		required: true,
+		// required: true,
 		trim: true
 	},
 	// creator: {

@@ -9,6 +9,10 @@
   background: none;
 }
 
+.menu-button :hover{
+  color: white;
+}
+
 .menu-button-area {
   z-index: 2;
   height: 80px;
@@ -16,7 +20,7 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 30px;
-  width: 250px;
+  width: auto;
   position: fixed;
   right: 0;
   background: none;

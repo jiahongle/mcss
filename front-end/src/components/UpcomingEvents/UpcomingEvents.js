@@ -25,7 +25,7 @@ export default class UpcomingEvents extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             mode: 'cors',
         };
-        fetch('http://localhost:5000/events/get', requestOptions)
+        fetch('http://localhost:5000/events/', requestOptions)
             .then((response) =>
                 response.json()
             ).then(data => {
