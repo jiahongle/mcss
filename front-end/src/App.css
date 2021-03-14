@@ -20,7 +20,7 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 30px;
-  width: 250px;
+  width: auto;
   position: fixed;
   right: 0;
   background: none;
