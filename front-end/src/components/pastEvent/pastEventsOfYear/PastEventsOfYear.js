@@ -19,7 +19,7 @@ export default class PastEventsSection extends React.Component {
         return (
             <div>
                 <div class="yearTitle">&mdash;&mdash;&mdash;
-                {this.props.title} &mdash;&mdash;&mdash;</div>
+                {this.props.year} &mdash;&mdash;&mdash;</div>
 
 
 
