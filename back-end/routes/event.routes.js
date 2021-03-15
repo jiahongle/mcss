@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, description, imgs, signup, subevents } = req.body;
+        const { title, time, description, imgs, signup, subevents } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
@@ -78,6 +78,7 @@ router.post("/post", async (req, res) => {
 
         const event = new Event({
             title: title,
+            time: time,
             description: description,
             imgs: img_array,
             signup: signup,
@@ -145,7 +146,7 @@ router.patch("/update/:id", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const { title, description, imgs, signup, subevents } = req.body;
+        const { title, time, description, imgs, signup, subevents } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
@@ -183,6 +184,7 @@ router.patch("/update/:id", async (req, res) => {
         };
 
         retrievedEvent.title = title;
+        retrievedEvent.time = time;
         retrievedEvent.description = description;
         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
         retrievedEvent.signup = signup;

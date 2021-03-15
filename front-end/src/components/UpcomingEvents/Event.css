@@ -1,3 +1,34 @@
+.admin-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Edit-Button {
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.Edit-Button:hover {
+    text-decoration: underline;
+}
+
+.delete-announcement-button {
+    font-size: 30px;
+    color: rgb(255, 67, 67);
+}
+
+.Cancel {
+    margin-right: 20px;
+    float: left;
+}
+
+.Delete {
+    float:right;
+}
+
 /* Parent Container for a single expanded upcoming event  */
 .Collapsed {
     background-color: #1D1D1D;
@@ -41,9 +72,9 @@
 /* Container for all text: Title, date, description*/
 .Expanded-Info { 
     width: 64%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -52,60 +83,83 @@
 
 /* Title stylings */
 .Expanded-Title {
-    font-size: 24px;
-    color: #8873B4;
+    font-size: 20px;
+    color: #CD96F9;
     display: -webkit-box;   
     -webkit-line-clamp: 2;   
     -webkit-box-orient: vertical;     
     overflow: hidden;
+    text-align: left;
 }
 
 /* Description box stylings */
 .Expanded-Desc {
-    margin: 0 !important;
-    font-size: 20px;
-    color: #FFFFFF;
-    text-align: left;
-    display: -webkit-box;   
-    -webkit-line-clamp: 6;   
-    -webkit-box-orient: vertical;     
-    overflow: hidden; 
+    height: 226px;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.last-line-spacer {
+    height: 2em;
+}
+
+.dick {
+    flex-grow: 1;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.Expanded-Desc-fade{
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2em;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(29, 29, 29) 60%);
 }
 
 /* Date stylings */
 .Expanded-Date {
-    margin: 10px 0px 20px;
-    font-size: 20px;
-    color: #55B5D3;
+    margin: 10px 0px 5px;
+    font-size: 15px;
+    color: #24A4D3;    
     text-align: left;
 }
 
 
 /* Stylings for buttons and their containers */
 .Event-Buttons {
-    padding: 0 10% 0;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10%;
     height: 37px;
 }
 
 /* Default stylings for the two buttons Learn More and Expanded */
 .Button {
-    border: none;
     color: white;
-    padding: 7px 30px;
-    text-align: center;
-    font-size: 1vw;
-    border-radius: 25px;
-    outline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+    height: 30px;
 }
 
 .LearnMore-Button {
-    float: left; 
     background-color: #55B5D3;
 }
 
 .Register-Button {
-    float: right; 
-    background-color: #8873B4;
+    background-color: #CD96F9;
 }
 
 .Expanded-Picture-Button { 
@@ -143,6 +197,15 @@
 .Button-Expanded {
     transform: rotate(135deg);
 }
+
+.current-event-body {
+    color: #ffffff;
+}
+
+
+.current-event-body .ql-editor{
+    padding: 0px;
+}
 /************************ END OF EXPANDED EVENT STYLINGS  ************************/
 
 
@@ -165,19 +228,18 @@
 }
 
 .Collapsed-Title {
-    font-size: 24px;
-    color: #8873B4;
+    font-size: 20px;
+    color: #CD96F9;
     display: -webkit-box;   
     -webkit-line-clamp: 1;   
     -webkit-box-orient: vertical;     
-    overflow: hidden;
     text-align: left;
 }
 
 .Collapsed-Date{
     margin: 0 !important;
-    font-size: 20px;
-    color: #55B5D3;
+    font-size: 15px;
+    color: #24A4D3;   
     text-align: left;
 }
 

@@ -11,6 +11,11 @@ const EventSchema = new Schema({
 		minlegth: 1,
 		trim: true
 	},
+	time: {
+		type: String,
+		required: true,
+		trim: true
+	},
 	imgs: [{
 		deletehash: {
 			type: String,
@@ -34,9 +39,14 @@ const EventSchema = new Schema({
 			type: String,
 			required: true
 		},
+		time: {
+			type: String,
+			required: true,
+			trim: true
+		},
 		description: {
 			type: String,
-			required: true
+			required: false
 		},
 		signup: {
 			type: String,

@@ -3,62 +3,18 @@
 import React from 'react'
 import eventpic from '../../res/the-show.png';
 import './Event.css'
+import ReactQuill from 'react-quill'; 
+import "react-quill/dist/quill.bubble.css";
+import { TiDelete } from 'react-icons/ti';
+import DeleteEvent from './deleteEvent.js'
 
-/* Defines a container that holds all text within an upcoming event that is expanded */
-function ExpandedText(props) {
-    return (
-        <div>
-            <b className="Expanded-Title"> {props.title} </b>
-            <p className="Expanded-Date"> {props.date} </p>
-            <p className="Expanded-Desc"> {props.description} </p>
-        </div>
-    )
-}
-
-/* Defines a container that holds title and date only when an upcoming event is collapsed */
-function CollapsedText(props) {
-    return (
-        <div className="Collapsed-Text">
-            <b className="Collapsed-Title"> {props.title} </b>
-            <p className="Collapsed-Date"> {props.date} </p>
-        </div>
-    )
-}
-
-
-/* Defines a container with two buttons: Learn More, Register */
-function EventButtons() {
-    return (
-        <div className="Event-Buttons">
-            <button className="Button LearnMore-Button"> Learn More </button>
-            <button className="Button Register-Button"> Register </button>
-        </div>
-    )
-}
-
-/* Defines a container holding all the required text and buttons when an event is expanded */
-function ExpandedInfo(props) {
-    return (
-        <div className="Expanded-Info">
-            <ExpandedText title={props.title}
-                date={props.date}
-                description={props.description} />
-            <EventButtons />
-        </div>
-    );
-}
-
-/* A container displayed when an event is collapsed, shows only the title and date */
-function CollapsedInfo(props) {
-    return (
-        <CollapsedText title={props.title}
-            date={props.date} />
-    );
-}
 
 
 /* Event function requires a title, date and description to be created */
 class Event extends React.Component {
+    deleteRef = React.createRef();
+    editRef = React.createRef();
+
     constructor(props) {
         super(props);
 
@@ -66,6 +22,13 @@ class Event extends React.Component {
         this.state = { isCollapsed: false };
 
         this.toggleCollapse = this.toggleCollapse.bind(this);
+    }
+
+    componentDidUpdate(previousProps) {
+        console.log("updated")
+        if (previousProps !== this.props) {
+            this.forceUpdate()
+        }
     }
 
     /* Toggles the state of the event between Collapsed and Expanded */
@@ -77,39 +40,70 @@ class Event extends React.Component {
         )
     }
 
-    render() {
-        if (!this.state.isCollapsed) { // If expanded
-            let btn = <button className="Toggle-Button Button-Expanded clickable"
-                onClick={this.toggleCollapse} />
-            let expandedInfo = <ExpandedInfo title={this.props.title}
-                date={this.props.date}
-                description={this.props.description} />;
+    onDelete = () => {
+        this.deleteRef.current.openDialog();
+    }
 
-            return (
+    onEdit = () => {
+        this.editRef.current.openDialog();
+    }
+
+    render() {
+        return (
+            <>
+            <DeleteEvent ref={this.deleteRef} id={this.props.event._id} rerenderCallback={this.props.rerenderCallback} />
+            {this.props.loggedIn &&
+                <div className="admin-buttons">
+                        <div className="Edit-Button" onClick={this.onEdit}> Edit </div>
+                        <TiDelete className="delete-announcement-button" onClick={this.onDelete}/>
+                </div>
+            }
+            {!this.state.isCollapsed?
                 <div className="Expanded">
-                    {expandedInfo}
+                    <div className="Expanded-Info">
+                        <div>
+                            <b className="Expanded-Title"> {this.props.event.title} </b>
+                            <p className="Expanded-Date"> {this.props.event.time} </p>
+                        </div>
+                        <div className="dick">
+                            <div className="Expanded-Desc">
+                                <ReactQuill
+                                    className="current-event-body"
+                                    value={this.props.event.description}
+                                    readOnly={true}
+                                    theme={"bubble"}
+                                />
+                                <div className="last-line-spacer"/>
+                            </div>
+                            <div className="Expanded-Desc-fade"/>
+                        </div>
+                        <div className="Event-Buttons">
+                            <div className="Button LearnMore-Button"> Learn More </div>
+                            <div className="Button Register-Button"> Register </div>
+                        </div>
+                    </div>
                     <div className="Expanded-Picture-Button ">
-                        <div className="Expanded-Button">{btn}</div>
+                        <div className="Expanded-Button">
+                            <button className="Toggle-Button Button-Expanded clickable"
+                                onClick={this.toggleCollapse} />
+                        </div>
                         <div className="Inner-Picture"><img src={eventpic} /></div>
                     </div>
                 </div>
-            );
-
-        } else { // If Collapsed
-            let btn = <button className="Toggle-Button Button-Collapsed clickable"
-                onClick={this.toggleCollapse} />
-            let collapsedInfo = <CollapsedInfo title={this.props.title}
-                date={this.props.date} />;
-
-            return (
+            :
                 <div className="Collapsed">
-                    {collapsedInfo}
+                    <div className="Collapsed-Text">
+                        <b className="Collapsed-Title"> {this.props.event.title} </b>
+                        <p className="Collapsed-Date"> {this.props.event.time} </p>
+                    </div>
                     <div className="Collapsed-Button-Div">
-                        {btn}
+                        <button className="Toggle-Button Button-Collapsed clickable"
+                            onClick={this.toggleCollapse} />
                     </div>
                 </div>
-            );
-        }
+            }
+            </>
+        );
     }
 }
 

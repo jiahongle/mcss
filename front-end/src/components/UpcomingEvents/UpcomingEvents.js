@@ -16,11 +16,12 @@ var date = "Feb 2nd, 2020";
 
 export default class UpcomingEvents extends React.Component {
     state = {
+        loggedIn: false,
         events: []
     }
 
     componentDidMount() {
-        const requestOptions = {
+        var requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             mode: 'cors',
@@ -30,9 +31,38 @@ export default class UpcomingEvents extends React.Component {
                 response.json()
             ).then(data => {
                 this.setState({ events: data.data })
-            })
+            });
+        requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            credentials: 'include'
+        };
+        fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
+            if (response.status === 200) {
+
+                this.setState({ loggedIn: true })
+            } else {
+                console.log("no cookie found")
+            }
+        });
 
     }
+
+    forceRerender = () => {
+        var requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+        };
+        fetch('http://localhost:5000/events/', requestOptions)
+            .then((response) =>
+                response.json()
+            ).then(data => {
+                this.setState({ events: data.data }) //Setting state re-renders the component
+            });
+    }
+
     render() {
         return (
             <div className="Main-Container" >
@@ -41,10 +71,11 @@ export default class UpcomingEvents extends React.Component {
                     <FontAwesomeIcon className="Calendar-Icon" icon={faCalendarAlt} />
                 </div>
                 {this.state.events.map((event) => (
-                    <Event description={event.description}
+                    <Event 
                         key={event._id}
-                        title={event.title}
-                        date={Date(event.createdAt)} />
+                        event={event}
+                        loggedIn={this.state.loggedIn}
+                        rerenderCallback={this.forceRerender}/>
                 ))}
 
             </div>

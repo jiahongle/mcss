@@ -64,7 +64,7 @@ export default class announcementPost extends React.Component {
             <>
                 {this.state.loggedIn && <div className="admin-buttons">
                         <div className="Edit-Button" onClick={this.onEdit}> Edit </div>
-                        <TiDelete type="submit" className="delete-announcement-button" onClick={this.onDelete}/>
+                        <TiDelete className="delete-announcement-button" onClick={this.onDelete}/>
                     </div>
                 }
                     <div className="announcement-post" >
