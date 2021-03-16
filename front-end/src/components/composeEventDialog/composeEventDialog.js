@@ -63,20 +63,37 @@ export default class ComposeEventDialog extends React.Component {
         event.preventDefault();
         event.stopPropagation();
         if (event.currentTarget.checkValidity()) {
-            let requestBody = {
-                title: this.state.mainEventTitle,
-                time: this.state.mainEventTime,
-                description: this.state.mainEventDescription,
-                imgs: this.state.mainEventImages,
-                signup: this.state.mainEventSignupLink,
-                subevents: this.state.subEvents
+            const data = new FormData()
+            for (var x = 0; x < this.state.mainEventImages.length; x++) {
+                data.append('file', this.state.mainEventImages[x])
             }
+            data.append('title', this.state.mainEventTitle);
+            data.append('time', this.state.mainEventTime);
+            data.append('description', this.state.mainEventDescription);
+            data.append('signup', this.state.mainEventSignupLink);
+            console.log(typeof(this.state.subEvents))
+
+            for (var x = 0; x < this.state.subEvents.length; x++) {
+                for (const key in this.state.subEvents[x]) {
+                    data.append(`sub${key}`, this.state.subEvents[x][key])
+                }
+            }
+
+            // data.append('year', this.state.year);
+            // data.append('title', this.state.title);data.append('year', this.state.year);
+            // data.append('title', this.state.title);
+            // let requestBody = {
+            //     title: this.state.mainEventTitle,
+            //     time: this.state.mainEventTime,
+            //     description: this.state.mainEventDescription,
+            //     imgs: this.state.mainEventImages,
+            //     signup: this.state.mainEventSignupLink,
+            //     subevents: this.state.subEvents
+            // }
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody),
+                body: data,
                 mode: 'cors',
-                credentials: 'include'
             };
             fetch('http://localhost:5000/events/post', requestOptions).then(response => {
                 if (response.status === 200) {
@@ -139,7 +156,7 @@ export default class ComposeEventDialog extends React.Component {
         let newSubEvent = { title: '', 
                             time: '', 
                             description: '', 
-                            signupLink: ''}
+                            signup: ''}
         let temp = this.state.subEvents
         temp.push(newSubEvent)
         this.setState({subEvents: temp})
@@ -277,9 +294,9 @@ export default class ComposeEventDialog extends React.Component {
                                 <Form.Group>
                                     <Form.Label>Signup Link (optional)</Form.Label>
                                     <Form.Control
-                                        name="signupLink"
+                                        name="signup"
                                         type="text"
-                                        value={this.state.subEvents[i].signupLink}
+                                        value={this.state.subEvents[i].signup}
                                         onChange={(event) => this.handleSubChange(event, i)}
                                         placeholder="None"/>
                                 </Form.Group>

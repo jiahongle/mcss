@@ -39,12 +39,37 @@ router.get("/:id", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, time, description, imgs, signup, subevents } = req.body;
+        console.log(req.body)
+        const { title, time, description, signup} = req.body;
+        const sub_titles = req.body.subtitle
+        const sub_times = req.body.subtime
+        const sub_descriptions= req.body.subdescription
+        const sub_signups = req.body.subsignup
+
+        var subevents = []
+        for (var x = 0; x < sub_titles.length; x ++) {
+            subevents.push({
+                title: sub_titles[x],
+                time: sub_times[x],
+                description: sub_descriptions[x],
+                signup: sub_signups[x]
+            })
+        }
+        console.log(subevents)
+        console.log(req.files)
+        var imgs = [];
+        if (req.files != null) {
+            if (!Array.isArray(req.files.file)) {
+                imgs.push(req.files.file)
+            } else {
+                imgs = req.files.file
+            }
+        }
+        
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
         }
-
         var img_array = []
 
         for (const img of imgs) {
@@ -56,7 +81,7 @@ router.post("/post", async (req, res) => {
                     'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
-                    'image': img
+                    'image': img.data
                 }
             };
 
@@ -72,10 +97,26 @@ router.post("/post", async (req, res) => {
                 link
             }
 
+            console.log(image)
             img_array.push(image);
 
         };
 
+        // subEvents = []
+        // for (var x = 0; x < subevents.length; x++) {
+        //     const {title, time, description, signup} = subevents[x]
+        //     console.log(title)
+        //     console.log(time)
+        //     console.log(description)
+        //     console.log(signup)
+        //     subEvents.push({
+        //         title, 
+        //         time,
+        //         description,
+        //         signup
+        //     })
+        // }
+        
         const event = new Event({
             title: title,
             time: time,
@@ -83,14 +124,17 @@ router.post("/post", async (req, res) => {
             imgs: img_array,
             signup: signup,
             subevents: subevents
-
         });
 
+        console.log(event)
+        console.log(typeof(subevents))
         const savedEvent = await event.save();
+        
         res.send(savedEvent);
 
     }
     catch (err) {
+        console.log(err)
         res.status(500).json({ error: err.message });
     }
 })
