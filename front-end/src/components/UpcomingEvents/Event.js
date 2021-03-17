@@ -1,12 +1,15 @@
 // Description: A specific event component, displaying the title, date, short description, a picture and along with
 // some buttons to redirect to the events full page and to register.
 import React from 'react'
-import eventpic from '../../res/the-show.png';
 import './Event.css'
 import ReactQuill from 'react-quill'; 
 import "react-quill/dist/quill.bubble.css";
 import { TiDelete } from 'react-icons/ti';
 import DeleteEvent from './deleteEvent.js'
+import { FaChevronDown } from 'react-icons/fa'
+import ImageGallery from 'react-image-gallery';
+// import "~react-image-gallery/styles/css/image-gallery.css";
+
 
 
 
@@ -19,7 +22,14 @@ class Event extends React.Component {
         super(props);
 
         // Component is initially expanded
-        this.state = { isCollapsed: false };
+        this.state = { 
+            isCollapsed: false,
+            galleryImgs: props.event.imgs.map((img) => {
+                return {
+                    original: img.link
+                }
+            })
+        };
 
         this.toggleCollapse = this.toggleCollapse.bind(this);
     }
@@ -27,6 +37,11 @@ class Event extends React.Component {
     componentDidUpdate(previousProps) {
         console.log("updated")
         if (previousProps !== this.props) {
+            this.setState({galleryImgs: this.props.event.imgs.map((img) => {
+                return {
+                    original: img.link
+                }
+            })})
             this.forceUpdate()
         }
     }
@@ -35,7 +50,7 @@ class Event extends React.Component {
     toggleCollapse() {
         this.setState(
             state => ({
-                isCollapsed: !state.isCollapsed
+                isCollapsed: !state.isCollapsed,
             })
         )
     }
@@ -61,7 +76,7 @@ class Event extends React.Component {
             {!this.state.isCollapsed?
                 <div className="Expanded">
                     <div className="Expanded-Info">
-                        <div>
+                        <div className="Expanded-title-time">
                             <b className="Expanded-Title"> {this.props.event.title} </b>
                             <p className="Expanded-Date"> {this.props.event.time} </p>
                         </div>
@@ -83,11 +98,19 @@ class Event extends React.Component {
                         </div>
                     </div>
                     <div className="Expanded-Picture-Button ">
-                        <div className="Expanded-Button">
-                            <button className="Toggle-Button Button-Expanded clickable"
-                                onClick={this.toggleCollapse} />
+                        {/* <div className="Expanded-Button"> */}
+                        <FaChevronDown className="Chevron-event clickable"
+                            onClick={this.toggleCollapse} />
+                        <div className="Inner-Picture-container">
+                            {/* <img 
+                                src={this.props.event.imgs[0].link} /> */}
+                            <ImageGallery items={this.state.galleryImgs} 
+                                        showThumbnails={false}
+                                        showFullscreenButton={false}
+                                        showPlayButton={false}
+                                        showNav={false}
+                                        autoPlay={true}/>
                         </div>
-                        <div className="Inner-Picture"><img src={eventpic} /></div>
                     </div>
                 </div>
             :
@@ -97,8 +120,8 @@ class Event extends React.Component {
                         <p className="Collapsed-Date"> {this.props.event.time} </p>
                     </div>
                     <div className="Collapsed-Button-Div">
-                        <button className="Toggle-Button Button-Collapsed clickable"
-                            onClick={this.toggleCollapse} />
+                            <FaChevronDown className="Chevron-event chevron-right clickable"
+                                onClick={this.toggleCollapse} />
                     </div>
                 </div>
             }

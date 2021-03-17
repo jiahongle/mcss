@@ -1,3 +1,5 @@
+@import "react-image-gallery/styles/css/image-gallery.css";
+
 .admin-buttons {
     display: flex;
     justify-content: flex-end;
@@ -49,22 +51,6 @@
     transition: 150ms;
 }
 
-/* Toggling Collapse/Expanded Button stylings */
-.Toggle-Button {
-    border: none;
-    background-color: #1d1d1d;
-    padding: 5px 5px;
-    width: 5px;
-    height: 5px;
-    outline: 0px;
-    float: right;
-    display: inline-block;
-    border-right: 3px solid #FFFFFF;
-    border-top: 3px solid #FFFFFF;
-}
-.clickable {
-    cursor: pointer;
-}
 
 
 
@@ -73,12 +59,18 @@
 .Expanded-Info { 
     width: 64%;
     height: 100%;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 20px;
+}
+
+.Expanded-title-time {
+    /* position: absolute;
+    top:0; */
 }
 
 /* Title stylings */
@@ -152,6 +144,7 @@
     cursor: pointer;
     width: 40%;
     height: 30px;
+    transition: 150ms;
 }
 
 .LearnMore-Button {
@@ -163,36 +156,45 @@
 }
 
 .Expanded-Picture-Button { 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
     width: 36%;
+    padding-top: 40px;
+    padding-right: 30px;
+    padding-bottom: 30px;
 }
 
 /* Image container */
-.Inner-Picture {
-    height: 95%;
+.Inner-Picture-container {
+    height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
-    padding-right: 10px;
-    padding-bottom: 10px;
     overflow: hidden;
+    border-radius: 15px;
 }
 
 
 /* Stylings for the image itself */
-.Inner-Picture img {
-    max-height: 100%;
-    max-width: 100%;
+.Inner-Picture-container div{
+    height: 100%;
+    /* overflow:hidden; */
+}
+
+.Inner-Picture-container .image-gallery-image{
+    height: 100%;
+    width: auto;
+}
+
+.image-gallery-image {
+    width: auto;
 }
 
 /* Button container */
-.Expanded-Button {
+/* .Expanded-Button {
     height: 5%;
     padding-top: 12px;
     padding-right: 12px;
-}
+} */
 
 .Button-Expanded {
     transform: rotate(135deg);
@@ -205,6 +207,24 @@
 
 .current-event-body .ql-editor{
     padding: 0px;
+}
+
+.Chevron-event{
+    font-size: 25px;
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: 150ms;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.chevron-right {
+    transform: rotate(-90deg);
+    transition: 150ms;
 }
 /************************ END OF EXPANDED EVENT STYLINGS  ************************/
 
@@ -221,10 +241,17 @@
     padding-left: 20px;
 }
 
+.test {
+    height:0px;
+    transition: 150ms;
+}
+
 .Collapsed-Button-Div {
+    position: relative;
     width: 10%;
-    padding-top: 12px;
-    padding-right: 12px;
+    padding-top: 40px;
+    padding-right: 30px;
+    padding-bottom: 30px;
 }
 
 .Collapsed-Title {
@@ -243,7 +270,4 @@
     text-align: left;
 }
 
-.Button-Collapsed {
-    transform: rotate(315deg);
-}
 /************************ END OF COLLAPSED EVENT STYLINGS ************************/
