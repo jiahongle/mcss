@@ -22,6 +22,10 @@
     color: rgb(255, 67, 67);
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .Cancel {
     margin-right: 20px;
     float: left;
@@ -31,57 +35,37 @@
     float: right;
 }
 
-/* Parent Container for a single expanded upcoming event  */
-.home-event-collapsed {
-    background-color: #1D1D1D;
-    display: flex;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    height: 70px;
-    transition: 150ms;
-}
 
 /* Parent Container for a single expanded upcoming event  */
-.home-event-expanded {
+.ep-event-expanded {
     background-color: #1D1D1D;
-    display: flex;
     margin-bottom: 20px;
     border-radius: 20px;
-    height: 350px;
-    transition: 150ms;
-}
-
-
-
-
-/************************ EXPANDED EVENT STYLINGS ************************/
-/* Container for all text: Title, date, description*/
-.home-event-expanded-left { 
-    width: 64%;
-    height: 100%;
-    /* position: relative; */
+    height: 300px;
+    padding: 15px 20px 20px 20px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+}
+
+.mid-section {
+    display: flex;
 }
 
 /* Title stylings */
-.home-expanded-title {
+.ep-expanded-title {
     font-size: 20px;
     color: #CD96F9;
     display: -webkit-box;   
-    -webkit-line-clamp: 1;   
+    -webkit-line-clamp: 2;   
     -webkit-box-orient: vertical;     
     overflow: hidden;
     text-align: left;
+    height: 60px;
 }
 
 /* Description box stylings */
-.home-expanded-desc {
-    height: 218px;
+.ep-expanded-desc {
+    height: 137.78px;
     position: relative;
     overflow-y: scroll;
 }
@@ -100,7 +84,7 @@
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
-.home-expanded-desc-fade {
+.ep-expanded-desc-fade {
     content: "";
     width: 100%;
     position: absolute;
@@ -111,20 +95,33 @@
 }
 
 /* Date stylings */
-.home-expanded-time {
+.ep-expanded-time {
     margin: 10px 0px 5px;
     font-size: 15px;
     color: #24A4D3;    
     text-align: left;
+    display: -webkit-box;   
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;     
+    overflow: hidden;
 }
 
+.ep-left {
+    width: 50%;
+}
+
+.ep-right { 
+    width: 50%;
+    height: 175px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
 
 /* Stylings for buttons and their containers */
-.event-buttons-area {
+.small-event-buttons-area {
     display: flex;
     justify-content: space-between;
-    padding-right: 10%;
-    align-items: center;
+    /* padding-right: 10%; */
     height: 30px;
 }
 
@@ -151,95 +148,38 @@
     background-color: #CD96F9;
 }
 
-.home-expanded-right { 
-    position: relative;
-    width: 36%;
-    padding-top: 40px;
-    padding-right: 30px;
-    padding-bottom: 30px;
-}
 
 /* Image container */
-.Inner-Picture-container {
+.gallery-container {
+    display: flex;
     height: 100%;
+    overflow: hidden;
     justify-content: center;
     align-items: center;
-    display: flex;
-    overflow: hidden;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 
 /* Stylings for the image itself */
-.Inner-Picture-container div{
+.gallery-container div{
     height: 100%;
 }
 
-.Inner-Picture-container .image-gallery-image{
+.gallery-container .image-gallery-image{
     height: 100%;
     width: auto;
 }
 
-.home-quill {
+.ep-quill {
     color: #ffffff;
 }
 
 
-.home-quill .ql-editor {
+.ep-quill .ql-editor {
     padding: 0px;
-}
-
-.Chevron-event{
-    font-size: 25px;
-    color: white;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    transition: 150ms;
 }
 
 .clickable {
     cursor: pointer;
 }
 
-.chevron-right {
-    transform: rotate(-90deg);
-    transition: 150ms;
-}
-/************************ END OF EXPANDED EVENT STYLINGS  ************************/
-
-
-
-
-/************************    COLLAPSED EVENT STYLINGS     ************************/ 
-.home-collapsed-head {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    justify-content: center;
-    padding-left: 20px;
-}
-
-.home-collapsed-right {
-    position: relative;
-    width: 10%;
-}
-
-.home-collapsed-title {
-    font-size: 20px;
-    color: #CD96F9;
-    display: -webkit-box;   
-    -webkit-line-clamp: 1;   
-    -webkit-box-orient: vertical;     
-    text-align: left;
-}
-
-.home-collapsed-time {
-    margin: 0 !important;
-    font-size: 15px;
-    color: #24A4D3;   
-    text-align: left;
-}
-
-/************************ END OF COLLAPSED EVENT STYLINGS ************************/

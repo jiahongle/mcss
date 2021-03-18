@@ -4,8 +4,7 @@ import './eventPage.css';
 import Footer from '../components/footer/footer.js';
 import UploadPastEvent from '../components/pastEvent/uploadPastEvent';
 import PastEventSection from '../components/pastEvent/pastEventsSection/pastEventsSection';
-import ComposeEventDialog from '../components/composeEventDialog/composeEventDialog'
-
+import UpcomingEventsEP from '../components/UpcomingEvents/UpcomingEventsEP'
 
 
 export default class EventPage extends React.Component {
@@ -16,7 +15,6 @@ export default class EventPage extends React.Component {
     }   
   }
   editEvent = React.createRef()
-  newEvent = React.createRef()
 
   // Stub for event data structure
   fakeEventData = {
@@ -47,11 +45,6 @@ export default class EventPage extends React.Component {
     });
   }
 
-  
-  openNewEventDialog = () => {
-    this.newEvent.current.openDialog();
-  }
-
   openEditEventDialog = (event) => {
     this.editEvent.current.openDialog();
     this.editEvent.current.setState(event);
@@ -60,32 +53,18 @@ export default class EventPage extends React.Component {
   render() {
     return (
       <div>
-        <ComposeEventDialog ref={this.editEvent} />
-        <ComposeEventDialog ref={this.newEvent} isNew/>
         <div className="header">
           <img src={mcss} className="mcss-logo" />
         </div>
         <div className="AppContent">
-          <div className="title-container">
-            <div className="view-events"> View Upcoming Events </div>
-            {this.state.success &&
-              <div className="new-event" onClick={this.openNewEventDialog}>
-                New Event
-              </div>
-            }
-          </div>
-          {this.state.success &&
-              <div className="new-event" onClick={() => this.openEditEventDialog(this.fakeEventData)}>
-                Edit Event
-              </div>
-            }
-        </div>
-        <PastEventSection />
+          <UpcomingEventsEP/>
+          <PastEventSection />
           {this.state.success &&
             <div>
               <UploadPastEvent />
             </div>
           }
+        </div>
         <Footer />
       </div>
     );

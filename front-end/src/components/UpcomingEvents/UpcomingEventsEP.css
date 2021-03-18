@@ -1,0 +1,26 @@
+.title-container {
+    display: flex;
+}
+
+.view-events {
+    color: #84BAD3;
+    font-size: 28px;
+}
+
+.new-event {
+    color: white;
+    font-size: 25px;
+    margin-left: 60px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.new-event:hover {
+    text-decoration: underline;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: calc((74.4vw - 30px)/2) calc((74.4vw - 30px)/2); 
+    grid-gap: 30px;
+}
