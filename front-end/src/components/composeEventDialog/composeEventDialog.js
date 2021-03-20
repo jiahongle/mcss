@@ -22,23 +22,26 @@ export default class ComposeEventDialog extends React.Component {
             mainEventDescription: this.props.event.description,
             id: this.props.event._id,
             mainEventImages: [],
-            existingImages: this.props.event.imgs,
+            existingImages: JSON.parse(JSON.stringify(this.props.event.imgs)),
+            deleteSequence: [],
             mainEventSignupLink: this.props.event.signup,
-            subEvents: this.props.event.subevents
+            subEvents: JSON.parse(JSON.stringify(this.props.event.subevents))
         }
     }
 
     componentDidUpdate(previousProps) {
         if (previousProps !== this.props) {
+            console.log('prop updated')
             this.setState({
                 mainEventTitle: this.props.event.title,
                 mainEventTime: this.props.event.time,
                 mainEventDescription: this.props.event.description,
                 id: this.props.event._id,
                 mainEventImages: [],
-                existingImages: this.props.event.imgs,
+                existingImages: JSON.parse(JSON.stringify(this.props.event.imgs)),
+                deleteSequence: [],
                 mainEventSignupLink: this.props.event.signup,
-                subEvents: this.props.event.subevents
+                subEvents: JSON.parse(JSON.stringify(this.props.event.subevents))
             })
         }
     }
@@ -76,7 +79,7 @@ export default class ComposeEventDialog extends React.Component {
     }
     openDialog = () => {
         this.setState({dialogOpen: true});
-        // console.log(this.state.existingImages)
+        console.log(this.props.event)
     }
 
     postEvent = (event) => {
@@ -138,16 +141,21 @@ export default class ComposeEventDialog extends React.Component {
                 mainEventSignupLink: '',
                 subEvents: []})
         } else {
+            console.log('canceling edit')
             this.setState({
+                validated: false,
                 mainEventTitle: this.props.event.title,
                 mainEventTime: this.props.event.time,
                 mainEventDescription: this.props.event.description,
                 id: this.props.event._id,
                 mainEventImages: [],
-                existingImages: this.props.event.imgs,
+                existingImages: JSON.parse(JSON.stringify(this.props.event.imgs)),
+                deleteSequence:[],
                 mainEventSignupLink: this.props.event.signup,
-                subEvents: this.props.event.subevents
+                subEvents: JSON.parse(JSON.stringify(this.props.event.subevents))
             })
+            // console.log(this.state.subEvents)
+            // console.log(this.props.event.title)
         }
     }
 
@@ -202,6 +210,16 @@ export default class ComposeEventDialog extends React.Component {
         temp.splice(i, 1)
         this.setState({subEvents: temp})
         this.forceUpdate()
+    }
+
+    removeExistingImg = (index) => {
+        console.log(index)
+        let tempImgs = this.state.existingImages;
+        tempImgs.splice(index, 1);
+        let tempSeq = this.state.deleteSequence;
+        tempSeq.push(index);
+        this.setState({existingImages: tempImgs, deleteSequence: tempSeq});
+        this.forceUpdate();
     }
 
     render() {
@@ -264,9 +282,10 @@ export default class ComposeEventDialog extends React.Component {
                             {
                                 !this.props.isNew && <div className="existing-imgs-grid">
                                     {
-                                        this.state.existingImages.map((img) => (
-                                            <div className="existing-img">
-                                                <TiDelete className="delete-existing-img-button clickable" onClick={()=>{}}/>
+                                        this.state.existingImages.map((img, i) => (
+                                            <div className="existing-img" key={i}>
+                                                <TiDelete className="delete-existing-img-button clickable" 
+                                                    onClick={()=>{this.removeExistingImg(i)}}/>
                                                 <img src={img.link}/>
                                             </div>
                                         ))
@@ -277,7 +296,7 @@ export default class ComposeEventDialog extends React.Component {
                                 withIcon={false}
                                 buttonText='Upload images'
                                 onChange={this.onDrop}
-                                imgExtension={['.jpg', '.gif', '.png']}
+                                imgExtension={['.jpg', '.gif', '.png', '.jfif']}
                                 maxFileSize={5242880}
                                 withPreview={true}
                                 className="image-uploader"

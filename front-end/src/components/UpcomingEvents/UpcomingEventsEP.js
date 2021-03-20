@@ -17,7 +17,7 @@ export default class UpcomingEventsEP extends React.Component {
         _id: '',
         title: '',
         time: '',
-        body: '',
+        description: '',
         imgs: [],
         signup: '',
         subevents: []

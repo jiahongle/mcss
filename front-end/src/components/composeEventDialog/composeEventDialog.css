@@ -70,15 +70,15 @@
     display: flex;
     margin-right: 20px;
     margin-bottom: 20px;
-    border: 2px solid #55B5D3
+    border: 2px solid #55B5D3;
 }
 
 .delete-existing-img-button{
     font-size: 30px;
     color: rgb(255, 67, 67);
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -3px;
+    right: -3px;
 }
 
 .clickable {
