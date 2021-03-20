@@ -80,7 +80,7 @@ class Event extends React.Component {
         return (
             <>
             <DeleteEvent ref={this.deleteRef} id={this.props.event._id} rerenderCallback={this.props.rerenderCallback} />
-            <ComposeEventDialog ref={this.editRef} event={this.props.event} rerenderCallback={this.forceRerender} isNew={false}/>
+            <ComposeEventDialog ref={this.editRef} event={this.props.event} rerenderCallback={this.props.rerenderCallback} isNew={false}/>
             {this.props.loggedIn &&
                 <div className="admin-buttons">
                         <div className="Edit-Button" onClick={this.onEdit}> Edit </div>

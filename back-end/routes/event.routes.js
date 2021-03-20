@@ -141,6 +141,7 @@ router.delete("/delete/:id", async (req, res) => {
 /* Update the specified event including its subevents, images and text fields */
 router.patch("/update/:id", async (req, res) => {
     try {
+        console.log(req.params)
         const id = req.params.id;
 
         const retrievedEvent = await Event.findById(id);
@@ -149,10 +150,15 @@ router.patch("/update/:id", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const { title, time, description, imgs, signup, subevents } = req.body;
-
-        if (!title) {
-            return res.status(400).json({ msg: "Title cannot be blank." });
+        const { title, time, description, signup, subevents } = req.body;
+        let parsedSubevents = JSON.parse(subevents)
+        var imgs = [];
+        if (req.files != null) {
+            if (!Array.isArray(req.files.file)) {
+                imgs.push(req.files.file)
+            } else {
+                imgs = req.files.file
+            }
         }
 
         var img_array = [];
@@ -166,7 +172,7 @@ router.patch("/update/:id", async (req, res) => {
                     'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
-                    'image': img
+                    'image': img.data
                 }
             };
 
@@ -191,11 +197,10 @@ router.patch("/update/:id", async (req, res) => {
         retrievedEvent.description = description;
         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
         retrievedEvent.signup = signup;
-        retrievedEvent.subevents = subevents;
+        retrievedEvent.subevents = parsedSubevents;
 
         const savedEvent = await retrievedEvent.save();
         res.send(savedEvent);
-
     }
     catch (err) {
         res.status(500).json({ error: err.message });
