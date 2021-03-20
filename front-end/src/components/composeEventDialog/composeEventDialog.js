@@ -31,7 +31,6 @@ export default class ComposeEventDialog extends React.Component {
 
     componentDidUpdate(previousProps) {
         if (previousProps !== this.props) {
-            console.log('prop updated')
             this.setState({
                 mainEventTitle: this.props.event.title,
                 mainEventTime: this.props.event.time,
@@ -94,12 +93,8 @@ export default class ComposeEventDialog extends React.Component {
             data.append('time', this.state.mainEventTime);
             data.append('description', this.state.mainEventDescription);
             data.append('signup', this.state.mainEventSignupLink);
-
-            for (var x = 0; x < this.state.subEvents.length; x++) {
-                for (const key in this.state.subEvents[x]) {
-                    data.append(`sub${key}`, this.state.subEvents[x][key])
-                }
-            }
+            data.append('subevents', JSON.stringify(this.state.subEvents))
+            
             const requestOptions = {
                 method: 'POST',
                 body: data,
@@ -141,7 +136,6 @@ export default class ComposeEventDialog extends React.Component {
                 mainEventSignupLink: '',
                 subEvents: []})
         } else {
-            console.log('canceling edit')
             this.setState({
                 validated: false,
                 mainEventTitle: this.props.event.title,
@@ -154,8 +148,6 @@ export default class ComposeEventDialog extends React.Component {
                 mainEventSignupLink: this.props.event.signup,
                 subEvents: JSON.parse(JSON.stringify(this.props.event.subevents))
             })
-            // console.log(this.state.subEvents)
-            // console.log(this.props.event.title)
         }
     }
 
@@ -177,7 +169,6 @@ export default class ComposeEventDialog extends React.Component {
         let temp = this.state.subEvents
         temp[i].description = html
         this.setState({subEvents: temp})
-        // console.log(this.state.subEvents[i].description)
     }
 
     // Handle changes in sub-event title, time and signup link
@@ -213,7 +204,6 @@ export default class ComposeEventDialog extends React.Component {
     }
 
     removeExistingImg = (index) => {
-        console.log(index)
         let tempImgs = this.state.existingImages;
         tempImgs.splice(index, 1);
         let tempSeq = this.state.deleteSequence;
