@@ -1,15 +1,26 @@
 // Description: Container component for the "Upcoming Events" section of the home page
 import React from 'react';
-import './UpcomingEvents.css'
-import Event from './Event.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import './UpcomingEventsEP.css'
+import SmallEvent from './SmallEventCard.js'
+import ComposeEventDialog from '../composeEventDialog/composeEventDialog.js'
 
 
-export default class UpcomingEvents extends React.Component {
+export default class UpcomingEventsEP extends React.Component {
+    newEvent = React.createRef()
+
     state = {
         loggedIn: false,
         events: []
+    }
+
+    emptyEvent = {
+        _id: '',
+        title: '',
+        time: '',
+        body: '',
+        imgs: [],
+        signup: '',
+        subevents: []
     }
 
     componentDidMount() {
@@ -55,22 +66,34 @@ export default class UpcomingEvents extends React.Component {
             });
     }
 
+    openNewEventDialog = () => {
+        this.newEvent.current.openDialog();
+    }
+
     render() {
         return (
-            <div className="Main-Container" >
-                <div className="Subtitle-Container">
-                    <b> Upcoming Events </b>
-                    <FontAwesomeIcon className="Calendar-Icon" icon={faCalendarAlt} />
+            <>
+            <ComposeEventDialog ref={this.newEvent} isNew rerenderCallback={this.forceRerender} event={this.emptyEvent}/>
+            <div className="title-container">
+                <div className="view-events"> 
+                    View Upcoming Events 
                 </div>
+                {this.state.loggedIn &&
+                <div className="new-event" onClick={this.openNewEventDialog}>
+                    New Event
+                </div>
+                }
+            </div>
+            <div className="grid-container">
                 {this.state.events.map((event) => (
-                    <Event 
+                    <SmallEvent 
                         key={event._id}
                         event={event}
                         loggedIn={this.state.loggedIn}
                         rerenderCallback={this.forceRerender}/>
                 ))}
-
             </div>
+            </>
         );
     }
 }

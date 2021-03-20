@@ -12,7 +12,7 @@
 .announcement-post {
     background-color: #1D1D1D;
     color: #24A4D3;
-    padding: 10px 20px 10px 20px; 
+    padding: 10px 20px 14px 20px; 
     margin-bottom:20px;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@
 
 .title-container {
     display:flex;
-    margin-bottom: 4vmin;
+    margin-bottom: 3vmin;
     margin-left: 15px;
 }
 
@@ -84,8 +84,6 @@
 
 .post-body {
     color: #AFAFAF;
-    margin: 0px;
-    font-size: 15px;
 }
 
 

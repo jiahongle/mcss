@@ -39,14 +39,49 @@ router.get("/:id", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        const { title, description, imgs, signup, subevents } = req.body;
+        // console.log(req.body)
+        const { title, time, description, signup} = req.body;
 
-        if (!title) {
-            return res.status(400).json({ msg: "Title cannot be blank." });
+        // If event has a sub-event, get the sub-events and add them to subevents
+        var subevents = []
+        if ('subtitle' in req.body) {
+            console.log("Here!!!")
+            const sub_titles = req.body.subtitle
+            const sub_times = req.body.subtime
+            const sub_descriptions= req.body.subdescription
+            const sub_signups = req.body.subsignup
+
+            if (!Array.isArray(sub_titles)) {
+                subevents.push({
+                    title: sub_titles,
+                    time: sub_times,
+                    description: sub_descriptions,
+                    signup: sub_signups
+                })
+            } else {
+                for (var x = 0; x < sub_titles.length; x ++) {
+                    subevents.push({
+                        title: sub_titles[x],
+                        time: sub_times[x],
+                        description: sub_descriptions[x],
+                        signup: sub_signups[x]
+                    })
+                }
+            }
+        }
+        console.log(subevents)
+        // console.log(req.files)
+        var imgs = [];
+        if (req.files != null) {
+            if (!Array.isArray(req.files.file)) {
+                imgs.push(req.files.file)
+            } else {
+                imgs = req.files.file
+            }
         }
 
+        // Upload images to imgur and save their links
         var img_array = []
-
         for (const img of imgs) {
 
             var options = {
@@ -56,40 +91,42 @@ router.post("/post", async (req, res) => {
                     'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
-                    'image': img
+                    'image': img.data
                 }
             };
 
             const response = await requestPromise(options);
-
             const jsonBody = JSON.parse(response.body);
-
             const deletehash = jsonBody.data.deletehash;
             const link = jsonBody.data.link;
-
             const image = {
                 deletehash,
                 link
             }
 
+            // console.log(image)
             img_array.push(image);
 
         };
-
+        
         const event = new Event({
             title: title,
+            time: time,
             description: description,
             imgs: img_array,
             signup: signup,
             subevents: subevents
-
         });
 
+        // console.log(event)
+        // console.log(typeof(subevents))
         const savedEvent = await event.save();
+        
         res.send(savedEvent);
 
     }
     catch (err) {
+        console.log(err)
         res.status(500).json({ error: err.message });
     }
 })
@@ -145,7 +182,7 @@ router.patch("/update/:id", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const { title, description, imgs, signup, subevents } = req.body;
+        const { title, time, description, imgs, signup, subevents } = req.body;
 
         if (!title) {
             return res.status(400).json({ msg: "Title cannot be blank." });
@@ -183,6 +220,7 @@ router.patch("/update/:id", async (req, res) => {
         };
 
         retrievedEvent.title = title;
+        retrievedEvent.time = time;
         retrievedEvent.description = description;
         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
         retrievedEvent.signup = signup;

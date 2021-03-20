@@ -8,23 +8,42 @@ import { BiListPlus } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import ReactQuill from 'react-quill'; 
 import "react-quill/dist/quill.snow.css";
+import { TiDelete } from 'react-icons/ti';
 
 export default class ComposeEventDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dialogOpen: false,
+            sending: false,
             validated: false,
-            mainEventTitle: '',
-            mainEventTime: '',
-            mainEventDescription: '',
+            mainEventTitle: this.props.event.title,
+            mainEventTime: this.props.event.time,
+            mainEventDescription: this.props.event.description,
+            id: this.props.event._id,
             mainEventImages: [],
-            mainEventSignupLink: '',
-            subEvents: []
+            existingImages: this.props.event.imgs,
+            mainEventSignupLink: this.props.event.signup,
+            subEvents: this.props.event.subevents
+        }
+    }
+
+    componentDidUpdate(previousProps) {
+        if (previousProps !== this.props) {
+            this.setState({
+                mainEventTitle: this.props.event.title,
+                mainEventTime: this.props.event.time,
+                mainEventDescription: this.props.event.description,
+                id: this.props.event._id,
+                mainEventImages: [],
+                existingImages: this.props.event.imgs,
+                mainEventSignupLink: this.props.event.signup,
+                subEvents: this.props.event.subevents
+            })
         }
     }
     
-    monthStrings = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    monthStrings = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     RTEmodules = {
         toolbar: [
@@ -57,47 +76,79 @@ export default class ComposeEventDialog extends React.Component {
     }
     openDialog = () => {
         this.setState({dialogOpen: true});
+        // console.log(this.state.existingImages)
     }
 
     postEvent = (event) => {
         event.preventDefault();
         event.stopPropagation();
         if (event.currentTarget.checkValidity()) {
-            let requestBody = {
-                title: this.state.mainEventTitle,
-                time: this.state.mainEventTime,
-                description: this.state.mainEventDescription,
-                imgs: this.state.mainEventImages,
-                signup: this.state.mainEventSignupLink,
-                subevents: this.state.subEvents
+            const data = new FormData()
+            for (var x = 0; x < this.state.mainEventImages.length; x++) {
+                data.append('file', this.state.mainEventImages[x])
+            }
+            data.append('title', this.state.mainEventTitle);
+            data.append('time', this.state.mainEventTime);
+            data.append('description', this.state.mainEventDescription);
+            data.append('signup', this.state.mainEventSignupLink);
+
+            for (var x = 0; x < this.state.subEvents.length; x++) {
+                for (const key in this.state.subEvents[x]) {
+                    data.append(`sub${key}`, this.state.subEvents[x][key])
+                }
             }
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody),
+                body: data,
                 mode: 'cors',
-                credentials: 'include'
             };
+            this.setState({sending: true})
             fetch('http://localhost:5000/events/post', requestOptions).then(response => {
                 if (response.status === 200) {
                     this.closeDialog()
-                } else {
-                    console.log(`Response status: ${response.status}`)
-                }
-            });
-        }
-        this.setState({validated: true});
-    }
-
-    cancelPost = () => {
-        this.closeDialog()
-        this.setState({ validated: false,
+                    this.setState({
+                        validated: false,
                         mainEventTitle: '',
                         mainEventTime: '',
                         mainEventDescription: '',
                         mainEventImages: [],
                         mainEventSignupLink: '',
-                        subEvents: []})
+                        subEvents: []
+                    })
+                    this.props.rerenderCallback();
+                } else {
+                    console.log(`Response status: ${response.status}`)
+                }
+                this.setState({sending: false})
+            });
+        } else {
+            this.setState({validated: true})
+        }
+    }
+
+    cancelPost = () => {
+        this.closeDialog()
+        if (this.state.isNew) {
+            this.setState({ 
+                validated: false,
+                mainEventTitle: '',
+                mainEventTime: '',
+                mainEventDescription: '',
+                mainEventImages: [],
+                mainEventSignupLink: '',
+                subEvents: []})
+        } else {
+            this.setState({
+                mainEventTitle: this.props.event.title,
+                mainEventTime: this.props.event.time,
+                mainEventDescription: this.props.event.description,
+                id: this.props.event._id,
+                mainEventImages: [],
+                existingImages: this.props.event.imgs,
+                mainEventSignupLink: this.props.event.signup,
+                subEvents: this.props.event.subevents
+            })
+        }
     }
 
     // Handle changes in main event title, time and signup link
@@ -118,7 +169,7 @@ export default class ComposeEventDialog extends React.Component {
         let temp = this.state.subEvents
         temp[i].description = html
         this.setState({subEvents: temp})
-        console.log(this.state.subEvents[i].description)
+        // console.log(this.state.subEvents[i].description)
     }
 
     // Handle changes in sub-event title, time and signup link
@@ -139,7 +190,7 @@ export default class ComposeEventDialog extends React.Component {
         let newSubEvent = { title: '', 
                             time: '', 
                             description: '', 
-                            signupLink: ''}
+                            signup: ''}
         let temp = this.state.subEvents
         temp.push(newSubEvent)
         this.setState({subEvents: temp})
@@ -209,6 +260,19 @@ export default class ComposeEventDialog extends React.Component {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Images</Form.Label>
+                            <div className="image-group-border">
+                            {
+                                !this.props.isNew && <div className="existing-imgs-grid">
+                                    {
+                                        this.state.existingImages.map((img) => (
+                                            <div className="existing-img">
+                                                <TiDelete className="delete-existing-img-button clickable" onClick={()=>{}}/>
+                                                <img src={img.link}/>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                             <ImageUploader
                                 withIcon={false}
                                 buttonText='Upload images'
@@ -218,6 +282,7 @@ export default class ComposeEventDialog extends React.Component {
                                 withPreview={true}
                                 className="image-uploader"
                             />
+                            </div>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Signup link (optional)</Form.Label>
@@ -277,9 +342,9 @@ export default class ComposeEventDialog extends React.Component {
                                 <Form.Group>
                                     <Form.Label>Signup Link (optional)</Form.Label>
                                     <Form.Control
-                                        name="signupLink"
+                                        name="signup"
                                         type="text"
-                                        value={this.state.subEvents[i].signupLink}
+                                        value={this.state.subEvents[i].signup}
                                         onChange={(event) => this.handleSubChange(event, i)}
                                         placeholder="None"/>
                                 </Form.Group>
@@ -291,7 +356,16 @@ export default class ComposeEventDialog extends React.Component {
                     <Button variant="secondary" onClick={this.cancelPost}>
                         Cancel
                     </Button>
-                    <Button variant="primary" type="submit" form="Form">{this.props.isNew? "Post": "Save"}</Button>
+                    {
+                        this.state.sending?
+                            <Button className ="sending" variant="primary" type="submit" form="Form" disabled={true}>
+                                {this.props.isNew? 'Posting': 'Saving'}
+                            </Button>
+                            :
+                            <Button variant="primary" type="submit" form="Form">
+                                {this.props.isNew? 'Post': 'Save'}
+                            </Button>
+                    }
                 </Modal.Footer>
             </Modal>
         );

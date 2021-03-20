@@ -1,20 +1,16 @@
-// Description: A specific event component, displaying the title, date, short description, a picture and along with
-// some buttons to redirect to the events full page and to register.
 import React from 'react'
-import './Event.css'
+import './SmallEventCard.css'
 import ReactQuill from 'react-quill'; 
 import "react-quill/dist/quill.bubble.css";
 import { TiDelete } from 'react-icons/ti';
 import DeleteEvent from './deleteEvent.js'
-import ComposeEventDialog from '../composeEventDialog/composeEventDialog'
 import { FaChevronDown } from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
-// import "~react-image-gallery/styles/css/image-gallery.css";
-
+import ComposeEventDialog from '../composeEventDialog/composeEventDialog.js'
 
 
 /* Event function requires a title, date and description to be created */
-class Event extends React.Component {
+class SmallEventCard extends React.Component {
     deleteRef = React.createRef();
     editRef = React.createRef();
 
@@ -78,7 +74,7 @@ class Event extends React.Component {
 
     render() {
         return (
-            <>
+            <div>
             <DeleteEvent ref={this.deleteRef} id={this.props.event._id} rerenderCallback={this.props.rerenderCallback} />
             <ComposeEventDialog ref={this.editRef} event={this.props.event} rerenderCallback={this.forceRerender} isNew={false}/>
             {this.props.loggedIn &&
@@ -87,34 +83,30 @@ class Event extends React.Component {
                         <TiDelete className="delete-announcement-button clickable" onClick={this.onDelete}/>
                 </div>
             }
-            {!this.state.isCollapsed?
-                <div className="home-event-expanded">
-                    <div className="home-event-expanded-left">
-                        <div>
-                            <b className="home-expanded-title"> {`${this.props.event.title}${this.getEventTitle()}`} </b>
-                            <p className="home-expanded-time"> {this.props.event.time} </p>
-                        </div>
+            <div className="ep-event-expanded">
+                <div>
+                    <b className="ep-expanded-title"> {`${this.props.event.title}${this.getEventTitle()}`} </b>
+                </div>
+                
+                <div className="mid-section">
+                    <div className="ep-left">
+                        <p className="ep-expanded-time"> {this.props.event.time} </p>
                         <div className="dick">
-                            <div className="home-expanded-desc">
+                            <div className="ep-expanded-desc">
                                 <ReactQuill
-                                    className="home-quill"
+                                    className="ep-quill"
                                     value={this.props.event.description}
                                     readOnly={true}
                                     theme={"bubble"}
                                 />
                                 <div className="last-line-spacer"/>
                             </div>
-                            <div className="home-expanded-desc-fade"/>
-                        </div>
-                        <div className="event-buttons-area">
-                            <div className="event-button LearnMore-Button"> Learn More </div>
-                            <div className="event-button Register-Button" onClick={this.gotoRegisterLink}> Register </div>
+                            <div className="ep-expanded-desc-fade"/>
                         </div>
                     </div>
-                    <div className="home-expanded-right">
-                        <FaChevronDown className="Chevron-event clickable"
-                            onClick={this.toggleCollapse} />
-                        <div className="Inner-Picture-container">
+
+                    <div className="ep-right">
+                        <div className="gallery-container">
                             <ImageGallery items={this.state.galleryImgs} 
                                         showThumbnails={false}
                                         showFullscreenButton={false}
@@ -124,21 +116,20 @@ class Event extends React.Component {
                         </div>
                     </div>
                 </div>
-            :
-                <div className="home-event-collapsed">
-                    <div className="home-collapsed-head">
-                        <b className="home-collapsed-title"> {this.props.event.title} </b>
-                        <p className="home-collapsed-time"> {this.props.event.time} </p>
-                    </div>
-                    <div className="home-collapsed-right">
-                            <FaChevronDown className="Chevron-event chevron-right clickable"
-                                onClick={this.toggleCollapse} />
+                
+
+                <div className="small-event-buttons-area">
+                    <div className="event-button LearnMore-Button"> Learn More </div>
+                    <div className="event-button Register-Button" 
+                         onClick={this.gotoRegisterLink}> 
+                         Register 
                     </div>
                 </div>
-            }
-            </>
+               
+            </div>
+            </div>
         );
     }
 }
 
-export default Event;
+export default SmallEventCard;

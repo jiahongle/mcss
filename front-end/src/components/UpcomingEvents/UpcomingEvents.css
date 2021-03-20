@@ -10,9 +10,10 @@
 .Subtitle-Container {
     margin-left: 15px;
     text-align: left;
-    font-size: 32px;
+    font-size: 28px;
     color: #84BAD3;
     display: flex;
+    margin-bottom: 3vmin;
 }
 
 .Calendar-Icon {
