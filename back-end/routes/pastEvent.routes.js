@@ -8,7 +8,18 @@ const requestPromise = util.promisify(request);
 router.get("/get", async (req, res) => {
     try {
         const pastEvents = await PastEvent.find();
-        return res.status(200).json({ success: true, data: pastEvents })
+
+        lst = {};
+        
+        for (var i=0; i<pastEvents.length; i++){
+            if (lst.hasOwnProperty(pastEvents[i].year)){
+                lst[pastEvents[i].year].push(pastEvents[i])
+            } else {
+                lst[pastEvents[i].year] = [pastEvents[i]]
+            }
+
+        }
+        return res.status(200).json({ success: true, data: lst })
     }
     catch (err) {
         return res.status(500).json({ error: err.message });

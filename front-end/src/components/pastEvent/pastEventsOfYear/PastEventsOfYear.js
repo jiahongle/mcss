@@ -23,7 +23,7 @@ export default class PastEventsSection extends React.Component {
 
 
 
-                <PictureCollage images={this.props.images} title={this.props.title} colorBorder={this.assignBorderColor(isBlueBorder)} />
+                
                 {isBlueBorder = !isBlueBorder}
 
             </div>
