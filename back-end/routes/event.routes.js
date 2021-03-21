@@ -39,38 +39,8 @@ router.get("/:id", async (req, res) => {
 // The POST route: Check with front end team for any other additions/changes
 router.post("/post", async (req, res) => {
     try {
-        // console.log(req.body)
-        const { title, time, description, signup} = req.body;
-
-        // If event has a sub-event, get the sub-events and add them to subevents
-        var subevents = []
-        if ('subtitle' in req.body) {
-            console.log("Here!!!")
-            const sub_titles = req.body.subtitle
-            const sub_times = req.body.subtime
-            const sub_descriptions= req.body.subdescription
-            const sub_signups = req.body.subsignup
-
-            if (!Array.isArray(sub_titles)) {
-                subevents.push({
-                    title: sub_titles,
-                    time: sub_times,
-                    description: sub_descriptions,
-                    signup: sub_signups
-                })
-            } else {
-                for (var x = 0; x < sub_titles.length; x ++) {
-                    subevents.push({
-                        title: sub_titles[x],
-                        time: sub_times[x],
-                        description: sub_descriptions[x],
-                        signup: sub_signups[x]
-                    })
-                }
-            }
-        }
-        console.log(subevents)
-        // console.log(req.files)
+        const { title, time, description, signup, subevents} = req.body;
+        let parsedSubevents = JSON.parse(subevents)
         var imgs = [];
         if (req.files != null) {
             if (!Array.isArray(req.files.file)) {
@@ -103,8 +73,6 @@ router.post("/post", async (req, res) => {
                 deletehash,
                 link
             }
-
-            // console.log(image)
             img_array.push(image);
 
         };
@@ -115,11 +83,10 @@ router.post("/post", async (req, res) => {
             description: description,
             imgs: img_array,
             signup: signup,
-            subevents: subevents
+            subevents: parsedSubevents
         });
 
-        // console.log(event)
-        // console.log(typeof(subevents))
+        // console.log(typeof(parsedSubevents))
         const savedEvent = await event.save();
         
         res.send(savedEvent);
@@ -174,6 +141,7 @@ router.delete("/delete/:id", async (req, res) => {
 /* Update the specified event including its subevents, images and text fields */
 router.patch("/update/:id", async (req, res) => {
     try {
+        console.log(req.params)
         const id = req.params.id;
 
         const retrievedEvent = await Event.findById(id);
@@ -182,10 +150,15 @@ router.patch("/update/:id", async (req, res) => {
             return res.status(404).json({ error: "Resource not found" });
         }
 
-        const { title, time, description, imgs, signup, subevents } = req.body;
-
-        if (!title) {
-            return res.status(400).json({ msg: "Title cannot be blank." });
+        const { title, time, description, signup, subevents } = req.body;
+        let parsedSubevents = JSON.parse(subevents)
+        var imgs = [];
+        if (req.files != null) {
+            if (!Array.isArray(req.files.file)) {
+                imgs.push(req.files.file)
+            } else {
+                imgs = req.files.file
+            }
         }
 
         var img_array = [];
@@ -199,7 +172,7 @@ router.patch("/update/:id", async (req, res) => {
                     'Authorization': `Client-ID ${clientId}`
                 },
                 formData: {
-                    'image': img
+                    'image': img.data
                 }
             };
 
@@ -224,11 +197,10 @@ router.patch("/update/:id", async (req, res) => {
         retrievedEvent.description = description;
         retrievedEvent.imgs = retrievedEvent.imgs.concat(img_array);
         retrievedEvent.signup = signup;
-        retrievedEvent.subevents = subevents;
+        retrievedEvent.subevents = parsedSubevents;
 
         const savedEvent = await retrievedEvent.save();
         res.send(savedEvent);
-
     }
     catch (err) {
         res.status(500).json({ error: err.message });
