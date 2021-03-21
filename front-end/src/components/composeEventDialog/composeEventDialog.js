@@ -31,7 +31,6 @@ export default class ComposeEventDialog extends React.Component {
 
     componentDidUpdate(previousProps) {
         if (previousProps !== this.props) {
-            console.log('prop updated')
             this.setState({
                 mainEventTitle: this.props.event.title,
                 mainEventTime: this.props.event.time,
@@ -85,6 +84,14 @@ export default class ComposeEventDialog extends React.Component {
     postEvent = (event) => {
         event.preventDefault();
         event.stopPropagation();
+        if (this.props.isNew) {
+            this.postNew(event)
+        } else {
+            this.saveEdit(event)
+        }
+    }
+
+    saveEdit = async (event) => {
         if (event.currentTarget.checkValidity()) {
             const data = new FormData()
             for (var x = 0; x < this.state.mainEventImages.length; x++) {
@@ -94,12 +101,62 @@ export default class ComposeEventDialog extends React.Component {
             data.append('time', this.state.mainEventTime);
             data.append('description', this.state.mainEventDescription);
             data.append('signup', this.state.mainEventSignupLink);
+            data.append('subevents', JSON.stringify(this.state.subEvents))
+            data.append('id', this.state.id)
 
-            for (var x = 0; x < this.state.subEvents.length; x++) {
-                for (const key in this.state.subEvents[x]) {
-                    data.append(`sub${key}`, this.state.subEvents[x][key])
+            
+            this.setState({sending: true})
+            // delete all images in deleteSequence in a loop
+            for (var index of this.state.deleteSequence) {
+                var requestOptions = {
+                    method: 'DELETE',
+                    body: {
+                        id: this.state.id,
+                        idx: index
+                    },
+                    mode: 'cors'
                 }
+                await fetch(`http://localhost:5000/events/deleteimage/${this.state.id}/${index}`, requestOptions).then(response => {
+                    if (response.status === 200) {
+                        console.log("deleted image at " + index)
+                    } else {
+                        console.log("failed to delete image at " + index)
+                    }
+                });
             }
+
+            requestOptions = {
+                method: 'PATCH',
+                body: data,
+                mode: 'cors',
+            };
+            fetch('http://localhost:5000/events/update/' + this.state.id, requestOptions).then(response => {
+                if (response.status === 200) {
+                    this.closeDialog()
+                    this.setState({validated: false})
+                    this.props.rerenderCallback();
+                } else {
+                    console.log(`Response status: ${response.status}`)
+                }
+                this.setState({sending: false})
+            });
+        } else {
+            this.setState({validated: true})
+        }
+    }
+
+    postNew = (event) => {
+        if (event.currentTarget.checkValidity()) {
+            const data = new FormData()
+            for (var x = 0; x < this.state.mainEventImages.length; x++) {
+                data.append('file', this.state.mainEventImages[x])
+            }
+            data.append('title', this.state.mainEventTitle);
+            data.append('time', this.state.mainEventTime);
+            data.append('description', this.state.mainEventDescription);
+            data.append('signup', this.state.mainEventSignupLink);
+            data.append('subevents', JSON.stringify(this.state.subEvents))
+
             const requestOptions = {
                 method: 'POST',
                 body: data,
@@ -141,7 +198,6 @@ export default class ComposeEventDialog extends React.Component {
                 mainEventSignupLink: '',
                 subEvents: []})
         } else {
-            console.log('canceling edit')
             this.setState({
                 validated: false,
                 mainEventTitle: this.props.event.title,
@@ -154,8 +210,6 @@ export default class ComposeEventDialog extends React.Component {
                 mainEventSignupLink: this.props.event.signup,
                 subEvents: JSON.parse(JSON.stringify(this.props.event.subevents))
             })
-            // console.log(this.state.subEvents)
-            // console.log(this.props.event.title)
         }
     }
 
@@ -177,7 +231,6 @@ export default class ComposeEventDialog extends React.Component {
         let temp = this.state.subEvents
         temp[i].description = html
         this.setState({subEvents: temp})
-        // console.log(this.state.subEvents[i].description)
     }
 
     // Handle changes in sub-event title, time and signup link
@@ -213,7 +266,6 @@ export default class ComposeEventDialog extends React.Component {
     }
 
     removeExistingImg = (index) => {
-        console.log(index)
         let tempImgs = this.state.existingImages;
         tempImgs.splice(index, 1);
         let tempSeq = this.state.deleteSequence;
