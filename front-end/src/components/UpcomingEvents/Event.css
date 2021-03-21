@@ -147,6 +147,15 @@
     background-color: #55B5D3;
 }
 
+.LearnMore-Button a {
+    color: inherit;
+}
+
+.LearnMore-Button:hover a  {
+    color: inherit;
+    text-decoration: none;
+}
+
 .Register-Button {
     background-color: #CD96F9;
 }
