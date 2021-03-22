@@ -140,7 +140,6 @@
     cursor: pointer;
     width: 40%;
     height: 30px;
-    transition: 150ms;
 }
 
 .LearnMore-Button {
@@ -149,6 +148,8 @@
 
 .LearnMore-Button a {
     color: inherit;
+    width: 100%;
+    line-height: 30px;
 }
 
 .LearnMore-Button:hover a  {
@@ -158,6 +159,14 @@
 
 .Register-Button {
     background-color: #CD96F9;
+}
+
+
+.Register-Button-disabled {
+    border: solid 2px #888888;
+    transition: 150ms;
+    cursor: default;
+    color:#888888
 }
 
 .home-expanded-right { 

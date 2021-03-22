@@ -128,10 +128,17 @@ class SmallEventCard extends React.Component {
                             Learn More 
                         </Link>
                     </div>
-                    <div className="event-button Register-Button" 
-                         onClick={this.gotoRegisterLink}> 
-                         Register 
-                    </div>
+
+                    {this.props.event.signup? 
+                        <div className="event-button Register-Button" 
+                            onClick={this.gotoRegisterLink}> 
+                            Register 
+                        </div>
+                        :
+                        <div className="event-button Register-Button-disabled">
+                            Register
+                        </div>
+                    }
                 </div>
                
             </div>
