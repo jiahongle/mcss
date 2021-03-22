@@ -23,7 +23,7 @@ export default class PastEventsSection extends React.Component {
 
 
 
-                
+
                 {isBlueBorder = !isBlueBorder}
 
             </div>

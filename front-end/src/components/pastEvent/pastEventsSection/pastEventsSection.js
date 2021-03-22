@@ -9,6 +9,9 @@ import PictureCollage from "../PictureCollage/pictureCollage.js";
 
 export default class PastEventsSection extends React.Component {
 
+    state = {
+        selectedFiles: null,
+    }
 
     constructor(props) {
         super(props);
@@ -31,8 +34,9 @@ export default class PastEventsSection extends React.Component {
         fetch('http://localhost:5000/pastevents/get', requestOptions)
             .then((response) =>
                 response.json()
-            ).then(data => 
-                this.setState({ pastevents: data.data
+            ).then(data =>
+                this.setState({
+                    pastevents: data.data
                 })
             )
     }
@@ -40,30 +44,33 @@ export default class PastEventsSection extends React.Component {
         return (b) ? "blueBorder" : "purpleBorder";
     }
 
-    createEvents(pastevents, isBlueBorder){
-        let posts = []; 
-        for (var i of Object.keys(pastevents).sort(function(a,b){
+    createEvents(pastevents, isBlueBorder) {
+        let posts = [];
+        for (var i of Object.keys(pastevents).sort(function (a, b) {
             return a < b;
-        })){
-            posts.push("<div>")
+        })) {
             posts.push(<PastEventsOfYear year={i} />)
             pastevents[i].map((event) => (
-                
-                posts.push(<PictureCollage images={event.images} title={event.title} colorBorder={this.assignBorderColor(isBlueBorder)} />)
+
+                posts.push(<PictureCollage _id={event._id} images={event.images} title={event.title} colorBorder={this.assignBorderColor(isBlueBorder)} />)
             ))
         }
-        posts.push("</div>")
 
-        console.log(posts)
         return posts
+    }
+
+    onChangeHandler = event => {
+        this.setState({
+            selectedFiles: event.target.files
+        })
     }
 
     render() {
         var chosenIcon = (this.state.open) ? faAngleUp : faAngleDown;
         var pastevents = this.state.pastevents;
-        
+
         var isBlueBorder = true;
-        
+
         console.log(this.state.pastevents)
         return (
             <section>
@@ -74,12 +81,7 @@ export default class PastEventsSection extends React.Component {
                 <div>
                     {this.state.open ? (
                         <div className='content'>
-                            
-
-                            {this.createEvents(this.state.pastevents,isBlueBorder)}
-                            
-
-
+                            {this.createEvents(this.state.pastevents, isBlueBorder)}
                         </div>
                     ) : null}
                 </div>

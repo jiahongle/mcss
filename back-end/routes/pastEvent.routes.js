@@ -10,9 +10,9 @@ router.get("/get", async (req, res) => {
         const pastEvents = await PastEvent.find();
 
         lst = {};
-        
-        for (var i=0; i<pastEvents.length; i++){
-            if (lst.hasOwnProperty(pastEvents[i].year)){
+
+        for (var i = 0; i < pastEvents.length; i++) {
+            if (lst.hasOwnProperty(pastEvents[i].year)) {
                 lst[pastEvents[i].year].push(pastEvents[i])
             } else {
                 lst[pastEvents[i].year] = [pastEvents[i]]
@@ -85,6 +85,44 @@ router.post('/postFile', async (req, res) => {
     }
 });
 
+router.post('/addFiles', async (req, res) => {
+    try {
+
+        const { _id } = req.body;
+        const file = req.files.file;
+        const retrievedPastEvent = await PastEvent.findById(_id);
+        console.log(file)
+        var options = {
+            'method': 'POST',
+            'url': 'https://api.imgur.com/3/image',
+            'headers': {
+                'Authorization': 'Client-ID 23cded91461ac64'
+            },
+            formData: {
+                'image': file.data
+            }
+        };
+
+        const response = await requestPromise(options);
+
+        const jsonBody = JSON.parse(response.body);
+
+        const deletehash = jsonBody.data.deletehash;
+        const link = jsonBody.data.link;
+
+        const image = {
+            deletehash,
+            link
+        }
+
+
+        retrievedPastEvent['images'].push(image);
+        const savedPastEvent = await retrievedPastEvent.save();
+        res.send(savedPastEvent)
+    } catch (error) {
+        console.log(error)
+    }
+})
 router.post('/postInfo', async (req, res) => {
     console.log(req.body)
     try {
@@ -103,66 +141,28 @@ router.post('/postInfo', async (req, res) => {
     }
 });
 
-// router.post("/post", upload.single('file'), async (req, res) => {
-//     try {
-//         console.log(res.body)
-//         console.log(res.file)
-//         // const { imgs, eventTitle, year } = req.body;
-//         // console.log(req.body);
-//         // console.log(imgs);
-//         // console.log(eventTitle);
-//         // console.log(year);
-//         // if (!title) {
-//         //     return res.status(400).json({ msg: "Title cannot be blank." });
-//         // }
+router.delete("/delete", async (req, res) => {
+    try {
+        const { deletehash, _id } = req.body;
+        console.log(req.body)
+        const savedPastEvent = await PastEvent.findById(_id);
 
+        if (!savedPastEvent) {
+            res.status(404).json({ error: "Resource not found" });
+        }
+        else {
+            for (var i = 0; i < savedPastEvent["images"].length; i++) {
+                if (savedPastEvent["images"][i]["deleteHash"] == deletehash) {
+                    savedPastEvent["images"].pop(i);
+                    await savedPastEvent.save()
+                    res.status(200).json({ msg: "Success" });
+                }
+            }
+        }
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
 
-//         var img_array = []
-
-//         // for (const img of imgs) {
-
-//         //     var options = {
-//         //         'method': 'POST',
-//         //         'url': 'https://api.imgur.com/3/image',
-//         //         'headers': {
-//         //             'Authorization': 'Client-ID 23cded91461ac64'
-//         //         },
-//         //         formData: {
-//         //             'image': img
-//         //         }
-//         //     };
-
-//         //     const response = await requestPromise(options);
-
-//         //     const jsonBody = JSON.parse(response.body);
-
-//         //     const deletehash = jsonBody.data.deletehash;
-//         //     const link = jsonBody.data.link;
-
-//         //     const image = {
-//         //         deletehash,
-//         //         link
-//         //     }
-
-//         //     console.log(image);
-//         //     img_array.push(image);
-
-//         // };
-
-//         // const event = new Event({
-//         //     title: title,
-//         //     description: description,
-//         //     imgs: img_array,
-//         //     creator: creator,
-//         //     signup: signup
-//         // });
-
-//         // const savedEvent = await event.save();
-//         // res.send(savedEvent);
-
-//     }
-//     catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// })
 module.exports = router;
