@@ -52,7 +52,7 @@ export default class PastEventsSection extends React.Component {
             posts.push(<PastEventsOfYear year={i} />)
             pastevents[i].map((event) => (
 
-                posts.push(<PictureCollage _id={event._id} images={event.images} title={event.title} colorBorder={this.assignBorderColor(isBlueBorder)} />)
+                posts.push(<PictureCollage key={event._id} _id={event._id} images={event.images} title={event.title} colorBorder={this.assignBorderColor(isBlueBorder)} />)
             ))
         }
 

@@ -165,4 +165,23 @@ router.delete("/delete", async (req, res) => {
     }
 })
 
+router.delete('/deleteEvent', async (req, res) => {
+    console.log("delete event has triggered")
+    try {
+        const { _id } = req.body;
+        const savedPastEvent = await PastEvent.findById(_id);
+
+        if (!savedPastEvent) {
+            res.status(404).json({ error: "Resource not found" });
+        }
+        else {
+            savedPastEvent.remove()
+            res.status(200).json({ msg: "Success" });
+
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
 module.exports = router;

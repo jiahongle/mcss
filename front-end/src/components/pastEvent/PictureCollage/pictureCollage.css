@@ -41,6 +41,7 @@
   width: 150px;
   margin: 8px;
   background-color: grey;
+  height: 150px;
 }
 
 .plus {
@@ -56,6 +57,12 @@
   position:relative;
   left:150px;
   bottom:30px;
+}
+
+.delPost {
+  color: red;
+  left:20px;
+  position:relative;
 }
 
 .clickable{
