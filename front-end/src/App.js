@@ -9,6 +9,7 @@ import Team from './pages/theTeam/theTeam.js'
 import Announcements from './pages/announcements';
 import PartnerClubs from './pages/partnerClubs/partnerClubs.js';
 import Login from './pages/login';
+import EventDetailPage from './pages/eventDetailPage.js'
 
 
 export default class App extends React.Component {
@@ -31,6 +32,7 @@ export default class App extends React.Component {
             <Route path='/events' component={Events} />
             <Route path='/partnerClubs' component={PartnerClubs} />
             <Route path='/login' component={Login} />
+            <Route path='/eventdetail/:id' component={EventDetailPage} />
           </Switch>
         </Router>
       </div>

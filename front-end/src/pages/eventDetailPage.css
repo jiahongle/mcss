@@ -1,0 +1,247 @@
+.event-detail-page-content {
+    padding-left: 12.8vw;
+    padding-right: 12.8vw;
+    padding-top: 70px;
+    padding-bottom: 12vh;
+    min-height: 100vh;
+}
+
+.back-button {
+    position: fixed;
+    top: 30px;
+    left: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+    height: 30px;
+    transition: 150ms;
+    background-color: #61CFF2;
+}
+
+.back-button:hover {
+    background-color: #008bb6;
+    transition: 150ms;
+}
+
+.event-page-title {
+    color: #B695ED;
+    margin-bottom: 30px;
+}
+
+.event-detail-time {
+    font-size: 16px;
+    color: #24A4D3;    
+    /* text-align: left; */
+    margin-bottom: 35px;
+}
+
+.event-detail-header {
+    margin-left: 6.2vw;
+    margin-right: 6.2vw;
+}
+
+.gallery-wrapper {
+    padding-left: 6.2vw;
+    padding-right: 6.2vw;
+    margin-bottom: 60px;
+    height: 40vh;
+}
+
+.gallery-wrapper div{
+    height: 100%;
+}
+
+.gallery-wrapper .image-gallery-image{
+    height: 100%;
+}
+
+.gallery-wrapper .image-gallery-bullets{
+    height: auto;
+    bottom: -30px;
+}
+
+.gallery-wrapper .image-gallery-svg{
+    height: 55px;
+}
+
+.gallery-wrapper .image-gallery-left-nav{
+    left: -60px;
+}
+.gallery-wrapper .image-gallery-right-nav{
+    right: -60px;
+}
+.image-gallery {
+    width: 100%;
+}
+
+.event-detail-quill {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.event-detail-quill .ql-editor {
+    padding: 0px;
+}
+
+.event-detail-quill .ql-editor p{
+   font-size: 15px;
+}
+
+.event-detail-quill .ql-editor li{
+    font-size: 15px;
+}
+
+.main-event-register-button {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    transition: 150ms;
+    background-color: #CD96F9;
+}
+
+.main-event-register-button:hover {
+    transition: 150ms;
+    background-color: #9d28fc;
+}
+
+.subevent-register-button {
+    margin-top: 20px;
+}
+
+.register-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.with-subevents {
+    display: flex;
+}
+
+.with-subevents-left {
+    width: 50%;
+    /* border: solid 2px white; */
+    padding-right: 50px;
+    padding-top: 7px;
+}
+
+.with-subevents-right {
+    border-left: solid 2px #B695ED;
+    width: 50%;
+    padding-left: 50px;
+    position: relative;
+}
+
+.gallery-wrapper-left {
+    margin-bottom: 60px;
+    height: 30vh;
+}
+
+.gallery-wrapper-left div{
+    height: 100%;
+}
+
+.gallery-wrapper-left .image-gallery-image{
+    height: 100%;
+}
+
+.gallery-wrapper-left .image-gallery-bullets{
+    height: auto;
+    bottom: -30px;
+}
+
+.gallery-wrapper-left .image-gallery-svg{
+    height: 55px;
+}
+
+.gallery-wrapper-left .image-gallery-left-nav{
+    left: -60px;
+}
+.gallery-wrapper-left .image-gallery-right-nav{
+    right: -60px;
+}
+
+.subevent-box {
+    background-color: #1D1D1D;
+    border-radius: 10px;
+    padding: 10px 25px 15px 25px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.subevent-title {
+    color: #B695ED;
+    margin-bottom: 7px;
+    text-align: left;
+}
+
+.subevent-time {
+    font-size: 15px;
+    color: #24A4D3;    
+    text-align: left;
+    margin-bottom: 7px;
+}
+
+.event-detail-subevent-quill {
+    color: #ffffff;
+}
+
+.event-detail-subevent-quill .ql-editor {
+    padding: 0px;
+}
+
+.subevent-first-branch {
+    width: 52px;
+    height: 20px;
+    position: absolute;
+    border-bottom: solid 2px #B695ED;
+    border-left: solid 2px black;
+    margin-left: -2px;
+    top: 0;
+    left: -50px;
+}
+
+.subevent-branch {
+    width: 50px;
+    height: 20px;
+    position: absolute;
+    border-bottom: solid 2px #B695ED;
+    top: 0;
+    left: -50px;
+}
+
+.subevent-branch-1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.subevent-branch-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    position: absolute;
+    left: -9px;
+    bottom: -9px;
+    background-color: #B695ED;
+}
+
+.time-line-arrow {
+    font-size: 40px;
+    position: absolute;
+    left: -21px;
+    bottom: -14px;
+    color: #B695ED;
+}
