@@ -2,22 +2,14 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import "./mailchimp.css";
 
-// export default class signupMessage extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//     render() {
-
-//     }
-// }
-
 export default class signupMailchimp extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { email:'', 
-                       msg: ""
-                    }
+        this.state = { 
+            email: "", 
+            msg: ""
+        }
     }
     
     signupOnChangeHandler = (event) => {
