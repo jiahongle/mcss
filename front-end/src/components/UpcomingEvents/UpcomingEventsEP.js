@@ -76,7 +76,7 @@ export default class UpcomingEventsEP extends React.Component {
             <ComposeEventDialog ref={this.newEvent} isNew rerenderCallback={this.forceRerender} event={this.emptyEvent}/>
             <div className="title-container">
                 <div className="view-events"> 
-                    View Upcoming Events 
+                    Upcoming Events 
                 </div>
                 {this.state.loggedIn &&
                 <div className="new-event" onClick={this.openNewEventDialog}>
