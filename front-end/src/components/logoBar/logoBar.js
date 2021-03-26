@@ -7,10 +7,24 @@ export default class LogoBar extends React.Component {
     render() {
         return (
             <div className="logo-bar-container">
-                <FontAwesomeIcon icon={faFacebook} />
-                <FontAwesomeIcon icon={faDiscord} />
-                <FontAwesomeIcon icon={faInstagram} />
-                <FontAwesomeIcon icon={faTwitter} />
+                
+                <a href="https://www.facebook.com/utmmcss/">
+                    <FontAwesomeIcon icon={faFacebook} />
+                </a>
+                
+                <a href="https://discord.com/invite/5K3TuF7DkY">
+                    <FontAwesomeIcon icon={faDiscord} />
+                </a>
+
+                
+                <a href="https://www.instagram.com/utmmcss/">
+                    <FontAwesomeIcon icon={faInstagram} />
+                </a>
+
+                
+                <a href="https://twitter.com/utmmcss">
+                    <FontAwesomeIcon icon={faTwitter} />
+                </a>
             </div>
         )
     }

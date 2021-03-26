@@ -1,7 +1,15 @@
-
+a * {
+  text-decoration: none;
+  color: #8873b4;
+}
 .logo-bar-container {
-    display: flex;
-    min-width: 35vmin;
-    justify-content: space-between;
-    color: #8873B4;
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  min-width: 35vmin;
+  color: #8873b4;
 }
