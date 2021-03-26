@@ -38,6 +38,19 @@
 }
 
 .image {
-  width: 150px;
   margin: 8px;
+}
+
+@media screen and (min-width: 800px) {
+  .pastEventTitle {
+    font-size: 1.4em;
+  }
+
+  .pastEventsPictureCollage > * {
+    height: 210px;
+  }
+
+  .image {
+    margin: 15px;
+  }
 }

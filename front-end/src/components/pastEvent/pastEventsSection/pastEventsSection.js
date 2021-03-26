@@ -48,15 +48,10 @@ export default class PastEventsSection extends React.Component {
                 <div>
                     {this.state.open ? (
                         <div className='content'>
-                           {// {pastevents.map((event) => (
+                            {pastevents.map((event) => (
 
-                              //  <PastEventsOfYear title={event.title} key={event._id} images={event.images} year={event.year} />
-                            //))}
-                           }
-
-
-                            <PastEventsOfYear title="Test Event" year="2002" />
-
+                                <PastEventsOfYear title={event.title} key={event._id} images={event.images} year={event.year} />
+                            ))}
 
                         </div>
                     ) : null}

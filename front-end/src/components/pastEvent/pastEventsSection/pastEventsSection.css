@@ -1,6 +1,7 @@
 /* CSS */
 .header {
   cursor: pointer;
+  width: fit-content;
   padding: 15px;
   font-size: 28px;
   color: #84bad3;
@@ -16,4 +17,5 @@
 }
 #pastEventsDropdownIcon {
   font-size: 25px;
+  margin: auto 0;
 }
