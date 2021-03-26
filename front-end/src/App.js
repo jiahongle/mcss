@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 import { GoThreeBars } from 'react-icons/go';
 import Navbar from './components/navBar/navBar.js'
 import Home from './pages/home'
@@ -10,7 +10,6 @@ import Announcements from './pages/announcements';
 import PartnerClubs from './pages/partnerClubs/partnerClubs.js';
 import Login from './pages/login';
 import EventDetailPage from './pages/eventDetailPage.js'
-
 
 export default class App extends React.Component {
   menu = React.createRef()

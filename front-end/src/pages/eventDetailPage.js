@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import './eventDetailPage.css';
 import ImageGallery from 'react-image-gallery';
@@ -78,7 +78,10 @@ class EventDetailPage extends React.Component {
             this.state.event != null &&
             <div>
                 <div className="event-detail-page-content">
-                    <div className="back-button" onClick={this.goBack}> Back </div>
+                    {/* <div className="back-button" onClick={this.goBack}> 
+                        Back 
+                    </div> */}
+                    <Link to={this.props.location.state.from} className="back-button"> Back </Link>
                     <div className="event-detail-header">
                         <h2 className="event-page-title">{this.state.event.title}</h2>
                         <p className="event-detail-time"> {this.state.event.time}</p>

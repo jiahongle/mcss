@@ -27,6 +27,8 @@
 .back-button:hover {
     background-color: #008bb6;
     transition: 150ms;
+    color: white;
+    text-decoration: none;
 }
 
 .event-page-title {

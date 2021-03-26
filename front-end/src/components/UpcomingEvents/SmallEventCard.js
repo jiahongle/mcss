@@ -124,7 +124,7 @@ class SmallEventCard extends React.Component {
 
                 <div className="small-event-buttons-area">
                     <div className="event-button LearnMore-Button"> 
-                        <Link to={"eventdetail/" + this.props.event._id}>
+                        <Link to={{pathname: "eventdetail/" + this.props.event._id, state: {from: '/events'}}}>
                             Learn More 
                         </Link>
                     </div>

@@ -20,7 +20,7 @@ const presidentName = " - Brian Li"
 function Introduction() {
     return (
         <div className="Introduction">
-            <b>Who We Are</b>
+            <div className="section-title">Who We Are</div>
             <p>{IntroText}</p>
             
             <div className="President-Container">

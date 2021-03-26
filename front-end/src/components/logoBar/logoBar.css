@@ -1,7 +1,3 @@
-a * {
-  text-decoration: none;
-  color: #8873b4;
-}
 .logo-bar-container {
   display: flex;
   display: flex;
@@ -12,4 +8,12 @@ a * {
   align-content: flex-start;
   min-width: 35vmin;
   color: #8873b4;
+}
+
+.logo-bar-container a {
+  color: #8873b4;
+}
+
+.logo-bar-container a:hover {
+  color: #5e36b6;
 }
