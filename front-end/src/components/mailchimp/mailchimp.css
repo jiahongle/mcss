@@ -1,64 +1,70 @@
 .title-container b {
-    font-size: 28px;
-    color: #84BAD3;
+  font-size: 28px;
+  color: #84bad3;
 }
 
 #mc-embedded-email {
-    display: flex;
+  display: flex;
+}
+
+#mc-email-form-input-section > * {
+  margin-top: 10px;
 }
 
 .form-label {
-    color: #9cdaf7;
-    text-align: left;
-    width: 100%;
+  color: #9cdaf7;
+  text-align: left;
+  width: 100%;
 }
 
 .mail-input {
-    width: 100%;
+  width: 100%;
 }
 
 #message {
-    /* height: 200px; */
-    width: 100%;
+  /* height: 200px; */
+  width: 100%;
 }
 
 #mc-embed-signup {
-    display: flex;
-    clear:left; 
-    color: #9cdaf7;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
+  color: #9cdaf7;
+  text-align: center;
 }
 
 #mc-label {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  margin: 0;
 }
 
-#mce-EMAIL, #mc-input-field {
-    margin-right: 5%; 
+#mce-EMAIL {
+  width: 80%;
+  padding: 4px 10px;
+
+  background-color: rgb(23, 23, 23);
+  color: rgb(222, 220, 220);
+  border: none;
 }
 
 #mc-input-field {
-    position: absolute; 
-    left: -5000px; 
-    border-right: 10px;
+  position: absolute;
+  left: -5000px;
+  border-right: 10px;
 }
 
 #mc-subscribe-button {
-    background-color: #8770b1;
+  background-color: #8770b1;
+  padding: 5px 11px;
 }
 
 #mc-subscribe-button a {
-    color: inherit;
+  color: inherit;
 }
 
-#mc-subscribe-button:hover a  {
-    color: inherit;
-    text-decoration: none;
+#mc-subscribe-button:hover a {
+  color: inherit;
+  text-decoration: none;
 }
 
 #signup-msg {
-    color: white;
+  color: white;
 }

@@ -13,11 +13,10 @@ export default class Footer extends React.Component {
         <section id="footer-content">
             <div>
                 <img id="footer-logo" src={logo} alt="MCSS Logo"/>
-                <div id="footer-email-link"> 
-                <span> Contact us at <a href="mailto:mcss@utmsu.ca"> mcss@utmsu.ca </a> </span> </div>
-            </div>
-            <div>
-                <SignupMailchimp/>
+            
+                <div id="signup-mailchimp">
+                    <SignupMailchimp/>
+                </div>
             </div>
             <div className="logo-bar-container" id="footer-logo-bar">
                 <a href="https://www.facebook.com/utmmcss/">
@@ -44,7 +43,13 @@ export default class Footer extends React.Component {
             </div>
         </section>
 
-        <section> <span id="copyright-statement">Copyright UTM MCSS - 2021</span></section>
+        <section>
+            
+            <div id="footer-email-link"> 
+                <span> Contact us at <a href="mailto:mcss@utmsu.ca"> mcss@utmsu.ca </a> </span> 
+            </div>
+            <span id="copyright-statement">Copyright UTM MCSS - 2021</span>     
+        </section>
         </footer>
         );
     }

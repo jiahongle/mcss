@@ -18,7 +18,7 @@ footer > * {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  width: 65%;
+  width: 55%;
 }
 
 #footer-email-link {
@@ -32,6 +32,12 @@ footer > * {
 
 #copyright-statement {
   color: #9cdaf7;
+  margin-top: 5px;
+  font-size: 0.85em;
+}
+
+#signup-mailchimp {
+  margin-top: 30px;
 }
 
 #footer-logo-bar {
@@ -80,7 +86,7 @@ footer > * {
   }
 
   #footer-logo {
-    width: 300px;
+    width: 270px;
   }
 
   #footer-content {

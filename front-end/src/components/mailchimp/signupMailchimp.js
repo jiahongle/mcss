@@ -44,9 +44,9 @@ export default class signupMailchimp extends React.Component {
                 <div> 
                 <label id="mc-label" for="mce-EMAIL">Subscribe to our Mailing List:</label>
                 </div>
-                <div>
+                <div id="mc-email-form-input-section">
                 <input type="email" value={this.state.email} onChange={this.signupOnChangeHandler} 
-                    name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required/>
+                    name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email address" required/>
                 <Button variant="primary" type="submit" value="Subscribe" 
                 name="subscribe" id="mc-subscribe-button" >
                     Subscribe
