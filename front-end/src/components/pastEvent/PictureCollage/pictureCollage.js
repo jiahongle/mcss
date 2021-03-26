@@ -1,8 +1,5 @@
 import React from 'react';
 import "./pictureCollage.css";
-import aa from "./aa.png";
-import bb from "./bb.png";
-import cc from "./cc.png";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
