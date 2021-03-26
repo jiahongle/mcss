@@ -53,7 +53,6 @@ export default class PastEventsSection extends React.Component {
                                 <PastEventsOfYear title={event.title} key={event._id} images={event.images} year={event.year} />
                             ))}
 
-
                         </div>
                     ) : null}
                 </div>
