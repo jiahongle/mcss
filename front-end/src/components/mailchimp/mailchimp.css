@@ -1,3 +1,27 @@
+.title-container b {
+    font-size: 28px;
+    color: #84BAD3;
+}
+
+#mc-embedded-email {
+    display: flex;
+}
+
+.form-label {
+    color: #9cdaf7;
+    text-align: left;
+    width: 100%;
+}
+
+.mail-input {
+    width: 100%;
+}
+
+#message {
+    /* height: 200px; */
+    width: 100%;
+}
+
 #mc-embed-signup {
     display: flex;
     clear:left; 
