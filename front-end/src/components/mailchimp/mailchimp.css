@@ -1,0 +1,40 @@
+#mc-embed-signup {
+    display: flex;
+    clear:left; 
+    color: #9cdaf7;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#mc-label {
+    width: 100%;
+    text-align: center;
+}
+
+#mce-EMAIL, #mc-input-field {
+    margin-right: 5%; 
+}
+
+#mc-input-field {
+    position: absolute; 
+    left: -5000px; 
+    border-right: 10px;
+}
+
+#mc-subscribe-button {
+    background-color: #8770b1;
+}
+
+#mc-subscribe-button a {
+    color: inherit;
+}
+
+#mc-subscribe-button:hover a  {
+    color: inherit;
+    text-decoration: none;
+}
+
+#signup-msg {
+    color: white;
+}
