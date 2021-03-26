@@ -37,8 +37,20 @@
   height: 150px;
 }
 
-.aaaa {
-  width: 150px;
+.image {
   margin: 8px;
-  background-color: grey;
+}
+
+@media screen and (min-width: 800px) {
+  .pastEventTitle {
+    font-size: 1.4em;
+  }
+
+  .pastEventsPictureCollage > * {
+    height: 210px;
+  }
+
+  .image {
+    margin: 15px;
+  }
 }
