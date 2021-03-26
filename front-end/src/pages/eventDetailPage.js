@@ -28,7 +28,6 @@ class EventDetailPage extends React.Component {
         fetch('http://localhost:5000/events/' + id, requestOptions)
             .then((response) => response.json())
             .then(data => {
-                console.log(data.data)
                 let galleryImgs = data.data.imgs.map((img) => {
                     return {
                         original: img.link
@@ -51,7 +50,7 @@ class EventDetailPage extends React.Component {
     
     SubEvent = (subevent, ind) => {
         return (
-            <div className="subevent-box">
+            <div key={ind} className="subevent-box">
                 <h5 className="subevent-title">{subevent.title}</h5>
                 <p className="subevent-time"> {subevent.time}</p>
                 <ReactQuill
@@ -109,7 +108,7 @@ class EventDetailPage extends React.Component {
                         </div>
                         :
                         <div className="with-subevents">
-                            <div class="with-subevents-left">
+                            <div className="with-subevents-left">
                                 <div className="gallery-wrapper-left">
                                     <ImageGallery   ref={this.imageGallery}
                                                     items={this.state.galleryImgs} 
@@ -131,7 +130,7 @@ class EventDetailPage extends React.Component {
                                     </div>
                                 </div>}
                             </div>
-                            <div class="with-subevents-right">
+                            <div className="with-subevents-right">
                                 {this.state.event.subevents.map((subevent, i) => (
                                     this.SubEvent(subevent, i)
                                 ))}
