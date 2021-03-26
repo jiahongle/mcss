@@ -5,6 +5,7 @@ import AnnouncementPost from './announcementPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons"
 import { FaChevronDown } from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 export default class announcement extends React.Component {
     composeRef = React.createRef();
@@ -82,7 +83,7 @@ export default class announcement extends React.Component {
             <div className="announcement-container">
                 <CreateAnnouncement ref={this.composeRef} rerenderCallback={this.forceRerender}/>
                 <div className="title-container">
-                    <b>Announcements</b>
+                    <div className="section-title">Announcements</div>
                     <FontAwesomeIcon className="title icon-speaker" icon={faBullhorn} />
                     {this.state.isCollapsed? 
                         <FaChevronDown className="Chevron chevron-right clickable"
@@ -99,12 +100,18 @@ export default class announcement extends React.Component {
                     }
                 </div>
 
-                {this.state.announcements.map((announcement, i) => (
+                {this.state.announcements.slice(0, 3).map((announcement, i) => (
                     <AnnouncementPost loggedIn={this.state.loggedIn} 
                                       details={announcement} key={i} 
                                       rerenderCallback={this.forceRerender}
                                       isCollapsed={this.state.isCollapsed}/>
                 ))}
+                
+                <div className="see-all">
+                    <Link to={'/announcements'}>
+                        See all
+                    </Link>
+                </div>
             </div>
         )
     }

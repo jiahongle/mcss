@@ -23,7 +23,7 @@ export default class UpcomingEventsEP extends React.Component {
         subevents: []
     }
 
-    componentDidMount() {
+    componentWillMount() {
         var requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -71,11 +71,12 @@ export default class UpcomingEventsEP extends React.Component {
     }
 
     render() {
+        console.log("UpcomingEventsEP rerendered.")
         return (
             <>
             <ComposeEventDialog ref={this.newEvent} isNew rerenderCallback={this.forceRerender} event={this.emptyEvent}/>
             <div className="title-container">
-                <div className="view-events"> 
+                <div className="section-title"> 
                     Upcoming Events 
                 </div>
                 {this.state.loggedIn &&

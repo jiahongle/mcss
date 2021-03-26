@@ -26,7 +26,6 @@ export default class announcementPost extends React.Component {
 
     
     componentDidUpdate(previousProps) {
-        console.log("updated")
         if (previousProps !== this.props) {
             this.setState({
                 loggedIn: this.props.loggedIn,

@@ -4,6 +4,8 @@ import './UpcomingEvents.css'
 import Event from './Event.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
+
 
 
 export default class UpcomingEvents extends React.Component {
@@ -59,17 +61,21 @@ export default class UpcomingEvents extends React.Component {
         return (
             <div className="Main-Container" >
                 <div className="Subtitle-Container">
-                    <b> Upcoming Events </b>
+                    <div className="section-title"> Upcoming Events </div>
                     <FontAwesomeIcon className="Calendar-Icon" icon={faCalendarAlt} />
                 </div>
-                {this.state.events.map((event) => (
+                {this.state.events.slice(0, 3).map((event) => (
                     <Event 
                         key={event._id}
                         event={event}
                         loggedIn={this.state.loggedIn}
                         rerenderCallback={this.forceRerender}/>
                 ))}
-
+                <div className="see-all">
+                    <Link to={'/events'}>
+                        See all
+                    </Link>
+                </div>
             </div>
         );
     }

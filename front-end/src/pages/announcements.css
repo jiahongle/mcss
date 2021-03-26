@@ -1,0 +1,161 @@
+.announcement-page-content{
+    background-color: #000;
+    min-height: 100vh;
+    margin-left: 19vw;  
+    margin-right: 19vw;
+    padding-bottom: 10vh;
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.announcement-post {
+    background-color: #1D1D1D;
+    color: #24A4D3;
+    padding: 10px 20px 14px 20px; 
+    margin-bottom:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    border-radius: 18px;
+    position: relative;
+    text-align: left;
+}
+
+.announcement-p {
+    padding-right:3px;
+    margin-right:4px;
+}
+
+.create-announcement-container {
+    background-color: #1D1D1D;
+    color: #61dafb;
+    padding: 20px 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 18px;
+}
+
+.announcement-form {
+    display:flex;
+    flex-direction:row;
+
+}
+
+.title-container {
+    display:flex;
+    margin-bottom: 3vmin;
+    margin-left: 15px;
+}
+
+.title-container b {
+    font-size: 28px;
+    color: #84BAD3;
+}
+
+.icon-speaker {
+    color: #FFF;
+    position: relative;
+    top: 5px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+.post-title {
+    margin: 0px;
+    color:#FFF;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.collapsed-title {
+    display: -webkit-box;   
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;     
+    overflow: hidden;
+}
+
+.post-date {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.post-body {
+    color: #AFAFAF;
+}
+
+
+.post-body .ql-editor{
+    padding: 0px;
+}
+
+
+.post-body p{
+    margin-bottom: 5px;
+}
+
+.Create-Button {
+    color: #FFFFFF;
+    margin-left: 25px;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    font-size: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.Create-Button:hover {
+    text-decoration: underline;
+}
+
+.delete-announcement-button {
+    font-size: 30px;
+    color: rgb(255, 67, 67);
+}
+
+.Edit-Button {
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.Edit-Button:hover {
+    text-decoration: underline;
+}
+
+.Cancel {
+    margin-right: 20px;
+    float: left;
+}
+
+.Delete {
+    float:right;
+}
+
+/* Toggling Collapse/Expanded Button stylings */
+.Chevron {
+    font-size: 25px;
+    color: white;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.clickable {
+    cursor: pointer;
+}
+
+.chevron-down {
+    transition: 150ms;
+}
+
+.chevron-right {
+    transform: rotate(-90deg);
+    transition: 150ms;
+}

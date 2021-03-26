@@ -35,7 +35,6 @@ class Event extends React.Component {
     }
 
     componentDidUpdate(previousProps) {
-        console.log("updated")
         if (previousProps !== this.props) {
             this.setState({galleryImgs: this.props.event.imgs.map((img) => {
                 return {
@@ -108,7 +107,7 @@ class Event extends React.Component {
                         </div>
                         <div className="event-buttons-area">
                             <div className="event-button LearnMore-Button">
-                                <Link to={"eventdetail/" + this.props.event._id}> 
+                                <Link to={{pathname: "eventdetail/" + this.props.event._id, state: {from: '/'}}}> 
                                     Learn More 
                                 </Link>
                             </div>
