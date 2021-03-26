@@ -61,6 +61,8 @@
 
 .gallery-wrapper .image-gallery-image{
     height: 100%;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
 }
 
 .gallery-wrapper .image-gallery-bullets{
@@ -154,6 +156,8 @@
 
 .gallery-wrapper-left .image-gallery-image{
     height: 100%;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
 }
 
 .gallery-wrapper-left .image-gallery-bullets{

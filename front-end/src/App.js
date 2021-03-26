@@ -19,9 +19,9 @@ export default class App extends React.Component {
       <div className="App">
         <Router>
           <div className="menu-button-area">
-            <Link to="#" className="menu-button">
+            <div className="menu-button">
               <GoThreeBars onClick={() => { this.menu.current.toggleMenuActive() }} />
-            </Link>
+            </div>
           </div>
           <Navbar ref={this.menu} />
           <Switch>
