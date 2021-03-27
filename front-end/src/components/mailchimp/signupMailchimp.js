@@ -40,21 +40,21 @@ export default class signupMailchimp extends React.Component {
         return(
             <div id="mc-embed-signup">
             <form onSubmit={this.signupOnClickHandler}
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                 <div> 
-                <label id="mc-label" for="mce-EMAIL">Subscribe to our Mailing List:</label>
+                <label id="mc-label" htmlFor="mce-EMAIL">Subscribe to our Mailing List:</label>
                 </div>
                 <div id="mc-email-form-input-section">
                 <input type="email" value={this.state.email} onChange={this.signupOnChangeHandler} 
-                    name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email address" required/>
+                    name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" required/>
                 <Button variant="primary" type="submit" value="Subscribe" 
                 name="subscribe" id="mc-subscribe-button" >
                     Subscribe
                 </Button>
                 </div>
-                <div id="mc-input-field"><input type="text" 
-                    name="b_9445429ae38382309141d339e_381eb46b2a" tabindex="-1" value=""/></div>
-                <div class="clear">
+                {/* <div id="mc-input-field"><input type="text" 
+                    name="b_9445429ae38382309141d339e_381eb46b2a" tabIndex="-1" value=""/></div> */}
+                <div className="clear">
                     
                 </div>
                 <div id="signup-msg">
@@ -65,27 +65,3 @@ export default class signupMailchimp extends React.Component {
         );
     }
 }
-
-{/* <div id="mc-embed-signup">
-            <form onSubmit={this.signupOnClickHandler}
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                <div>
-                <label for="mce-EMAIL">Subscribe to our Mailing List</label>
-                </div>
-                <div>
-                <input type="email" value={this.state.email} onChange={this.signupOnChangeHandler} 
-                    name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required/>
-                </div>
-                <div id="mc-input-field"><input type="text" 
-                    name="b_9445429ae38382309141d339e_381eb46b2a" tabindex="-1" value=""/></div>
-                <div class="clear">
-                    <Button variant="primary" type="submit" value="Subscribe" 
-                    name="subscribe" id="mc-subscribe-button" >
-                        Subscribe
-                    </Button>
-                </div>
-                <div id="signup-msg">
-                    <p>{this.state.msg}</p>
-                </div>
-            </form>
-            </div> */}

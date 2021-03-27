@@ -5,9 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import PastEventsOfYear from "../pastEventsOfYear/PastEventsOfYear";
+import PictureCollage from "../PictureCollage/pictureCollage.js";
 
 export default class PastEventsSection extends React.Component {
 
+    state = {
+        selectedFiles: null,
+    }
 
     constructor(props) {
         super(props);
@@ -30,15 +34,44 @@ export default class PastEventsSection extends React.Component {
         fetch('http://localhost:5000/pastevents/get', requestOptions)
             .then((response) =>
                 response.json()
-            ).then(data => {
-                this.setState({ pastevents: data.data })
-                console.log(data.data)
-            })
-
+            ).then(data =>
+                this.setState({
+                    pastevents: data.data
+                })
+            )
     }
+    assignBorderColor(b) {
+        return (b) ? "blueBorder" : "purpleBorder";
+    }
+
+    createEvents(pastevents, isBlueBorder) {
+        let posts = [];
+        for (var i of Object.keys(pastevents).sort(function (a, b) {
+            return a < b;
+        })) {
+            posts.push(<PastEventsOfYear year={i} />)
+            pastevents[i].map((event) => (
+
+                posts.push(<PictureCollage key={event._id} _id={event._id} images={event.images} title={event.title} colorBorder={this.assignBorderColor(isBlueBorder)} />)
+            ))
+        }
+
+        return posts
+    }
+
+    onChangeHandler = event => {
+        this.setState({
+            selectedFiles: event.target.files
+        })
+    }
+
     render() {
         var chosenIcon = (this.state.open) ? faAngleUp : faAngleDown;
         var pastevents = this.state.pastevents;
+
+        var isBlueBorder = true;
+
+        console.log(this.state.pastevents)
         return (
             <section>
                 <div onClick={(e) => this.togglePanel(e)} className='header'>
@@ -48,10 +81,7 @@ export default class PastEventsSection extends React.Component {
                 <div>
                     {this.state.open ? (
                         <div className='content'>
-                            {pastevents.map((event) => (
-
-                                <PastEventsOfYear title={event.title} key={event._id} images={event.images} year={event.year} />
-                            ))}
+                            {this.createEvents(this.state.pastevents, isBlueBorder)}
 
                         </div>
                     ) : null}

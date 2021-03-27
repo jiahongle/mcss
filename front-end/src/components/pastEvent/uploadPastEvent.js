@@ -45,8 +45,6 @@ export default class UploadPastEvent extends React.Component {
         this.setState({
             selectedFiles: event.target.files
         })
-
-
     }
 
     render() {
@@ -73,7 +71,6 @@ export default class UploadPastEvent extends React.Component {
                         <label className="">
                             {/* <p className="announcement-p">Photos to be uploaded: </p> */}
                             <input type="file" class="form-control" multiple onChange={this.onChangeHandler} name="file" />
-
                         </label>
 
                     </div>

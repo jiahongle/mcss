@@ -71,29 +71,29 @@ export default class emailMailchimp extends React.Component {
                 <b>Send an Email</b>
             </div>
             <form onSubmit={this.sendOnClickHandler}
-                method="post" id="mc-embedded-email-form" name="mc-embedded-email-form" class="validate" target="_blank" novalidate>
+                method="post" id="mc-embedded-email-form" name="mc-embedded-email-form" className="validate" target="_blank" noValidate>
                 <div> 
-                <label class="form-label" for="subject"><p>Your Name:</p>
+                <label className="formlabel" htmlFor="subject"><p>Your Name:</p>
                 <input type="text" value={this.state.person_name} onChange={this.formOnChangeHandler} 
-                    class="mail-input" id="person_name" placeholder="Name" required/>
+                    className="mail-input" id="person_name" placeholder="Name" required/>
                 </label>
                 </div>
                 <div> 
-                <label class="form-label" for="email"><p>Your Email:</p>
+                <label className="formlabel" htmlFor="email"><p>Your Email:</p>
                 <input type="email" value={this.state.from_address} onChange={this.formOnChangeHandler} 
-                   class="mail-input" id="from_address" placeholder="Email address" required/>
+                   className="mail-input" id="from_address" placeholder="Email address" required/>
                 </label>
                 </div>
                 <div> 
-                <label class="form-label" for="subject"><p>Subject:</p>
+                <label className="formlabel" htmlFor="subject"><p>Subject:</p>
                 <input type="text" value={this.state.subject} onChange={this.formOnChangeHandler} 
-                    class="mail-input" id="subject" placeholder="Subject" required/>
+                    className="mail-input" id="subject" placeholder="Subject" required/>
                 </label>
                 </div>
                 <div> 
-                <label class="form-label" for="message"><p>Message:</p>
+                <label className="formlabel" htmlFor="message"><p>Message:</p>
                 <textarea rows="7" value={this.state.message} onChange={this.formOnChangeHandler} 
-                   class="mail-input" id="message" placeholder="Message" required/>
+                   className="mail-input" id="message" placeholder="Message" required/>
                 </label>
                 </div>
                 <div>

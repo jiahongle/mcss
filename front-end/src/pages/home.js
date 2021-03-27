@@ -7,6 +7,7 @@ import EmailMailchimp from '../components/mailchimp/emailMailchimp.js';
 import Announcements from '../components/announcements/announcement.js'
 import UpcomingEvents from '../components/UpcomingEvents/UpcomingEvents.js';
 import Footer from '../components/footer/footer.js';
+import PastEvents from '../components/pastEvent/uploadPastEvent';
 
 export default class Home extends React.Component {
   state = {
