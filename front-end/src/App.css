@@ -7,9 +7,10 @@
   font-size: 2rem;
   color: white;
   background: none;
+  cursor: pointer;
 }
 
-.menu-button :hover{
+.menu-button:hover{
   color: white;
 }
 

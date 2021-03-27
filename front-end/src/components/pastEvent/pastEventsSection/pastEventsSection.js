@@ -82,6 +82,7 @@ export default class PastEventsSection extends React.Component {
                     {this.state.open ? (
                         <div className='content'>
                             {this.createEvents(this.state.pastevents, isBlueBorder)}
+
                         </div>
                     ) : null}
                 </div>

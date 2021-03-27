@@ -4,9 +4,10 @@ import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.bubble.css";
 import { TiDelete } from 'react-icons/ti';
 import DeleteEvent from './deleteEvent.js'
-import { FaChevronDown } from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
 import ComposeEventDialog from '../composeEventDialog/composeEventDialog.js'
+import { Link } from "react-router-dom";
+
 
 
 /* Event function requires a title, date and description to be created */
@@ -122,11 +123,22 @@ class SmallEventCard extends React.Component {
                 
 
                 <div className="small-event-buttons-area">
-                    <div className="event-button LearnMore-Button"> Learn More </div>
-                    <div className="event-button Register-Button" 
-                         onClick={this.gotoRegisterLink}> 
-                         Register 
+                    <div className="event-button LearnMore-Button"> 
+                        <Link to={{pathname: "eventdetail/" + this.props.event._id, state: {from: '/events'}}}>
+                            Learn More 
+                        </Link>
                     </div>
+
+                    {this.props.event.signup? 
+                        <div className="event-button Register-Button" 
+                            onClick={this.gotoRegisterLink}> 
+                            Register 
+                        </div>
+                        :
+                        <div className="event-button Register-Button-disabled">
+                            Register
+                        </div>
+                    }
                 </div>
                
             </div>

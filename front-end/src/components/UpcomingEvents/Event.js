@@ -9,7 +9,7 @@ import DeleteEvent from './deleteEvent.js'
 import ComposeEventDialog from '../composeEventDialog/composeEventDialog'
 import { FaChevronDown } from 'react-icons/fa'
 import ImageGallery from 'react-image-gallery';
-// import "~react-image-gallery/styles/css/image-gallery.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -35,7 +35,6 @@ class Event extends React.Component {
     }
 
     componentDidUpdate(previousProps) {
-        console.log("updated")
         if (previousProps !== this.props) {
             this.setState({galleryImgs: this.props.event.imgs.map((img) => {
                 return {
@@ -107,8 +106,21 @@ class Event extends React.Component {
                             <div className="home-expanded-desc-fade"/>
                         </div>
                         <div className="event-buttons-area">
-                            <div className="event-button LearnMore-Button"> Learn More </div>
-                            <div className="event-button Register-Button" onClick={this.gotoRegisterLink}> Register </div>
+                            <div className="event-button LearnMore-Button">
+                                <Link to={{pathname: "eventdetail/" + this.props.event._id, state: {from: '/'}}}> 
+                                    Learn More 
+                                </Link>
+                            </div>
+                            {this.props.event.signup? 
+                                <div className="event-button Register-Button" 
+                                    onClick={this.gotoRegisterLink}> 
+                                    Register 
+                                </div>
+                                :
+                                <div className="event-button Register-Button-disabled">
+                                    Register
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="home-expanded-right">

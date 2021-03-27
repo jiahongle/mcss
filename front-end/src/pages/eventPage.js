@@ -11,7 +11,7 @@ export default class EventPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        success: true, // Logged in status
+        success: false,
     }   
   }
   editEvent = React.createRef()
@@ -36,13 +36,17 @@ export default class EventPage extends React.Component {
     };
     fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
 
-      if (response.status === 200) {
+      if (response.status === 200 && this.state.success === false) {
 
         this.setState({ success: true })
       } else {
         console.log("no cookie found")
       }
     });
+  }
+
+  componentWillMount() {
+    window.scrollTo(0,0)
   }
 
   openEditEventDialog = (event) => {

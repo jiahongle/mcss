@@ -142,11 +142,43 @@
 
 .LearnMore-Button {
     background-color: #55B5D3;
+    transition: 150ms;
+}
+
+.LearnMore-Button:hover {
+    background-color: #008bb6;
+    transition: 150ms;
+}
+
+.LearnMore-Button a {
+    color: inherit;
+    width: 100%;
+    line-height: 30px;
+    transition: 150ms;
+}
+
+.LearnMore-Button:hover a  {
+    color: inherit;
+    text-decoration: none;
 }
 
 .Register-Button {
     background-color: #CD96F9;
+    transition: 150ms;
 }
+
+.Register-Button:hover {
+    transition: 150ms;
+    background-color: #9d28fc;
+}
+
+.Register-Button-disabled {
+    border: solid 2px #888888;
+    transition: 150ms;
+    cursor: default;
+    color:#888888
+}
+
 
 
 /* Image container */

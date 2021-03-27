@@ -57,6 +57,7 @@
 
 .mcss-logo {
     height: 10vmin;
+    max-width: 147px;
 }
 
 .social-media {
@@ -66,6 +67,14 @@
     display: flex;
     justify-content: space-between;
     color: #8873B4;
+}
+
+.social-media a {
+    color: #8873B4;
+}
+
+.social-media a:hover {
+    color: #5e36b6;
 }
 
 .content-wrap {

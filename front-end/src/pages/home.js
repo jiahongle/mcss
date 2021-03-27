@@ -3,6 +3,7 @@ import mcss from '../mcssLogo.svg';
 import './home.css';
 import Introduction from '../components/WhoWeAre/Introduction.js'
 import LogoBar from '../components/logoBar/logoBar';
+import EmailMailchimp from '../components/mailchimp/emailMailchimp.js';
 import Announcements from '../components/announcements/announcement.js'
 import UpcomingEvents from '../components/UpcomingEvents/UpcomingEvents.js';
 import Footer from '../components/footer/footer.js';
@@ -42,6 +43,9 @@ export default class Home extends React.Component {
         </header>
         <div className="Home-AppContent">
           <Introduction />
+          {
+          this.state.success && <EmailMailchimp />
+          }
           <Announcements />
           <UpcomingEvents />
         </div>

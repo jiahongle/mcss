@@ -1,6 +1,6 @@
 // Description: Container component for the "Who We Are" section of the home page
 import './Introduction.css'
-import presidentpic from '../../res/placeholder-president-pic.png';
+import presidentpic from '../../res/president.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons'
@@ -12,15 +12,16 @@ const IntroText = "Mathematical & Computational Sciences Society (MCSS)" +
                        "historically they've been centered around MCS topics or hobbies like game nights, " +
                        "coding competitions, or featuring MCS professors."
 
-const presidentQuote = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex quam, consectetur " +
-                       "eu mattis facilisis, sollicitudin nec enim. Sed id ipsum porta, viverra urna sed, " +
-                       "sollicitudin tortor. Morbi id risus eget nulla pulvinar tristique a in eros."
+const presidentQuote = `I like to think of MCSS as a bridge between students and faculties in various aspects. 
+                        The vision of MCSS is to help to curate an environment where students build connections 
+                        and grow with each other. Shout-out to all the MCS clubs, organizations, and various Discord 
+                        servers, together we have built this amazing community at UTM.`
 
 const presidentName = " - Brian Li"
 function Introduction() {
     return (
         <div className="Introduction">
-            <b>Who We Are</b>
+            <div className="section-title">Who We Are</div>
             <p>{IntroText}</p>
             
             <div className="President-Container">

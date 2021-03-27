@@ -2,3 +2,9 @@
   color: white;
   text-align: left;
 }
+
+@media screen and (min-width: 800px) {
+  .yearTitle {
+    font-size: 1.3em;
+  }
+}

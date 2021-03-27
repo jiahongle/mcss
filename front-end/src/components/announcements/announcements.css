@@ -157,3 +157,19 @@
     transform: rotate(-90deg);
     transition: 150ms;
 }
+
+.see-all {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    color: #24A4D3;
+    padding-right: 10px;
+}
+
+.see-all a {
+    color: #24A4D3;
+}
+
+.see-all a:hover {
+    color: #24A4D3;
+}

@@ -7,6 +7,7 @@ import { faTimes, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 export default class PictureCollage extends React.Component {
 
+
     state = {
         selectedFiles: null,
     }
@@ -79,7 +80,7 @@ export default class PictureCollage extends React.Component {
                     {this.props.images.map((image) => (
                         <div>
                             <FontAwesomeIcon id="plus" icon={faTimes} className="del clickable" onClick={() => this.onDelete(image.deletehash)} />
-                            <img src={image.link} alt="Logo" class="aaaa" key={image.deletehash} />
+                            <img src={image.link} alt="Logo" className="image" key={image.deletehash} />
                         </div>
                     ))
                     }
@@ -91,6 +92,7 @@ export default class PictureCollage extends React.Component {
                     </div>
 
                     <input type="file" id={this.props._id} style={{ display: 'none' }} onChange={this.onChangeHandler} />
+
                 </div>
                 {/* <input type="file" class="form-control" multiple onChange={this.onChangeHandler} name="file" /> */}
                 <input type="submit" value="submit" onClick={() => this.onSubmit()} />
