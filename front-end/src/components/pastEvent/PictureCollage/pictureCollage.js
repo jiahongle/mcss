@@ -11,6 +11,7 @@ export default class PictureCollage extends React.Component {
     state = {
         selectedFiles: null,
     }
+
     onChangeHandler = event => {
         this.setState({
             selectedFiles: event.target.files
@@ -22,6 +23,8 @@ export default class PictureCollage extends React.Component {
         const data = new FormData()
         data.append('deleteHash', deleteHash);
         data.append('_id', this.props._id)
+
+        //console.log(data)
 
         const requestOptions = {
             method: 'DELETE',
