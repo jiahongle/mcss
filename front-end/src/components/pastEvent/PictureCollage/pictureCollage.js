@@ -81,17 +81,14 @@ export default class PictureCollage extends React.Component {
 
                 <div className={"pastEventsPictureCollage " + this.props.colorBorder}>
                     {this.props.images.map((image) => (
-                        <div>
-                            {
-                                //console.log(image)
-                            }
+                        <div className="image-place">
                             <FontAwesomeIcon id="plus" icon={faTimes} className="del clickable" onClick={() => this.onDelete(image.deletehash)} />
-                            <img src={image.link} alt="Logo" className="image" key={image.deletehash} />
+                            <img src={image.link} alt="Logo" key={image.deletehash} />
                         </div>
                     ))
                     }
 
-                    <div className="aaaa plus">
+                    <div className="image-place plus"> 
                         <label htmlFor={this.props._id}>
                             <FontAwesomeIcon id="plus" icon={faPlus} className="clickable" />
                         </label>

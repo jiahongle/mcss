@@ -33,13 +33,14 @@
   border-color: #9cdaf7;
 }
 
-.pastEventsPictureCollage > * {
-  height: 150px;
+.image-place * {
+  max-width: 150px;
+  max-height: 150px;
 }
 
-.image {
+.image-place {
+  position: relative;
   margin: 8px;
-  max-width: 500px;
 }
 
 @media screen and (min-width: 800px) {
@@ -47,36 +48,38 @@
     font-size: 1.4em;
   }
 
-  .pastEventsPictureCollage > * {
-    height: 210px;
+  .image-place * {
+    max-width: 250px;
+    max-height: 250px;
   }
 
-  .image {
+  .image-place {
     margin: 15px;
   }
 }
 
 .plus {
   display: flex;
-  justify-content:center;
-  align-content:center;
-  align-items:center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   font-size: 40px;
 }
 
 .del {
-  color:red;
-  position:relative;
-  left:150px;
-  bottom:30px;
+  color: red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
 }
 
 .delPost {
   color: red;
-  left:20px;
-  position:relative;
+  left: 20px;
+  position: relative;
 }
 
-.clickable{
+.clickable {
   cursor: pointer;
 }
