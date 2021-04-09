@@ -10,6 +10,7 @@ export default class PictureCollage extends React.Component {
 
     state = {
         selectedFiles: null,
+        loggedIn: false
     }
 
     onChangeHandler = event => {
@@ -19,7 +20,6 @@ export default class PictureCollage extends React.Component {
     }
 
     onDelete = (deleteHash) => {
-        console.log(deleteHash)
         const data = new FormData()
         data.append('deleteHash', deleteHash);
         data.append('_id', this.props._id)
@@ -46,6 +46,27 @@ export default class PictureCollage extends React.Component {
         };
         fetch('http://localhost:5000/pastevents/deleteEvent', requestOptions)
 
+    }
+
+    componentDidMount() {
+        var requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+        };
+        requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            credentials: 'include'
+        };
+        fetch('http://localhost:5000/admins/protected', requestOptions).then(response => {
+            if (response.status === 200) {
+
+                this.setState({ loggedIn: true })
+            } else {
+            }
+        });
     }
 
     onSubmit = e => {
@@ -75,30 +96,40 @@ export default class PictureCollage extends React.Component {
         return (
             <div>
                 <div className={"pastEventTitle " + titleCol}>{this.props.title}
+                {  
+                        this.state.loggedIn && 
                     <FontAwesomeIcon id="plus" icon={faWindowClose} className="delPost clickable" onClick={() => this.onDeleteEvent()} />
-
+                }
                 </div>
 
                 <div className={"pastEventsPictureCollage " + this.props.colorBorder}>
                     {this.props.images.map((image) => (
                         <div className="image-place">
-                            <FontAwesomeIcon id="plus" icon={faTimes} className="del clickable" onClick={() => this.onDelete(image.deletehash)} />
+                            {  
+                                this.state.loggedIn && 
+                                <FontAwesomeIcon id="plus" icon={faTimes} className="del clickable" onClick={() => this.onDelete(image.deletehash)} />
+                            }
                             <img src={image.link} alt="Logo" key={image.deletehash} />
                         </div>
                     ))
                     }
-
+                    {  
+                        this.state.loggedIn && 
                     <div className="image-place plus"> 
                         <label htmlFor={this.props._id}>
                             <FontAwesomeIcon id="plus" icon={faPlus} className="clickable" />
                         </label>
                     </div>
+                    }
 
                     <input type="file" id={this.props._id} style={{ display: 'none' }} onChange={this.onChangeHandler} />
 
                 </div>
                 {/* <input type="file" class="form-control" multiple onChange={this.onChangeHandler} name="file" /> */}
-                <input type="submit" value="submit" onClick={() => this.onSubmit()} />
+                {  
+                    this.state.loggedIn && 
+                    <input type="submit" value="submit" onClick={() => this.onSubmit()} />
+                }
 
             </div >
         );

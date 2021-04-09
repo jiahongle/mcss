@@ -17,7 +17,7 @@ export default class PastEventsSection extends React.Component {
         super(props);
         this.state = {
             open: false,
-            pastevents: []
+            pastevents: [],
         }
         this.togglePanel = this.togglePanel.bind(this);
     }
@@ -39,7 +39,9 @@ export default class PastEventsSection extends React.Component {
                     pastevents: data.data
                 })
             )
+         
     }
+    
     assignBorderColor(b) {
         return (b) ? "blueBorder" : "purpleBorder";
     }
